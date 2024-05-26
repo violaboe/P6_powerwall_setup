@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Off_Axis.unity
     guid: b8c64ee28e96dac44a016541d9d6cde0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Samples/Meta MR Utility Kit/65.0.0/Basic/MRUKBase.unity
     guid: 21549dbcb1294de4fafd68fca195dda5
+  - enabled: 1
+    path: Assets/Scenes/Quest3_Base.unity
+    guid: 2515f78f5545b9e438a743b894267eaa
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 13ee09ecbbc87404eb798daa99bfc0c9, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d2f629ac8298c8041a3ea72dbbf0f59d, type: 2}
