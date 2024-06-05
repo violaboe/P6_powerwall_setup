@@ -9,7 +9,6 @@ public class CollisionHideReveal : MonoBehaviour
         if(other.CompareTag("Ball"))
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
-            this.gameObject.SetActive(true);
         }
     }
 }
