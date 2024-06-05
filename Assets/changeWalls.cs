@@ -21,7 +21,7 @@ public class changeWalls : MonoBehaviour
     {
         if (other.name == "WALL_FACE_EffectMesh")
         {
-            other.gameObject.GetComponent<MeshRenderer>().material.color = ;
+          //  other.gameObject.GetComponent<MeshRenderer>().material.color = ;
         }
     }
     // Update is called once per frame
