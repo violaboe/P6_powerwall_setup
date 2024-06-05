@@ -7,6 +7,7 @@ public class shadertest : MonoBehaviour
     public GameObject noShaderObjects;
     public GameObject shaderObjects;
     private bool shaderOn;
+    public List<GameObject> objects = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {

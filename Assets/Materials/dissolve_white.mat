@@ -66,17 +66,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutoffHeight: -2.09
-    - _EdgeWidth: -36.7
+    - _CutoffHeight: 0.01
+    - _EdgeWidth: 0.17
     - _Float: 5.37
     - _NoiseScale: 27.4
-    - _NoiseStrength: 1.37
+    - _NoiseStrength: 2.42
     - _QueueControl: 0
     - _QueueOffset: 14
     - _rotation: 49.5
     m_Colors:
     - _Albedo: {r: 1, g: 1, b: 1, a: 0}
-    - _EdgeColor: {r: 1.2928549, g: 1.2928549, b: 1.2928549, a: 1}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _Vector3: {r: 0, g: 1, b: 0, a: 0}
     - _Vector3_1: {r: 90, g: 90, b: 90, a: 0}
     - _dissolve_direction: {r: 0, g: 1, b: 1, a: 0}
