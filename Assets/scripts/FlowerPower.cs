@@ -5,37 +5,24 @@ using UnityEngine;
 public class FlowerPower : MonoBehaviour
 {
     //Spreading the flower
-    [SerializeField] private GameObject[] planes;
+    public roomManager roomMngr;
+    private List<GameObject> walls;
     [SerializeField] private GameObject objectToScatter;
     [SerializeField] private int numberOfObjectsToScatter = 10;
     [SerializeField] private float derivation = 0.4f; 
 
 
-    //Collecting all the walls to spawn on
-    private OVRSceneManager ovrSceneManager;
-    private OVRSceneRoom ovrSceneRoom;
-    private OVRScenePlane[] oVRScenePlanes;
-
-    private void Awake()
-    {
-        ovrSceneManager = FindAnyObjectByType<OVRSceneManager>();
-        //ovrSceneManager.SceneModelLoadedSuccessfully += SceneLoaded(); 
-    }
-
-    private void SceneLoaded()
-    {
-        ovrSceneRoom = FindObjectOfType<OVRSceneRoom>();
-        oVRScenePlanes = ovrSceneRoom.Walls;
-    }
 
     void Start()
     {
         ScatterObjects();
+
+        walls = roomMngr.GetAllWalls();
     }
 
     private void ScatterObjects()
     {
-        foreach (GameObject plane in planes)
+        foreach (GameObject plane in walls)
         {
             Mesh planeMesh = plane.GetComponent<MeshFilter>().mesh;
             Vector3 planeSize = planeMesh.bounds.size;

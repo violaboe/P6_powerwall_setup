@@ -11,9 +11,7 @@ public class roomManager : MonoBehaviour
     private MRUKRoom room;
     private List<MRUKAnchor> walls = new List<MRUKAnchor>();
     // Start is called before the first frame update
-    void Awake()
-    {
-    }
+  
     public void SceneLoaded()
     {
         room = FindObjectOfType<MRUKRoom>();
@@ -25,11 +23,18 @@ public class roomManager : MonoBehaviour
                 walls.Add(anchor);
             }
         }
+
+        Debug.Log(walls.Count);
     }
 
-    // Update is called once per frame
-    void Update()
+    public List<GameObject> GetAllWalls()
     {
-        Debug.Log(walls.Count);
+        List<GameObject> wallGOs = new List<GameObject>();
+
+        foreach (MRUKAnchor anchor in room.Anchors)
+        {
+            wallGOs.Add(anchor.transform.GetChild(0).gameObject); 
+        }
+        return wallGOs;
     }
 }
