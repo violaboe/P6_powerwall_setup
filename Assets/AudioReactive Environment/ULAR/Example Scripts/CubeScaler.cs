@@ -15,7 +15,7 @@ public class CubeScaler : MonoBehaviour
 
     // You don't need these settings as public variables. But it obviously helps to change stuff during runtime :P
     public int Band;
-    public float MaxScale = 10;
+    public float MaxScale;
     public bool Smooth;
     
     // Then just do whatever else your code is ment to do
