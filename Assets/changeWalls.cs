@@ -24,9 +24,6 @@ public class changeWalls : MonoBehaviour
     {
         if (other.name == "WALL_FACE_EffectMesh")
         {
-<<<<<<< Updated upstream
-          //  other.gameObject.GetComponent<MeshRenderer>().material.color = ;
-=======
             // Set the material to neon
             other.gameObject.GetComponent<MeshRenderer>().material = neon;
 
@@ -36,7 +33,7 @@ public class changeWalls : MonoBehaviour
 
             // Apply the color with the updated alpha to the material
             other.gameObject.GetComponent<MeshRenderer>().material.color = randomColor;
->>>>>>> Stashed changes
+
         }
     }
 

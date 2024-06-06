@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: cave camera test
+  companyName: Icarus
+  productName: PULSE
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -142,6 +142,8 @@ PlayerSettings:
   bundleVersion: 0.1
   preloadedAssets:
   - {fileID: 11400000, guid: 40cd4284b2bd5f44081ba43341638378, type: 2}
+  - {fileID: 7969462758792198220, guid: d2f629ac8298c8041a3ea72dbbf0f59d, type: 2}
+  - {fileID: 11400000, guid: 13ee09ecbbc87404eb798daa99bfc0c9, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -162,7 +164,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DefaultCompany.cavecameratest
+    Android: com.Icarus.PULSE
     Standalone: com.DefaultCompany.cave-camera-test
   buildNumber:
     Standalone: 0
