@@ -6,12 +6,14 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: z__ShadingGradientTextureTex{"mode":0,"colorKeys":[{"color":{"r":0.5801886916160584,"g":0.9063730239868164,"b":1.0,"a":1.0},"time":0.29117265343666079},{"color":{"r":0.6521142721176148,"g":0.8769258260726929,"b":0.974452555179596,"a":1.0},"time":0.35883116722106936},{"color":{"r":0.6714123487472534,"g":0.880681037902832,"b":0.9761688709259033,"a":1.0},"time":0.43529412150382998},{"color":{"r":0.8120647668838501,"g":0.9080503582954407,"b":0.9886782765388489,"a":1.0},"time":0.529411792755127},{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":0.6352941393852234},{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":0.9823605418205261}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
+  m_Name: z__ShadingGradientTextureTex{"mode":2,"colorKeys":[{"color":{"r":0.2078431397676468,"g":0.2681896984577179,"b":0.3137255012989044,"a":1.0},"time":0.10629434883594513},{"color":{"r":0.239215686917305,"g":0.2855975329875946,"b":0.35686275362968447,"a":1.0},"time":0.18077363073825837},{"color":{"r":0.48627451062202456,"g":0.5649010539054871,"b":0.6313725709915161,"a":1.0},"time":0.5478904247283936},{"color":{"r":0.5215686559677124,"g":0.6029967665672302,"b":0.6901960968971252,"a":1.0},"time":0.6352941393852234},{"color":{"r":0.5568627715110779,"g":0.6111882925033569,"b":0.6549019813537598,"a":1.0},"time":0.9823605418205261}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
+  serializedVersion: 2
   m_Width: 256
   m_Height: 1
   m_CompleteImageSize: 1024
@@ -30,7 +32,7 @@ Texture2D:
   m_TextureDimension: 2
   m_TextureSettings:
     serializedVersion: 2
-    m_FilterMode: 1
+    m_FilterMode: 0
     m_Aniso: 1
     m_MipBias: 0
     m_WrapU: 1
@@ -40,7 +42,7 @@ Texture2D:
   m_ColorSpace: 1
   m_PlatformBlob: 
   image data: 1024
-  _typelessdata: ff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff94e7ffff95e7ffff96e6feff97e6feff98e5feff99e5fdff9ae5fdff9be4fcff9ce4fcff9de3fcff9ee3fbff9fe2fbffa0e2fbffa2e2faffa3e1faffa4e1f9ffa5e0f9ffa6e0f9ffa6e0f8ffa7e0f9ffa7e0f9ffa7e0f9ffa7e0f9ffa8e0f9ffa8e0f9ffa8e0f9ffa8e0f9ffa9e0f9ffa9e0f9ffa9e0f9ffa9e0f9ffaae0f9ffaae0f9ffaae0f9ffaae0f9ffabe0f9ffabe1f9ffabe1f9ffade1f9ffaee1f9ffb0e1f9ffb1e2f9ffb3e2faffb4e2faffb6e3faffb7e3faffb9e3faffbae3faffbce4faffbde4fbffbfe4fbffc0e5fbffc2e5fbffc3e5fbffc5e6fbffc6e6fbffc8e6fbffc9e6fcffcbe7fcffcce7fcffcee7fcffcfe8fcffd1e8fcffd3e9fcffd4eafcffd6ebfdffd8ecfdffdaedfdffdceefdffddeffdffdfeffdffe1f0fdffe3f1fdffe4f2fdffe6f3feffe8f4feffeaf5feffebf5feffedf6feffeff7fefff1f8fefff3f9fefff4fafefff6fbfefff8fcfffffafcfffffbfdfffffdfeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  _typelessdata: ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354450ff354551ff364551ff364552ff374552ff374653ff374653ff384654ff384655ff394655ff394756ff3a4756ff3a4757ff3a4757ff3b4858ff3b4859ff3c4859ff3c485aff3d495aff3d495bff3e495cff3e4a5cff3f4b5dff3f4c5eff404c5eff414d5fff414e60ff424f61ff434f61ff435062ff445163ff455164ff455264ff465365ff465466ff475466ff485567ff485668ff495769ff4a5769ff4a586aff4b596bff4c596bff4c5a6cff4d5b6dff4e5c6eff4e5c6eff4f5d6fff505e70ff505f71ff515f71ff526072ff526173ff536274ff546274ff546375ff556476ff566577ff566577ff576678ff586779ff586879ff59687aff5a697bff5a6a7cff5b6b7dff5c6b7dff5c6c7eff5d6d7fff5e6e7fff5e6f80ff5f6f81ff607082ff607182ff617283ff627284ff627385ff637486ff647586ff647587ff657688ff667789ff667889ff67798aff68798bff697a8cff697b8cff6a7c8dff6b7c8eff6b7d8fff6c7e8fff6d7f90ff6d8091ff6e8092ff6f8192ff6f8293ff708394ff718495ff728496ff728596ff738697ff748798ff748799ff758899ff76899aff778a9bff778b9cff788b9dff798c9dff798d9eff7a8e9fff7b8fa0ff7b8fa0ff7c90a1ff7d91a2ff7d91a3ff7d91a3ff7e92a4ff7e92a5ff7f93a5ff7f93a6ff7f94a7ff8094a7ff8095a8ff8195a9ff8195a9ff8196aaff8296abff8297abff8397acff8398adff8398adff8498aeff8499afff8599afff859ab0ff859ab0ff859ab0ff859ab0ff859ab0ff869ab0ff869aafff869aafff869aafff869aafff869aafff869aafff869aafff869aafff869aafff879aaeff879aaeff879aaeff879aaeff879aaeff879aaeff879aaeff879aaeff879aaeff879aaeff889aadff889aadff889aadff889aadff889aadff889aadff889aadff889badff889badff889badff899bacff899bacff899bacff899bacff899bacff899bacff899bacff899bacff899bacff8a9bacff8a9babff8a9babff8a9babff8a9babff8a9babff8a9babff8a9babff8a9babff8a9babff8a9babff8b9baaff8b9baaff8b9baaff8b9baaff8b9baaff8b9baaff8b9baaff8b9baaff8b9baaff8c9baaff8c9ba9ff8c9ba9ff8c9ba9ff8c9ba9ff8c9ba9ff8c9ba9ff8c9ba9ff8c9ba9ff8c9ba9ff8d9ca8ff8d9ca8ff8d9ca8ff8d9ca8ff8d9ca8ff8d9ca8ff8d9ca8ff8d9ca8ff8d9ca8ff8d9ca8ff8e9ca7ff8e9ca7ff8e9ca7ff8e9ca7ff8e9ca7ff8e9ca7ff8e9ca7ff8e9ca7ff8e9ca7ff8e9ca7
   m_StreamData:
     serializedVersion: 2
     offset: 0
@@ -67,8 +69,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: NatureScene_Cloud3D
-  m_Shader: {fileID: -6465566751694194690, guid: 29f42145cbc814750965726259f1af2c,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 29f42145cbc814750965726259f1af2c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -163,7 +164,7 @@ Material:
     - BILLBOARD_ROTATION: 0
     - Billboard_Scale: 2.2
     - Clip_Threshold: 0
-    - Fill_Impact: 0.209
+    - Fill_Impact: 0.74
     - Fill_Scale: 0
     - Fresnel_Power: 0
     - Fresnel_Sharpness: 0.5
@@ -217,7 +218,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!28 &4441452916448145694
 Texture2D:
   m_ObjectHideFlags: 0
@@ -228,8 +228,10 @@ Texture2D:
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
+  serializedVersion: 2
   m_Width: 256
   m_Height: 1
   m_CompleteImageSize: 1024

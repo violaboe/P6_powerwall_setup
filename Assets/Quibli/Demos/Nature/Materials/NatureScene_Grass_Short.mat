@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: NatureScene_Grass_Short
-  m_Shader: {fileID: -6465566751694194690, guid: 55d33328ab3ba4efca3c7706d97d8ee8,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 55d33328ab3ba4efca3c7706d97d8ee8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -63,17 +62,17 @@ Material:
     - _54ef369afb0741ac878c5a407a2c0130_2: 0
     - _AlphaClipThreshold: 0.5
     - _GustEnabled: 1
-    - _GustFrequency: 0.5
-    - _GustIntensity: 0.25
+    - _GustFrequency: 0.433
+    - _GustIntensity: 0.097
     - _GustSpeed: 0.5
     - _PatchesAmount: 0.25
-    - _PatchesBluriness: 0.051
+    - _PatchesBluriness: 0
     - _PatchesEnabled: 1
     - _PatchesFrequency: 0.05
-    - _PatchesScale: 0.15
+    - _PatchesScale: 0.38
     - _PatchesSharpness: 1
     - _PatchesSize: 0.722
-    - _PatchesThreshold: 0.84
+    - _PatchesThreshold: 0.72
     - _QueueControl: -1
     - _QueueOffset: 0
     - _ShadowStrength: 0
@@ -86,14 +85,13 @@ Material:
     m_Colors:
     - Color_8625870c808d4f1b93a120fb2366b73e: {r: 0, g: 0, b: 0, a: 0}
     - Color_fa7bfd953c0f468faf964c3a5545c86d: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorBottom: {r: 0.16689368, g: 0.6226415, b: 0, a: 1}
-    - _ColorTop: {r: 0.4433829, g: 0.8207547, b: 0.08904416, a: 1}
-    - _GustColor: {r: 0.29411763, g: 0.6431373, b: 0.082352914, a: 1}
-    - _PatchesColor: {r: 0.66981107, g: 0.9433962, b: 0.19134924, a: 1}
-    - _PatchesOffset: {r: -7, g: 5, b: 0, a: 0}
+    - _ColorBottom: {r: 0.059126213, g: 0.13563538, b: 0.13563538, a: 1}
+    - _ColorTop: {r: 0.21709993, g: 0.3577786, b: 0.35351562, a: 1}
+    - _GustColor: {r: 0.4901403, g: 0.57212114, b: 0.69099325, a: 1}
+    - _PatchesColor: {r: 0.4072113, g: 0.485938, b: 0.33223355, a: 1}
+    - _PatchesOffset: {r: -4.03, g: 5, b: 0, a: 0}
     - _SecondaryColor: {r: 0.937255, g: 0.7568628, b: 0.24705875, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &1297332593301578871
 MonoBehaviour:
   m_ObjectHideFlags: 11

@@ -10,8 +10,10 @@ Texture2D:
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
   m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
+  serializedVersion: 2
   m_Width: 256
   m_Height: 1
   m_CompleteImageSize: 1024
@@ -30,7 +32,7 @@ Texture2D:
   m_TextureDimension: 2
   m_TextureSettings:
     serializedVersion: 2
-    m_FilterMode: 1
+    m_FilterMode: 0
     m_Aniso: 1
     m_MipBias: 0
     m_WrapU: 1
@@ -224,7 +226,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _TextureBlendingMode: 0
-    - _TextureImpact: 1
+    - _TextureImpact: 0
     - _UnityShadowMode: 1
     - _UnityShadowOcclusion: 0
     - _UnityShadowPower: 0.225
@@ -257,7 +259,6 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UnityShadowColor: {r: 0.096253075, g: 0.19280317, b: 0.19811317, a: 0.3137255}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &2873338400957594487
 MonoBehaviour:
   m_ObjectHideFlags: 11

@@ -15,20 +15,25 @@ MonoBehaviour:
   version: 4
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: NatureScene_LightBeam 1
   m_Shader: {fileID: 4800000, guid: bf111c139329647fdba0284d3bad8836, type: 3}
-  m_ShaderKeywords: _ALLOWALPHAOVERFLOW_OFF
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _ALLOWALPHAOVERFLOW_OFF
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -126,7 +131,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.775698, g: 1.2586799, b: 1.39772, a: 0.39607844}
+    - _Color: {r: 0.18982735, g: 0.35281065, b: 0.39659724, a: 0.39607844}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
