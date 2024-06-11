@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Wall
   - Ball
+  - ceiling anchor
+  - floor anchor
+  - wall anchor
   layers:
   - Default
   - TransparentFX
