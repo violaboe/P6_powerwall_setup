@@ -10,6 +10,7 @@ public class PathFinder : MonoBehaviour
     private List<GameObject> ceilingAnchors = new List<GameObject>();
     private List<GameObject> floorAnchors = new List<GameObject>();
     private List<GameObject> wallAnchors = new List<GameObject>();
+    private GameObject screenAnchor = null;
 
     public List<string> orderOfPath = new List<string>();
     public List<Transform> fireflyPath = new List<Transform>();
@@ -49,6 +50,7 @@ public class PathFinder : MonoBehaviour
         ceilingAnchors.AddRange(GameObject.FindGameObjectsWithTag("ceiling anchor"));
         wallAnchors.AddRange(GameObject.FindGameObjectsWithTag("wall anchor"));
         floorAnchors.AddRange(GameObject.FindGameObjectsWithTag("floor anchor"));
+        screenAnchor = GameObject.FindGameObjectWithTag("screen anchor");
 
         if (ceilingAnchors == null || ceilingAnchors.Count == 0)
         {
@@ -67,22 +69,30 @@ public class PathFinder : MonoBehaviour
             Debug.LogError("The list of floor anchors is empty.");
             return;
         }
+        if (screenAnchor == null)
+        {
+            Debug.LogWarning("The screen anchor is empty.");
+        }
 
         GameObject closestAnchor = null;
 
         for (int i = 0; i < orderOfPath.Count; i++)
         {
-            if (orderOfPath[i].ToString() == "wall")
+            if (orderOfPath[i] == "wall")
             {
                 closestAnchor = FindClosestGameObject(wallAnchors);
             }
-            else if (orderOfPath[i].ToString() == "ceiling")
+            else if (orderOfPath[i] == "ceiling")
             {
                 closestAnchor = FindClosestGameObject(ceilingAnchors);
             }
-            else if (orderOfPath[i].ToString() == "floor")
+            else if (orderOfPath[i] == "floor")
             {
                 closestAnchor = FindClosestGameObject(floorAnchors);
+            }
+            else if (orderOfPath[i] == "screen" && screenAnchor != null)
+            {
+                closestAnchor = screenAnchor;
             }
 
             if (closestAnchor != null)

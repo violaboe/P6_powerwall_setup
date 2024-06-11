@@ -9,6 +9,7 @@ TagManager:
   - ceiling anchor
   - floor anchor
   - wall anchor
+  - screen anchor
   layers:
   - Default
   - TransparentFX

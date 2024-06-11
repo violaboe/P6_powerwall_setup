@@ -35,36 +35,39 @@ public class fireflyMovement : MonoBehaviour
     {
         if (!isMoving || anchors == null || anchors.Count == 0) return;
 
-        Transform targetAnchor = anchors[currentAnchorIndex];
-        Vector3 direction = (targetAnchor.position - transform.position).normalized;
-
-        // Calculate a curved direction by blending the current direction with the new direction
-        currentDirection = Vector3.Lerp(currentDirection, direction, curveStrength * Time.deltaTime);
-
-        // Add perturbation for fly-like movement
-        Vector3 perturbation = new Vector3(
-            Random.Range(-perturbationStrength, perturbationStrength),
-            Random.Range(-perturbationStrength, perturbationStrength),
-            Random.Range(-perturbationStrength, perturbationStrength)
-        );
-
-        Vector3 moveDirection = currentDirection + perturbation;
-        transform.position += moveDirection * speed * Time.deltaTime;
-
-        // Check if we have reached the target anchor
-        if (Vector3.Distance(transform.position, targetAnchor.position) < 0.1f)
+        if (currentAnchorIndex < anchors.Count)
         {
-            currentAnchorIndex++;
-            if (currentAnchorIndex >= anchors.Count)
-            {
-                currentAnchorIndex = 0; // Loop back to the first anchor
-            }
+            Transform targetAnchor = anchors[currentAnchorIndex];
+            Vector3 direction = (targetAnchor.position - transform.position).normalized;
 
-            // Update the direction for the next anchor
-            if (anchors.Count > 1)
+            // Calculate a curved direction by blending the current direction with the new direction
+            currentDirection = Vector3.Lerp(currentDirection, direction, curveStrength * Time.deltaTime);
+
+            // Add perturbation for fly-like movement
+            Vector3 perturbation = new Vector3(
+                Random.Range(-perturbationStrength, perturbationStrength),
+                Random.Range(-perturbationStrength, perturbationStrength),
+                Random.Range(-perturbationStrength, perturbationStrength)
+            );
+
+            Vector3 moveDirection = currentDirection + perturbation;
+            transform.position += moveDirection * speed * Time.deltaTime;
+
+            // Check if we have reached the target anchor
+            if (Vector3.Distance(transform.position, targetAnchor.position) < 0.1f)
             {
-                int nextAnchorIndex = (currentAnchorIndex + 1) % anchors.Count;
-                currentDirection = (anchors[nextAnchorIndex].position - targetAnchor.position).normalized;
+                currentAnchorIndex++;
+
+                // Update the direction for the next anchor
+                if (currentAnchorIndex < anchors.Count)
+                {
+                    int nextAnchorIndex = (currentAnchorIndex + 1) % anchors.Count;
+                    currentDirection = (anchors[nextAnchorIndex].position - targetAnchor.position).normalized;
+                }
+                else
+                {
+                    isMoving = false; // Stop moving if we have reached the last anchor
+                }
             }
         }
     }
