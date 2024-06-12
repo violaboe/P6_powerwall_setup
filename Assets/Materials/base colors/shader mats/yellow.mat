@@ -13,8 +13,10 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DETAILMAPBLENDINGMODE_MULTIPLY
+  - _RECEIVE_SHADOWS_OFF
   - _TEXTUREBLENDINGMODE_MULTIPLY
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _RECEIVESHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -128,7 +130,7 @@ Material:
     - _GradientCenterY: 0
     - _GradientEnabled: 0
     - _GradientSize: 10
-    - _LightContribution: 0.83
+    - _LightContribution: 0
     - _LightmapDirectionPitch: 0
     - _LightmapDirectionYaw: 0
     - _Metallic: 0
@@ -142,9 +144,9 @@ Material:
     - _OverrideLightmapDir: 0
     - _Parallax: 0.005
     - _QueueOffset: 0
-    - _ReceiveShadows: 1
+    - _ReceiveShadows: 0
     - _RimEnabled: 0
-    - _SelfShadingSize: 0
+    - _SelfShadingSize: 0.661
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
@@ -191,7 +193,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: z__GradientRampTex{"mode":1,"colorKeys":[{"color":{"r":0.6739052534103394,"g":0.5495405197143555,"b":0.12103422731161118,"a":1.0},"time":0.2685588002204895},{"color":{"r":0.8447845578193665,"g":0.7412123680114746,"b":0.21668477356433869,"a":1.0},"time":0.6622720956802368},{"color":{"r":0.9131363034248352,"g":0.8925537467002869,"b":0.42146003246307375,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
+  m_Name: z__GradientRampTex{"mode":1,"colorKeys":[{"color":{"r":0.6739052534103394,"g":0.5495405197143555,"b":0.4941176474094391,"a":1.0},"time":0.2685588002204895},{"color":{"r":0.8447845578193665,"g":0.7412123680114746,"b":0.6745098233222961,"a":1.0},"time":0.6622720956802368},{"color":{"r":0.9131363034248352,"g":0.8925537467002869,"b":0.8313725590705872,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -227,7 +229,7 @@ Texture2D:
   m_ColorSpace: 1
   m_PlatformBlob: 
   image data: 1024
-  _typelessdata: ffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffac8c1fffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffd7bd37ffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46bffe9e46b
+  _typelessdata: ffac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effac8c7effd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffd7bdacffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4ffe9e4d4
   m_StreamData:
     serializedVersion: 2
     offset: 0
