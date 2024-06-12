@@ -99,7 +99,7 @@ public class PathFinder : MonoBehaviour
             {
                 Debug.Log("The closest anchor is: " + closestAnchor.name);
                 closestAnchor.GetComponent<MeshRenderer>().material = closestPoint;
-                referencePoint.transform.position = closestAnchor.transform.position;
+                //referencePoint.transform.position = closestAnchor.transform.position;
                 fireflyPath.Add(closestAnchor.transform);
                 usedAnchors.Add(closestAnchor);
             }
