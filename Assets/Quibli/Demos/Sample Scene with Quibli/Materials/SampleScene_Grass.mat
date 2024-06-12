@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SampleScene_Grass
-  m_Shader: {fileID: -6465566751694194690, guid: 55d33328ab3ba4efca3c7706d97d8ee8,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 55d33328ab3ba4efca3c7706d97d8ee8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -68,15 +67,15 @@ Material:
     - _GustSpeed: 0.19
     - _PatchesAmount: 0.25
     - _PatchesBluriness: 0.04
-    - _PatchesEnabled: 0
+    - _PatchesEnabled: 1
     - _PatchesFrequency: 0.05
-    - _PatchesScale: 0.202
+    - _PatchesScale: 0.246
     - _PatchesSharpness: 1
     - _PatchesSize: 0.722
-    - _PatchesThreshold: 0.478
+    - _PatchesThreshold: 0.602
     - _QueueControl: -1
     - _QueueOffset: 0
-    - _ShadowStrength: 0.056
+    - _ShadowStrength: 0
     - _WindDirection: -1
     - _WindEnabled: 1
     - _WindFrequency: 0.8
@@ -86,14 +85,13 @@ Material:
     m_Colors:
     - Color_8625870c808d4f1b93a120fb2366b73e: {r: 0, g: 0, b: 0, a: 0}
     - Color_fa7bfd953c0f468faf964c3a5545c86d: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorBottom: {r: 0.16776434, g: 0.5471698, b: 0.25762355, a: 1}
-    - _ColorTop: {r: 0.21437289, g: 0.4811321, b: 0.06127626, a: 1}
-    - _GustColor: {r: 0.3076924, g: 1, b: 0, a: 0.4}
-    - _PatchesColor: {r: 0.88936174, g: 1, b: 0, a: 1}
+    - _ColorBottom: {r: 0.056747667, g: 0.25525087, b: 0.2059281, a: 1}
+    - _ColorTop: {r: 0.12388124, g: 0.3150587, b: 0.2831958, a: 1}
+    - _GustColor: {r: 0.33961868, g: 0.503026, b: 0.45008016, a: 0.4}
+    - _PatchesColor: {r: 0.4152703, g: 0.485938, b: 0.459807, a: 1}
     - _PatchesOffset: {r: -9, g: 9.4, b: 0, a: 0}
     - _SecondaryColor: {r: 0.937255, g: 0.7568628, b: 0.24705875, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &1297332593301578871
 MonoBehaviour:
   m_ObjectHideFlags: 11
