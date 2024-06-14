@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2464
+  m_CustomRenderQueue: 3014
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -66,7 +66,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutoffHeight: 0.9
+    - _CutoffHeight: 2.38
     - _EdgeWidth: 0.17
     - _Float: 5.37
     - _NoiseScale: 27.4
@@ -75,8 +75,9 @@ Material:
     - _QueueOffset: 14
     - _rotation: 49.5
     m_Colors:
-    - _Albedo: {r: 1, g: 1, b: 1, a: 1}
+    - _Albedo: {r: 1, g: 0, b: 0, a: 1}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HighlightColor: {r: 1, g: 0.47476342, b: 0.109803915, a: 0}
     - _Vector3: {r: 0, g: 1, b: 0, a: 0}
     - _Vector3_1: {r: 90, g: 90, b: 90, a: 0}
     - _dissolve_direction: {r: 0, g: 1, b: 1, a: 0}
