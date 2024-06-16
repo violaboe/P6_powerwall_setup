@@ -5,9 +5,12 @@ public class Lakeify : MonoBehaviour
 {
     public List<GameObject> wallPrefabs; // List of prefabs to spawn for walls
     public List<GameObject> floorPrefabs; // List of prefabs to spawn for floors
-    public float spawnRadius = 5.0f; // Radius within which the prefabs will be spawned
-    public int numberOfPrefabs = 10; // Number of prefabs to spawn
-    public float minDistanceBetweenSpawns = 1.0f; // Minimum distance between spawn points
+    public float innerSpawnRadius = 3.0f; // Inner radius with higher spawn density
+    public float outerSpawnRadius = 5.0f; // Outer radius with lower spawn density
+    public int innerNumberOfPrefabs = 15; // Number of prefabs to spawn in the inner radius
+    public int outerNumberOfPrefabs = 5; // Number of prefabs to spawn in the outer radius
+    public float innerMinDistanceBetweenSpawns = 0.5f; // Minimum distance between spawn points in the inner radius
+    public float outerMinDistanceBetweenSpawns = 1.0f; // Minimum distance between spawn points in the outer radius
 
     private HashSet<Vector3> spawnedPositions = new HashSet<Vector3>();
 
@@ -47,88 +50,101 @@ public class Lakeify : MonoBehaviour
     private void SpawnFloorPrefabs(Vector3 spawnCenter, float floorY)
     {
         spawnCenter = new Vector3(spawnCenter.x, 0, spawnCenter.z);
-        for (int i = 0; i < numberOfPrefabs; i++)
-        {
-            spawnCenter = new Vector3(spawnCenter.x, floorY, spawnCenter.z);
-            // Generate a random point within the spawn radius, keeping the y-coordinate the same
-            Vector3 randomOffset = new Vector3(
-                Random.Range(-spawnRadius, spawnRadius),
-                0, // y-coordinate should remain the same
-                Random.Range(-spawnRadius, spawnRadius)
-            );
-
-            Vector3 spawnPoint = spawnCenter + randomOffset;
-
-            // Check if the position is too close to previously spawned positions
-            if (IsPositionValid(spawnPoint))
-            {
-                // Randomly select a prefab from the list
-                GameObject selectedPrefab = floorPrefabs[Random.Range(0, floorPrefabs.Count)];
-                // Instantiate the prefab at the spawn point
-                Instantiate(selectedPrefab, spawnPoint, Quaternion.identity);
-                // Add the new spawn position to the set
-                spawnedPositions.Add(spawnPoint);
-            }
-        }
+        SpawnPrefabsInRadius(spawnCenter, floorY, floorPrefabs, innerNumberOfPrefabs, innerSpawnRadius, innerMinDistanceBetweenSpawns);
+        SpawnPrefabsInRadius(spawnCenter, floorY, floorPrefabs, outerNumberOfPrefabs, outerSpawnRadius, outerMinDistanceBetweenSpawns, innerSpawnRadius);
     }
 
     private void SpawnWallPrefabs(Vector3 spawnCenter, Transform wallTransform, float X, float Z)
     {
+        SpawnWallPrefabsInRadius(spawnCenter, wallTransform, X, Z, innerNumberOfPrefabs, innerSpawnRadius, innerMinDistanceBetweenSpawns);
+        SpawnWallPrefabsInRadius(spawnCenter, wallTransform, X, Z, outerNumberOfPrefabs, outerSpawnRadius, outerMinDistanceBetweenSpawns, innerSpawnRadius);
+    }
+
+    private void SpawnPrefabsInRadius(Vector3 spawnCenter, float floorY, List<GameObject> prefabs, int numberOfPrefabs, float radius, float minDistance, float innerRadius = 0f)
+    {
         for (int i = 0; i < numberOfPrefabs; i++)
         {
-            // Generate a random point within the spawn radius
-            Vector3 randomOffset = new Vector3(
-                Random.Range(-spawnRadius, spawnRadius),
-                Random.Range(-spawnRadius, spawnRadius),
-                Random.Range(-spawnRadius, spawnRadius)
-            );
-
-            // Adjust randomOffset based on wall orientation
-            if (Mathf.Abs(wallTransform.forward.z) > Mathf.Abs(wallTransform.forward.x))
+            Vector3 randomOffset;
+            float distanceFromCenter;
+            do
             {
-                // Wall is aligned along the z-axis, affecting x/y coordinates
-                randomOffset.x = Random.Range(-spawnRadius, spawnRadius);
-                randomOffset.z = 0; // z-coordinate should be zero if the wall is aligned along the x-axis
-                spawnCenter.z = Z;
-            }
-            else if (Mathf.Abs(wallTransform.forward.x) > Mathf.Abs(wallTransform.forward.z))
-            {
-                // Wall is aligned along the x-axis, affecting z/y coordinates
-                randomOffset.z = Random.Range(-spawnRadius, spawnRadius);
-                randomOffset.x = 0; // x-coordinate should be zero if the wall is aligned along the z-axis
-                spawnCenter.x = X;
-            }
+                randomOffset = new Vector3(
+                    Random.Range(-radius, radius),
+                    0, // y-coordinate should remain the same
+                    Random.Range(-radius, radius)
+                );
+                distanceFromCenter = randomOffset.magnitude;
+            } while (distanceFromCenter < innerRadius || distanceFromCenter > radius);
 
             Vector3 spawnPoint = spawnCenter + randomOffset;
+            spawnPoint = new Vector3(spawnPoint.x, floorY, spawnPoint.z);
 
-            // Check if the position is too close to previously spawned positions
-            if (IsPositionValid(spawnPoint))
+            if (IsPositionValid(spawnPoint, minDistance))
             {
-                // Randomly select a prefab from the list
-                GameObject selectedPrefab = wallPrefabs[Random.Range(0, wallPrefabs.Count)];
-
-                // Calculate the rotation to align the prefab's up direction with the wall's forward direction
-                Quaternion alignmentRotation = Quaternion.LookRotation(wallTransform.forward, Vector3.up);
-
-                // Add a random rotation around the wall's forward axis
-                Quaternion randomRotation = Quaternion.AngleAxis(Random.Range(0f, 360f), wallTransform.forward);
-
-                // Combine the rotations
-                Quaternion finalRotation = alignmentRotation * randomRotation;
-
-                // Instantiate the prefab at the spawn point with the calculated rotation
-                Instantiate(selectedPrefab, spawnPoint, finalRotation);
-                // Add the new spawn position to the set
+                GameObject selectedPrefab = prefabs[Random.Range(0, prefabs.Count)];
+                Instantiate(selectedPrefab, spawnPoint, Quaternion.identity);
                 spawnedPositions.Add(spawnPoint);
             }
         }
     }
 
-    private bool IsPositionValid(Vector3 position)
+    private void SpawnWallPrefabsInRadius(Vector3 spawnCenter, Transform wallTransform, float X, float Z, int numberOfPrefabs, float radius, float minDistance, float innerRadius = 0f)
+    {
+        for (int i = 0; i < numberOfPrefabs; i++)
+        {
+            Vector3 randomOffset;
+            float distanceFromCenter;
+            do
+            {
+                randomOffset = new Vector3(
+                    Random.Range(-radius, radius),
+                    Random.Range(-radius, radius),
+                    Random.Range(-radius, radius)
+                );
+
+                // Adjust randomOffset based on wall orientation
+                if (Mathf.Abs(wallTransform.forward.z) > Mathf.Abs(wallTransform.forward.x))
+                {
+                    randomOffset.x = Random.Range(-radius, radius);
+                    randomOffset.z = 0;
+                }
+                else if (Mathf.Abs(wallTransform.forward.x) > Mathf.Abs(wallTransform.forward.z))
+                {
+                    randomOffset.z = Random.Range(-radius, radius);
+                    randomOffset.x = 0;
+                }
+
+                distanceFromCenter = randomOffset.magnitude;
+            } while (distanceFromCenter < innerRadius || distanceFromCenter > radius);
+
+            Vector3 spawnPoint = spawnCenter + randomOffset;
+            if (Mathf.Abs(wallTransform.forward.z) > Mathf.Abs(wallTransform.forward.x))
+            {
+                spawnPoint.z = Z;
+            }
+            else if (Mathf.Abs(wallTransform.forward.x) > Mathf.Abs(wallTransform.forward.z))
+            {
+                spawnPoint.x = X;
+            }
+
+            if (IsPositionValid(spawnPoint, minDistance))
+            {
+                GameObject selectedPrefab = wallPrefabs[Random.Range(0, wallPrefabs.Count)];
+                Quaternion alignmentRotation = Quaternion.LookRotation(wallTransform.forward, Vector3.up);
+                Quaternion randomRotation = Quaternion.AngleAxis(Random.Range(0f, 360f), wallTransform.forward);
+                Quaternion finalRotation = alignmentRotation * randomRotation;
+
+                Instantiate(selectedPrefab, spawnPoint, finalRotation);
+                spawnedPositions.Add(spawnPoint);
+            }
+        }
+    }
+
+    private bool IsPositionValid(Vector3 position, float minDistance)
     {
         foreach (Vector3 spawnedPosition in spawnedPositions)
         {
-            if (Vector3.Distance(position, spawnedPosition) < minDistanceBetweenSpawns)
+            if (Vector3.Distance(position, spawnedPosition) < minDistance)
             {
                 return false;
             }

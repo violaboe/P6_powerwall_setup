@@ -2,13 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class fireflyMovement : MonoBehaviour
+public class FireflyMovement : MonoBehaviour
 {
     private List<Transform> anchors;
-    public float speed = 2.0f;
-    public float perturbationStrength = 0.1f;
-    public float curveStrength = 0.5f; // Strength of the curve effect
     public AudioClip musicClip; // The music clip to play
+    public float totalTimeToCompletePath = 10.0f; // Total time to complete the path in seconds
 
     private int currentAnchorIndex = 0;
     private bool isMoving = false;
@@ -16,9 +14,9 @@ public class fireflyMovement : MonoBehaviour
     private Vector3 currentDirection;
     private AudioSource audioSource;
 
-    private float noiseOffsetX;
-    private float noiseOffsetY;
-    private float noiseOffsetZ;
+    private float totalDistance;
+    private float elapsedTime = 0.0f;
+    private float speed;
 
     void Start()
     {
@@ -34,11 +32,6 @@ public class fireflyMovement : MonoBehaviour
         {
             Debug.LogError("Music clip missing. Please assign a music clip in the Inspector.");
         }
-
-        // Initialize noise offsets for smoother perturbation
-        noiseOffsetX = Random.Range(0f, 100f);
-        noiseOffsetY = Random.Range(0f, 100f);
-        noiseOffsetZ = Random.Range(0f, 100f);
     }
 
     public void BeginPath(List<Transform> newAnchors)
@@ -52,12 +45,21 @@ public class fireflyMovement : MonoBehaviour
         anchors = newAnchors;
         currentAnchorIndex = 0;
         isMoving = false;
+        elapsedTime = 0.0f;
 
         // Initialize the current direction
         if (anchors.Count > 1)
         {
             currentDirection = (anchors[1].position - anchors[0].position).normalized;
         }
+
+        // Calculate total path distance
+        totalDistance = 0f;
+        for (int i = 0; i < anchors.Count - 1; i++)
+        {
+            totalDistance += Vector3.Distance(anchors[i].position, anchors[i + 1].position);
+        }
+        speed = totalDistance / totalTimeToCompletePath;
     }
 
     void Update()
@@ -74,40 +76,48 @@ public class fireflyMovement : MonoBehaviour
 
         if (!isMoving || anchors == null || anchors.Count == 0) return;
 
-        if (currentAnchorIndex < anchors.Count)
+        elapsedTime += Time.deltaTime;
+
+        if (currentAnchorIndex < anchors.Count - 1)
         {
-            Transform targetAnchor = anchors[currentAnchorIndex];
-            Vector3 direction = (targetAnchor.position - transform.position).normalized;
+            Transform currentAnchor;
+            Transform nextAnchor;
 
-            // Calculate a curved direction by blending the current direction with the new direction
-            currentDirection = Vector3.Lerp(currentDirection, direction, curveStrength * Time.deltaTime);
+            
+                currentAnchor = anchors[currentAnchorIndex];
+                nextAnchor = anchors[currentAnchorIndex + 1];
+            
 
-            // Add smoother perturbation for fly-like movement using Perlin noise
-            Vector3 perturbation = new Vector3(
-                (Mathf.PerlinNoise(Time.time * speed + noiseOffsetX, 0f) - 0.5f) * perturbationStrength,
-                (Mathf.PerlinNoise(Time.time * speed + noiseOffsetY, 1f) - 0.5f) * perturbationStrength,
-                (Mathf.PerlinNoise(Time.time * speed + noiseOffsetZ, 2f) - 0.5f) * perturbationStrength
-            );
+            float remainingDistance = Vector3.Distance(transform.position, nextAnchor.position);
+            float remainingTime = totalTimeToCompletePath - elapsedTime;
+            //float currentSpeed = remainingDistance / remainingTime;
 
-            Vector3 moveDirection = currentDirection + perturbation;
-            transform.position += moveDirection * speed * Time.deltaTime;
+            Vector3 direction = (nextAnchor.position - transform.position).normalized;
+            transform.position += direction * speed * Time.deltaTime;
 
             // Check if we have reached the target anchor
-            if (Vector3.Distance(transform.position, targetAnchor.position) < 0.1f)
+            if (Vector3.Distance(transform.position, nextAnchor.position) < 0.1f)
             {
                 currentAnchorIndex++;
-
                 // Update the direction for the next anchor
-                if (currentAnchorIndex < anchors.Count)
+                if (currentAnchorIndex < anchors.Count - 1)
                 {
-                    int nextAnchorIndex = (currentAnchorIndex + 1) % anchors.Count;
-                    currentDirection = (anchors[nextAnchorIndex].position - targetAnchor.position).normalized;
+                    currentDirection = (anchors[currentAnchorIndex + 1].position - nextAnchor.position).normalized;
                 }
                 else
                 {
                     isMoving = false; // Stop moving if we have reached the last anchor
+                    this.gameObject.SetActive(false);
                 }
             }
+        }
+        
+
+        // Ensure the firefly completes its journey exactly within the specified time
+        if (elapsedTime >= totalTimeToCompletePath)
+        {
+            transform.position = anchors[anchors.Count - 1].position;
+            isMoving = false;
         }
     }
 

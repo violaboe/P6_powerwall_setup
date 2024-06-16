@@ -70,14 +70,13 @@
       "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction.ovr": {
-      "version": "65.0.0",
-      "depth": 1,
-      "source": "registry",
+      "version": "file:com.meta.xr.sdk.interaction.ovr",
+      "depth": 0,
+      "source": "embedded",
       "dependencies": {
-        "com.meta.xr.sdk.core": "65.0.0",
-        "com.meta.xr.sdk.interaction": "65.0.0"
-      },
-      "url": "https://packages.unity.com"
+        "com.meta.xr.sdk.interaction": "65.0.0",
+        "com.meta.xr.sdk.core": "65.0.0"
+      }
     },
     "com.meta.xr.sdk.interaction.ovr.samples": {
       "version": "65.0.0",
