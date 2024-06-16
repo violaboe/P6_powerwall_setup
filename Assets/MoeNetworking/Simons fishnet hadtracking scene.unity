@@ -8645,7 +8645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1429603243
 Transform:
   m_ObjectHideFlags: 0
@@ -9330,8 +9330,8 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 1783700748
-  <SceneId>k__BackingField: 7660936382248923069
+  _scenePathHash: 2619106284
+  <SceneId>k__BackingField: 11248975838285096958
   <AssetPathHash>k__BackingField: 0
 --- !u!1 &1558753896
 GameObject:
@@ -14203,7 +14203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3965241562602856459
 Transform:
   m_ObjectHideFlags: 0
@@ -14261,7 +14261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817a6ae5162f475488718141885f06cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectionScreen: {fileID: 6916038558990534999}
+  ProjectionScreen: {fileID: 7271134619042461503}
   ClampNearPlane: 1
   DrawGizmos: 1
 --- !u!222 &4393252310780357712
@@ -14738,25 +14738,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6916038558990534999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7271134619042461502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5a0ff712237dd459967dbe6d2ca0f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Size: {x: 5.743, y: 2.153625}
-  AspectRatio: {x: 8, y: 3}
-  LockAspectRatio: 1
-  DrawGizmo: 1
-  ShowAlignmentCube: 0
-  AlignmentDepth: 5
-  AlignmentMaterial: {fileID: 0}
 --- !u!224 &7233259200210991071
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14785,7 +14766,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6113194380851673512}
-  - component: {fileID: 6916038558990534999}
+  - component: {fileID: 7271134619042461503}
   m_Layer: 0
   m_Name: powerwall screen(rough size)
   m_TagString: Untagged
@@ -14793,6 +14774,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7271134619042461503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7271134619042461502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708b4123a3635b044800b9241bebcba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Size: {x: 5.743, y: 2.153625}
+  AspectRatio: {x: 8, y: 3}
+  LockAspectRatio: 1
+  DrawGizmo: 1
+  ShowAlignmentCube: 0
+  AlignmentDepth: 5
+  AlignmentMaterial: {fileID: 0}
 --- !u!114 &7443408886434495812
 MonoBehaviour:
   m_ObjectHideFlags: 0

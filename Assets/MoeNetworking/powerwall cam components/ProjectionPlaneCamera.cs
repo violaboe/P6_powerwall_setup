@@ -14,7 +14,7 @@ namespace Apt.Unity.Projection
         //and https://forum.unity.com/threads/vr-cave-projection.76051/
 
         [Header("Projection plane")]
-        public ProjectionPlane ProjectionScreen;
+        public ProjectionPlaneS ProjectionScreen;
         public bool ClampNearPlane = true;
         [Header("Helpers")]
         public bool DrawGizmos = true;
