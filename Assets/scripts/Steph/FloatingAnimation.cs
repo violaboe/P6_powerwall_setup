@@ -19,7 +19,7 @@ public class FloatingAnimation : MonoBehaviour
     public float radius = 0.5f;
     public float angularSpeed = 50.0f;
     private float initialY;
-    private bool hasDonePose = false;
+    //private bool hasDonePose = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +37,7 @@ public class FloatingAnimation : MonoBehaviour
             // stops the floating motion
             Debug.Log("PAPERRIGHT detected!!");
             enabled = false;
-            hasDonePose = true;
+            //hasDonePose = true;
             this.gameObject.SetActive(false);
         }
         else
