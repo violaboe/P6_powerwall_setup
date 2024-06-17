@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using PathCreation;
 using UnityEngine;
 
 public class ParticleTriggerHandler : MonoBehaviour
 {
+    public Transform jarLocation;
     public ParticleSystem fireflyParticles;
     public float pushBackStrength = 20.0f;
     public float pushBackRadius = 1.0f;
