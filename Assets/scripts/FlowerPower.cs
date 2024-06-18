@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlowerPower : MonoBehaviour
 {
     //Spreading the flower
-    public roomManager roomMngr;
+    public RoomManager roomMngr;
     private List<GameObject> walls;
     [SerializeField] private GameObject objectToScatter;
     [SerializeField] private int numberOfObjectsToScatter = 10;

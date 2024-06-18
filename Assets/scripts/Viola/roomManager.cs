@@ -6,7 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class roomManager : MonoBehaviour
+public class RoomManager : MonoBehaviour
 {
     private MRUKRoom room;
     private List<MRUKAnchor> walls = new List<MRUKAnchor>();

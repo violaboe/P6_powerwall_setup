@@ -15,7 +15,7 @@ public class PathFinder : MonoBehaviour
     public List<string> orderOfPath = new List<string>();
     public List<Transform> fireflyPath = new List<Transform>();
 
-    public fireflyMovement fireflyMovement;
+    public FireflyMovement fireflyMovement;
     // The goal distance to find the closest GameObject to
     public float goalDistance;
     // The reference point from which distances are calculated
@@ -73,8 +73,9 @@ public class PathFinder : MonoBehaviour
         {
             Debug.LogWarning("The screen anchor is empty.");
         }
-
+        fireflyPath.Add(fireflyMovement.transform);
         GameObject closestAnchor = null;
+        
 
         for (int i = 0; i < orderOfPath.Count; i++)
         {

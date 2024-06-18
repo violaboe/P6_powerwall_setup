@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class changeWalls : MonoBehaviour
+public class ChangeWalls : MonoBehaviour
 {
     public Material neon;
-    public roomManager roomManager;
+    public RoomManager roomManager;
     private List<GameObject> walls = new List<GameObject>();
 
     // Start is called before the first frame update

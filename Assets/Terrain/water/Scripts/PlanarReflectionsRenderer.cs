@@ -64,11 +64,13 @@ public class PlanarReflectionsRenderer : MonoBehaviour
 
     private int currentFrame = 0;
 
+    [Obsolete]
     private void OnEnable()
     {
         RenderPipelineManager.beginCameraRendering += RenderReflections;
     }
 
+    [Obsolete]
     private void Cleanup()
     {
         RenderPipelineManager.beginCameraRendering -= RenderReflections;
@@ -206,7 +208,8 @@ public class PlanarReflectionsRenderer : MonoBehaviour
         }
         reflectionCamera.targetTexture = reflectionTexture;
     }
-  
+
+    [Obsolete]
     private void RenderReflections(ScriptableRenderContext context, Camera camera)
     {
         if(camera.cameraType == CameraType.Reflection || camera.cameraType == CameraType.Preview)
