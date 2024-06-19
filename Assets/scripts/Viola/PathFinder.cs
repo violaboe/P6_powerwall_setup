@@ -71,7 +71,7 @@ public class PathFinder : MonoBehaviour
         }
         if (screenAnchor == null)
         {
-            Debug.LogWarning("The screen anchor is empty.");
+            Debug.Log("The screen anchor is empty.");
         }
         fireflyPath.Add(fireflyMovement.transform);
         GameObject closestAnchor = null;

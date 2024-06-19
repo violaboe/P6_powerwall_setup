@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.XR;
+using static UnityEngine.GraphicsBuffer;
 
 public class FireflyMovement : MonoBehaviour
 {
@@ -94,6 +96,7 @@ public class FireflyMovement : MonoBehaviour
 
             Vector3 direction = (nextAnchor.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
+            transform.LookAt(transform.position - (nextAnchor.position - transform.position));
 
             // Check if we have reached the target anchor
             if (Vector3.Distance(transform.position, nextAnchor.position) < 0.1f)

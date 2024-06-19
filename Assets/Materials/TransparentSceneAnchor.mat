@@ -68,14 +68,14 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HighLightAttenuation: 0.5
-    - _HighlightOpacity: 0.2
+    - _HighLightAttenuation: 0.589
+    - _HighlightOpacity: 0.123
     - _LightOpaqueness: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _ShadowIntensity: 0.681
+    - _ShadowIntensity: 0.294
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
