@@ -5,6 +5,7 @@ using UnityEngine;
 public class CustomMeshEmitter : MonoBehaviour
 {
     public ParticleSystem fireflyParticles1;
+    private ParticleSystem.Particle[] singularParticle;
     public ParticleSystem fireflyParticles2;
     public Mesh customMesh;
     public float meshEmissionDuration = 0.8f;

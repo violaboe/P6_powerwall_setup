@@ -15,10 +15,10 @@ public class ParticleTriggerHandler : MonoBehaviour
 
     void Start()
     {
-        // Add a sphere collider to the XRHand
-        pushCollider = gameObject.AddComponent<SphereCollider>();
-        pushCollider.isTrigger = true;
-        pushCollider.radius = pushBackRadius;
+    // Add a sphere collider to the XRHand
+    pushCollider = gameObject.AddComponent<SphereCollider>();
+    pushCollider.isTrigger = true;
+    pushCollider.radius = pushBackRadius;
     }
 
     void LateUpdate()
@@ -54,7 +54,7 @@ public class ParticleTriggerHandler : MonoBehaviour
         // Check if the collider is the particle system's particle
         if (other.gameObject == fireflyParticles.gameObject)
         {
-            // Here, you can add any specific logic when a particle enters the collider, if needed
+        
         }
     }
 
@@ -63,7 +63,7 @@ public class ParticleTriggerHandler : MonoBehaviour
         // Check if the collider is the particle system's particle
         if (other.gameObject == fireflyParticles.gameObject)
         {
-            // Here, you can add any specific logic when a particle exits the collider, if needed
+        
         }
     }
 }
