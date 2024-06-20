@@ -21,16 +21,15 @@ public class TimeLineStarter : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        playableDirector = FindAnyObjectByType<PlayDirector>().GetComponent<PlayableDirector>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Check if the spacebar is pressed
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartTimeline();
-        }
+       
     }
 
     public void StartTimeline()

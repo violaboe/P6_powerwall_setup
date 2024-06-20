@@ -19,6 +19,19 @@ public class camera_position_sending : NetworkBehaviour
     private Vector3 powerwall_cam_offset;
     private Vector3 powerwall_offset;
 
+    public AlignmentDebug aligmentDebug;
+
+    public TimeLineStarter timeLineStarter;
+
+
+
+    private void Start()
+    {
+        aligmentDebug = GameObject.FindAnyObjectByType<AlignmentDebug>();
+
+        timeLineStarter = GameObject.FindAnyObjectByType<TimeLineStarter>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -99,4 +112,48 @@ public class camera_position_sending : NetworkBehaviour
     {
         Debug.Log("im at: " + _pos);
     }
+
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void DebugOffServer()
+    {
+        DebugOffObserver();
+    }
+
+    [ObserversRpc]
+    private void DebugOffObserver()
+    {
+        aligmentDebug.DebugOff();
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void DebugOnServer()
+    {
+        DebugOnObserver();
+    }
+
+    [ObserversRpc]
+    private void DebugOnObserver()
+    {
+        aligmentDebug.DebugOn();
+    }
+
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void StartTimeLineServer()
+    {
+        StartTimeLineObserver();
+    }
+
+    [ObserversRpc]
+    private void StartTimeLineObserver()
+    {
+        timeLineStarter.StartTimeline();
+    }
+
+
+
 }
