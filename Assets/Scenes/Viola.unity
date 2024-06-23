@@ -1661,12 +1661,10 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: fe0281a1c32031f448adea5c7dc6a8d9, type: 3}
   - {fileID: 919132149155446097, guid: daed79325491a994fb42b08ee55e8f78, type: 3}
   floorPrefabs:
-  - {fileID: 6590986358116977410, guid: 0f0abfeee4e8ed540a6200a72a405ad6, type: 3}
-  - {fileID: 1521426541991103219, guid: c6e7bf9d8bc50594187be77a4c0d7ae8, type: 3}
   - {fileID: 4623943759781888963, guid: 68c1848a7c768a344914059349634e93, type: 3}
   - {fileID: 3463014458935132896, guid: 2130607f022b47e4baeb76d4dde097d8, type: 3}
   - {fileID: 8972359802171140412, guid: 59fb43c283bf65945b62047cbcc7ecd0, type: 3}
-  - {fileID: 1521426541991103219, guid: c6e7bf9d8bc50594187be77a4c0d7ae8, type: 3}
+  - {fileID: 5059441528593980956, guid: 8b3c157564b9296409b87da1af7e6428, type: 3}
   innerSpawnRadius: 0.5
   outerSpawnRadius: 2
   innerNumberOfPrefabs: 2
@@ -1723,7 +1721,7 @@ PrefabInstance:
     - target: {fileID: 2296141232796561049, guid: cee191920b8eb41b0960b1082a393a3e, type: 3}
       propertyPath: MeshMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 2d253ce6f3776fd4da81e4939820ed1e, type: 2}
+      objectReference: {fileID: 2100000, guid: 17e83052eec5b954e97ebbbdc7669240, type: 2}
     - target: {fileID: 2296141232796561049, guid: cee191920b8eb41b0960b1082a393a3e, type: 3}
       propertyPath: SpawnOnStart
       value: 1
@@ -2087,6 +2085,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: inner light
       objectReference: {fileID: 0}
+    - target: {fileID: 3327725383677328328, guid: e2b9c71bdf74d9945bd023468ac2f48e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3526846803955123458, guid: e2b9c71bdf74d9945bd023468ac2f48e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2150,6 +2152,10 @@ PrefabInstance:
     - target: {fileID: 8166554250637025910, guid: e2b9c71bdf74d9945bd023468ac2f48e, type: 3}
       propertyPath: m_Name
       value: outer light
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166554250637025910, guid: e2b9c71bdf74d9945bd023468ac2f48e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
