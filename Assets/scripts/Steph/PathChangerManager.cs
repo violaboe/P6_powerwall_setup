@@ -6,16 +6,18 @@ using PathCreation.Examples;
 
 public class PathChangerManager : MonoBehaviour
 {
-    public ParticleTriggerHandler particleTriggerHandlerL;
+    public ParticleTriggerHandler particleTriggerHandlerL; //ParticleTriggerHandler on OculusHands
     public ParticleTriggerHandler particleTriggerHandlerR;
     public GameObject startingPath;
     public GameObject path1;
     public GameObject path2;
     public GameObject endPath;
 
-    private List<PathFollower> startingPathFollowers = new List<PathFollower>();
-    private HashSet<PathFollower> pushedFollowers = new HashSet<PathFollower>();
-    private HashSet<PathFollower> switchedToEndPathFollowers = new HashSet<PathFollower>();
+    private List<PathFollower> startingPathFollowers = new List<PathFollower>(); 
+    private HashSet<PathFollower> pushedFollowers = new HashSet<PathFollower>(); //HashSet for pushedParticles
+    private HashSet<PathFollower> switchedToEndPathFollowers = new HashSet<PathFollower>(); //HashSet for particles that are going to the jar
+    private HashSet<PathFollower> reachedEndPathFollowers = new HashSet<PathFollower>(); //HashSet for particles that reached end of endPath
+
 
     void Start()
     {
@@ -39,6 +41,7 @@ public class PathChangerManager : MonoBehaviour
         StartCoroutine(CheckPathCompletion());
     }
 
+    //This is to check which particles have been pushed by which hand specifically
     private void OnParticlesPushed(ParticleSystem particleSystem)
     {
         foreach (var follower in startingPathFollowers)
@@ -54,6 +57,7 @@ public class PathChangerManager : MonoBehaviour
         }
     }
 
+    // Coroutine to check on which path each particle system is currently at (Start-Path1/2-End)
     IEnumerator CheckPathCompletion()
     {
         while (true)
@@ -70,6 +74,16 @@ public class PathChangerManager : MonoBehaviour
                         Debug.Log($"Switching to end path for {follower.gameObject.name}");
                     }
                 }
+                else if (switchedToEndPathFollowers.Contains(follower) && HasReachedEnd(follower))
+                {
+                    if (!reachedEndPathFollowers.Contains(follower))
+                    {
+                        HandleReachedEndPath(follower);
+                        reachedEndPathFollowers.Add(follower);
+                        Debug.Log($"Reached end of end path for {follower.gameObject.name}");
+                    }
+                }
+
                 else if (follower.enabled && HasReachedEnd(follower))
                 {
                     Debug.Log($"{follower.gameObject.name} reached end of starting path.");
@@ -90,12 +104,14 @@ public class PathChangerManager : MonoBehaviour
         }
     }
 
+    //Bool to check whether particles have reached the end of the Starting Path so it'll automatically switch to Path1 or Path2
     bool HasReachedEnd(PathFollower follower)
     {
         float pathLength = follower.pathCreator.path.length;
         return follower.endOfPathInstruction == EndOfPathInstruction.Stop && follower.distanceTravelled >= pathLength;
     }
 
+    //Function to call for switching particle paths (Start-either Path1/Path2)
     void SwitchPath(PathFollower follower)
     {
         // Disable the follower to change its path
@@ -130,6 +146,7 @@ public class PathChangerManager : MonoBehaviour
         follower.enabled = true;
     }
 
+        //Function to call for switching particle paths (Path1/Path2-End)
     void SwitchToEndPath(PathFollower follower)
     {
         // Disable the follower to change its path
@@ -150,8 +167,20 @@ public class PathChangerManager : MonoBehaviour
         // Reset distance and re-enable the follower
         follower.distanceTravelled = 0f;
         follower.enabled = true;
+
     }
 
+    void HandleReachedEndPath (PathFollower follower)
+    {
+        // Find the ParticleGravityCenter component in the follower's children and set pushBack properties to 0
+        ParticleGravityCenter gravityCenter = follower.GetComponentInChildren<ParticleGravityCenter>();
+        if (gravityCenter != null)
+        {
+            gravityCenter.ApplyPullingForce();
+        }
+    }
+
+    //Bool to check if the Particles are on Path1 or Path2
     bool IsOnPath(PathFollower follower, GameObject path1, GameObject path2)
     {
         return follower.pathCreator.gameObject == path1 || follower.pathCreator.gameObject == path2;

@@ -46,4 +46,26 @@ public class ParticleGravityCenter : MonoBehaviour
 
         fireflyParticles.SetParticles(particles, particleCount);
     }
+
+    public void ApplyPullingForce()
+    {
+        if (fireflyParticles == null || gravityCenter == null)
+            return;
+
+        int maxParticles = fireflyParticles.main.maxParticles;
+        if (particles == null || particles.Length < maxParticles)
+            particles = new ParticleSystem.Particle[maxParticles];
+
+        int particleCount = fireflyParticles.GetParticles(particles);
+        
+        Vector3 gravityCenterPosition = gravityCenter.position;
+
+        for (int i = 0; i < particleCount; i++)
+        {
+            particles[i].position = gravityCenterPosition;
+            particles[i].velocity = Vector3.zero;
+        }
+
+        fireflyParticles.SetParticles(particles, particleCount);
+    }
 }
