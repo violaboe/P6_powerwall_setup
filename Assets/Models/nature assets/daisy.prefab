@@ -48,6 +48,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a4c067c18c8f8de4a939c192ff7e54c6, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a4c067c18c8f8de4a939c192ff7e54c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1082e3eed16e3244bab2944bf5fe8bf, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a4c067c18c8f8de4a939c192ff7e54c6, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46647f81aeda7b3428121abf0692dd4c, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a4c067c18c8f8de4a939c192ff7e54c6, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b8032a6dd941534f96f15e9cbcd1f82, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a4c067c18c8f8de4a939c192ff7e54c6, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1082e3eed16e3244bab2944bf5fe8bf, type: 2}
     - target: {fileID: 919132149155446097, guid: a4c067c18c8f8de4a939c192ff7e54c6, type: 3}
       propertyPath: m_Name
       value: daisy
@@ -80,4 +100,3 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   startScale: {x: 0, y: 0, z: 0}
   endScale: {x: 1, y: 1, z: 1}
-  duration: 2
