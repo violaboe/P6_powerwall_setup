@@ -4,22 +4,41 @@ using UnityEngine;
 
 public class AlignmentController : MonoBehaviour
 {
+    [Header("PlaneOrientation Vectors")]
     public Vector3 VectorToScreen;
+    public Vector3 planeNormal;
 
-    private List<Vector3> screenCorners = new List<Vector3>();
-    private List<GameObject> cornerPrefabs = new List<GameObject>(); // Track instantiated corner prefabs
+    [Header("Orientat other plane")]
+    [SerializeField] private GameObject planeInOtherOrientation;
+    [SerializeField] private GameObject reorientedPlayerVisualizer;
+    bool isMockupPlayerCreated = false;
+    
+    [Header("Prefabs")]
     [SerializeField] private GameObject CornerPrefab;
     [SerializeField] private GameObject CornerPreviewPrefab;
     [SerializeField] private GameObject ControllerRight;
     [SerializeField] private GameObject HeadSet;
     [SerializeField] private Material planeMaterial;
+
+    private List<Vector3> screenCorners = new List<Vector3>();
+    private List<GameObject> cornerPrefabs = new List<GameObject>(); // Track instantiated corner prefabs
+
     private GameObject adjustmentPlane;
     private bool isAdjustmentPlaneCreated = false;
     
 
-    private void Start()
+  
+
+  private void Start()
     {
         CornerPreviewPrefab =  Instantiate(CornerPreviewPrefab);
+
+        Vector3 x = new Vector3(0, 2, 2);
+        Vector3 normal1 = new Vector3(0, 1, 0); // Plane normal
+        Vector3 normal2 = new Vector3(1, 0, 0); // Other plane normal
+
+        Vector3 y = TransformPositionAroundCoordinateSystem(x, normal1, normal2);
+        Debug.Log("Transformed Vector: " + y);
     }
 
     void Update()
@@ -69,6 +88,8 @@ public class AlignmentController : MonoBehaviour
 
             CalculatePlaneCenter(screenCorners[0], screenCorners[1], screenCorners[2], point4);
 
+            planeNormal = FindNormalPointingToPlayer(adjustmentPlane);
+
             // Set plane to created
             isAdjustmentPlaneCreated = true;
         }
@@ -77,6 +98,17 @@ public class AlignmentController : MonoBehaviour
         if (OVRInput.GetUp(OVRInput.RawButton.A))
         {
             resetPlane();
+        }
+
+        //Create a playervisualization in relation to a Mockup plane 
+        if (OVRInput.GetUp(OVRInput.RawButton.B))
+        {
+            CreateMockupPlayer();
+            isMockupPlayerCreated = true;
+        }
+        if (isMockupPlayerCreated)
+        {
+            RepositionMockupPlayer();
         }
 
         // Draw line from the last corner to VectorToScreen
@@ -90,6 +122,36 @@ public class AlignmentController : MonoBehaviour
         }
     }
 
+    private void CreateMockupPlayer()
+    {
+        //Creates a mockup player , at point calculated by taking the normal of the current plane, the vector to the camera and fitting it to a new normal of another gameobject
+        reorientedPlayerVisualizer = Instantiate(reorientedPlayerVisualizer, TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, FindNormalPointingToPlayer(planeInOtherOrientation)), Quaternion.identity);
+    }
+
+    private void RepositionMockupPlayer()
+    {
+        if(reorientedPlayerVisualizer != null)
+        {
+            reorientedPlayerVisualizer.transform.position = TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, FindNormalPointingToPlayer(planeInOtherOrientation));
+        }
+    }
+
+    private Vector3 TransformPositionAroundCoordinateSystem(Vector3 VectorToImmitate, Vector3 normal1, Vector3 normal2)
+    {
+        //Calculate angle between the two normals
+        float angle = Vector3.Angle(normal1, normal2);
+        
+        //Find Rot Axis
+        Vector3 rotationAxis = Vector3.Cross(normal1, normal2).normalized;
+
+        //Combine rotation with axis in a quaternion
+        Quaternion rotation = Quaternion.AngleAxis(angle, rotationAxis);
+
+        Vector3 RotatedVector = rotation * VectorToImmitate;
+
+        return (RotatedVector + planeInOtherOrientation.transform.position);
+
+    }
     private void resetPlane()
     {
         // Destroy adjustmentPlane GameObject if it exists
@@ -173,6 +235,32 @@ public class AlignmentController : MonoBehaviour
         cornerPrefabs.Add(Instantiate(CornerPrefab, planeCenter, Quaternion.identity));
         screenCorners.Add(planeCenter);
 
+
         return planeCenter;
+    }
+
+    private Vector3 FindNormalPointingToPlayer(GameObject go)
+    {
+            MeshFilter meshFilter = go.GetComponent<MeshFilter>();
+            if (meshFilter == null || meshFilter.sharedMesh == null)
+            {
+                Debug.LogWarning("Object does not have a mesh or MeshFilter component.");
+                return Vector3.zero;
+            }
+
+            Mesh mesh = meshFilter.sharedMesh;
+            Vector3[] normals = mesh.normals;
+
+            if (normals.Length > 0)
+            {
+                // Get the normal of the first vertex
+                return go.transform.TransformDirection(normals[0]);
+            }
+            else
+            {
+                Debug.LogWarning("Object mesh does not have normals.");
+                return Vector3.zero;
+            }
+        
     }
 }
