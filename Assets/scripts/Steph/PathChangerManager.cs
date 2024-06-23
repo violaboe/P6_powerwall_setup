@@ -6,10 +6,16 @@ using PathCreation.Examples;
 
 public class PathChangerManager : MonoBehaviour
 {
+    public ParticleTriggerHandler particleTriggerHandlerL;
+    public ParticleTriggerHandler particleTriggerHandlerR;
     public GameObject startingPath;
+    public GameObject path1;
+    public GameObject path2;
+    public GameObject endPath;
 
     private List<PathFollower> startingPathFollowers = new List<PathFollower>();
-    private List<PathFollower> nextPathFollowers = new List<PathFollower>();
+    private HashSet<PathFollower> pushedFollowers = new HashSet<PathFollower>();
+    private HashSet<PathFollower> switchedToEndPathFollowers = new HashSet<PathFollower>();
 
     void Start()
     {
@@ -22,28 +28,64 @@ public class PathChangerManager : MonoBehaviour
             {
                 startingPathFollowers.Add(follower);
                 follower.enabled = true;
-            }
-            else
-            {
-                nextPathFollowers.Add(follower);
-                follower.enabled = false;
+                follower.endOfPathInstruction = EndOfPathInstruction.Stop;
+                Debug.Log("Initialized follower with Stop instruction");
             }
         }
 
+        particleTriggerHandlerL.OnParticlesPushed += OnParticlesPushed;
+        particleTriggerHandlerR.OnParticlesPushed += OnParticlesPushed;
+
         StartCoroutine(CheckPathCompletion());
+    }
+
+    private void OnParticlesPushed(ParticleSystem particleSystem)
+    {
+        foreach (var follower in startingPathFollowers)
+        {
+            if ((follower.gameObject.name == "Fireflies_1" && particleSystem == particleTriggerHandlerL.fireflyParticles1) ||
+                (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerL.fireflyParticles2) ||
+                (follower.gameObject.name == "Fireflies_1" && particleSystem == particleTriggerHandlerR.fireflyParticles1) ||
+                (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerR.fireflyParticles2))
+            {
+                pushedFollowers.Add(follower);
+                Debug.Log($"Particle system pushed for {follower.gameObject.name}");
+            }
+        }
     }
 
     IEnumerator CheckPathCompletion()
     {
         while (true)
         {
-            for (int i = 0; i < startingPathFollowers.Count; i++)
+            foreach (PathFollower follower in startingPathFollowers)
             {
-                if (startingPathFollowers[i].enabled && HasReachedEnd(startingPathFollowers[i]))
+                // If the follower has been pushed and is on path1 or path2, switch to the end path
+                if (pushedFollowers.Contains(follower) && IsOnPath(follower, path1, path2))
                 {
-                    SwitchPath(i);
+                    if (!switchedToEndPathFollowers.Contains(follower))
+                    {
+                        SwitchToEndPath(follower);
+                        switchedToEndPathFollowers.Add(follower);
+                        Debug.Log($"Switching to end path for {follower.gameObject.name}");
+                    }
+                }
+                else if (follower.enabled && HasReachedEnd(follower))
+                {
+                    Debug.Log($"{follower.gameObject.name} reached end of starting path.");
+
+                    if (switchedToEndPathFollowers.Contains(follower))
+                    {
+                        Debug.Log($"{follower.gameObject.name} already switched to end path.");
+                        continue;
+                    }
+
+                    // Regular path switching logic
+                    SwitchPath(follower);
+                    Debug.Log($"Switching path for {follower.gameObject.name}");
                 }
             }
+
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -54,10 +96,64 @@ public class PathChangerManager : MonoBehaviour
         return follower.endOfPathInstruction == EndOfPathInstruction.Stop && follower.distanceTravelled >= pathLength;
     }
 
-    void SwitchPath(int index)
+    void SwitchPath(PathFollower follower)
     {
-        startingPathFollowers[index].enabled = false;
-        nextPathFollowers[index].enabled = true;
-        nextPathFollowers[index].distanceTravelled = 0f; // Reset distance for the new path
+        // Disable the follower to change its path
+        follower.enabled = false;
+        Debug.Log($"Switching path for {follower.gameObject.name}");
+
+        // Assign the new path based on the GameObject name
+        if (follower.gameObject.name == "Fireflies_1" && path1 != null)
+        {
+            follower.pathCreator = path1.GetComponent<PathCreator>();
+            Debug.Log("Assigned Path1 to follower");
+        }
+        else if (follower.gameObject.name == "Fireflies_2" && path2 != null)
+        {
+            follower.pathCreator = path2.GetComponent<PathCreator>();
+            Debug.Log("Assigned Path2 to follower");
+        }
+        else
+        {
+            Debug.LogWarning("Path not assigned, invalid GameObject name or path is null");
+        }
+
+        // Change EndOfPathInstruction to Loop
+        follower.endOfPathInstruction = EndOfPathInstruction.Loop;
+        Debug.Log("Changed EndOfPathInstruction to Loop");
+
+        follower.speed = 30f;
+        Debug.Log("Changed follower speed to 30");
+
+        // Reset distance and re-enable the follower
+        follower.distanceTravelled = 0f;
+        follower.enabled = true;
+    }
+
+    void SwitchToEndPath(PathFollower follower)
+    {
+        // Disable the follower to change its path
+        follower.enabled = false;
+        Debug.Log($"Switching to end path for {follower.gameObject.name}");
+
+        // Assign the end path
+        follower.pathCreator = endPath.GetComponent<PathCreator>();
+        Debug.Log("Assigned endPath to follower");
+
+        // Change EndOfPathInstruction to Stop
+        follower.endOfPathInstruction = EndOfPathInstruction.Stop;
+        Debug.Log("Changed EndOfPathInstruction to Stop");
+
+        follower.speed = 10f;
+        Debug.Log("Changed follower speed to 10");
+
+        // Reset distance and re-enable the follower
+        follower.distanceTravelled = 0f;
+        follower.enabled = true;
+    }
+
+    bool IsOnPath(PathFollower follower, GameObject path1, GameObject path2)
+    {
+        return follower.pathCreator.gameObject == path1 || follower.pathCreator.gameObject == path2;
     }
 }
