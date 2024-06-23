@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392459959530473887}
-  - component: {fileID: 5835457867561174782}
   - component: {fileID: 6517248106004498559}
   - component: {fileID: -1578974512690708847}
   m_Layer: 0
@@ -119,29 +118,6 @@ Transform:
   - {fileID: 2416254319356440805}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!205 &5835457867561174782
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5059441528593980956}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: 0, y: 0.4, z: 0}
-  m_Size: 0.8
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.04754927
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 5226362508472951197}
-  - screenRelativeHeight: 0.008224679
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 3089312757149701491}
-  m_Enabled: 1
 --- !u!135 &6517248106004498559
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -195,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2802077473001468302
 Transform:
   m_ObjectHideFlags: 0
