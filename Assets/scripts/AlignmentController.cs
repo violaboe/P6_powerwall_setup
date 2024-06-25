@@ -9,9 +9,9 @@ public class AlignmentController : MonoBehaviour
     public Vector3 planeNormal;
 
     [Header("Orientat other plane")]
-    [SerializeField] private GameObject planeInOtherOrientation;
-    [SerializeField] private GameObject reorientedPlayerVisualizer;
-    bool isMockupPlayerCreated = false;
+    [SerializeField] private GameObject CaveScreenCenterGameobject;
+    [SerializeField] private GameObject CaveCameraGameObject;
+    bool isSceneAligned = false;
     
     [Header("Prefabs")]
     [SerializeField] private GameObject CornerPrefab;
@@ -31,18 +31,12 @@ public class AlignmentController : MonoBehaviour
 
   private void Start()
     {
-        CornerPreviewPrefab =  Instantiate(CornerPreviewPrefab);
-
-        Vector3 x = new Vector3(0, 2, 2);
-        Vector3 normal1 = new Vector3(0, 1, 0); // Plane normal
-        Vector3 normal2 = new Vector3(1, 0, 0); // Other plane normal
-
-        Vector3 y = TransformPositionAroundCoordinateSystem(x, normal1, normal2);
-        Debug.Log("Transformed Vector: " + y);
+        CornerPreviewPrefab = Instantiate(CornerPreviewPrefab);
     }
 
     void Update()
     {
+#if UNITY_ANDROID
         //Move Preview with Controller && Lock Axis
         if (!isAdjustmentPlaneCreated)
         {
@@ -100,17 +94,6 @@ public class AlignmentController : MonoBehaviour
             resetPlane();
         }
 
-        //Create a playervisualization in relation to a Mockup plane 
-        if (OVRInput.GetUp(OVRInput.RawButton.B))
-        {
-            CreateMockupPlayer();
-            isMockupPlayerCreated = true;
-        }
-        if (isMockupPlayerCreated)
-        {
-            RepositionMockupPlayer();
-        }
-
         // Draw line from the last corner to VectorToScreen
         if (isAdjustmentPlaneCreated)
         {
@@ -120,19 +103,50 @@ public class AlignmentController : MonoBehaviour
                 Debug.DrawLine(screenCorners[screenCorners.Count - 1], screenCorners[screenCorners.Count - 1] + VectorToScreen, Color.red);
             }
         }
+
+        //Create a playervisualization in relation to a Mockup plane 
+        if (OVRInput.GetUp(OVRInput.RawButton.B))
+        {
+            //SendAlignmentToserver();
+            //CreateMockupPlayer();
+            isSceneAligned = true;
+        }
+        if (isSceneAligned)
+        {
+            SendAlignmentToserver();
+            //RepositionMockupPlayer();
+        }
+
+#elif UNITY_STANDALONE
+        //if(Values Exist) Check if Values are existing so maby => on data Recived call the function? 0r Check if values are same as old values or sth 
+        //SetQuestValuesInCave(); //Set the recived Values as new Values
+
+        RepositionMockupPlayer(); //Move the player depending on it 
+#endif
+    }
+    private (Vector3, Vector3) SendAlignmentToserver()
+    {
+        //return Aligning Info
+        return (VectorToScreen, planeNormal);  
+    }
+
+    private void SetQuestValuesInCave(Vector3 vectorToScreen, Vector3 CaveScreenNormal)
+    {
+        VectorToScreen = vectorToScreen;
+        planeNormal = CaveScreenNormal;
     }
 
     private void CreateMockupPlayer()
     {
         //Creates a mockup player , at point calculated by taking the normal of the current plane, the vector to the camera and fitting it to a new normal of another gameobject
-        reorientedPlayerVisualizer = Instantiate(reorientedPlayerVisualizer, TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, FindNormalPointingToPlayer(planeInOtherOrientation)), Quaternion.identity);
+        CaveCameraGameObject = Instantiate(CaveCameraGameObject, TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, FindNormalPointingToPlayer(CaveScreenCenterGameobject)), Quaternion.identity);
     }
 
     private void RepositionMockupPlayer()
     {
-        if(reorientedPlayerVisualizer != null)
+        if(CaveCameraGameObject != null)
         {
-            reorientedPlayerVisualizer.transform.position = TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, FindNormalPointingToPlayer(planeInOtherOrientation));
+            CaveCameraGameObject.transform.position = TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, FindNormalPointingToPlayer(CaveScreenCenterGameobject));
         }
     }
 
@@ -149,7 +163,7 @@ public class AlignmentController : MonoBehaviour
 
         Vector3 RotatedVector = rotation * VectorToImmitate;
 
-        return (RotatedVector + planeInOtherOrientation.transform.position);
+        return (RotatedVector + CaveScreenCenterGameobject.transform.position);
 
     }
     private void resetPlane()
