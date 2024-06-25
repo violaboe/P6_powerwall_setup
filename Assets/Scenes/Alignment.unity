@@ -1053,6 +1053,58 @@ Transform:
   - {fileID: 1779723039}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &728554624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728554626}
+  - component: {fileID: 728554625}
+  m_Layer: 0
+  m_Name: Alignment Quest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &728554625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728554624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f4118a099245b4eaa4868c2c1972a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VectorToScreen: {x: 0, y: 0, z: 0}
+  planeNormal: {x: 0, y: 0, z: 0}
+  isSceneAligned: 0
+  CornerPrefab: {fileID: 0}
+  CornerPreviewPrefab: {fileID: 0}
+  ControllerRight: {fileID: 0}
+  HeadSet: {fileID: 0}
+  planeMaterial: {fileID: 0}
+--- !u!4 &728554626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728554624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7519922, y: 3.0995417, z: -1.2656642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &747705050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,6 +1895,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4593680705043960, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
   m_PrefabInstance: {fileID: 1745996862}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1121754822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1121754824}
+  - component: {fileID: 1121754823}
+  m_Layer: 0
+  m_Name: Alignment Cave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1121754823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121754822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da107fd2fa8f354c82c2a69ed8f60e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VectorToScreen: {x: 0, y: 0, z: 0}
+  planeNormal: {x: 0, y: 0, z: 0}
+  CaveScreenCenterGameobject: {fileID: 0}
+  CaveCameraGameObject: {fileID: 0}
+--- !u!4 &1121754824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121754822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7519922, y: 3.0995417, z: -1.2656642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1189247250
 GameObject:
   m_ObjectHideFlags: 0
@@ -3419,8 +3519,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VectorToScreen: {x: 0, y: 0, z: 0}
   planeNormal: {x: 0, y: 0, z: 0}
-  planeInOtherOrientation: {fileID: 1972495410}
-  reorientedPlayerVisualizer: {fileID: 919132149155446097, guid: eeaf65b7f1c0be14ba74e6efbe978d52, type: 3}
+  CaveScreenCenterGameobject: {fileID: 0}
+  CaveCameraGameObject: {fileID: 0}
   CornerPrefab: {fileID: 5585574738987722325, guid: a26cbcc82a162a243a296f07bde7ff5b, type: 3}
   CornerPreviewPrefab: {fileID: 5199332799389569975, guid: eddbbb9b4540e18419da7472ad396ca3, type: 3}
   ControllerRight: {fileID: 1830131570}
@@ -4515,3 +4615,5 @@ SceneRoots:
   - {fileID: 327985012}
   - {fileID: 723175830}
   - {fileID: 1972495414}
+  - {fileID: 728554626}
+  - {fileID: 1121754824}

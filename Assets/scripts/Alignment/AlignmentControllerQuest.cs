@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlignmentController : MonoBehaviour
+public class AlignmentControllerQuest : MonoBehaviour
 {
+
     [Header("PlaneOrientation Vectors")]
     public Vector3 VectorToScreen;
     public Vector3 planeNormal;
+    public bool isSceneAligned = false;
 
-    [Header("Orientat other plane")]
-    [SerializeField] private GameObject CaveScreenCenterGameobject;
-    [SerializeField] private GameObject CaveCameraGameObject;
-    bool isSceneAligned = false;
-    
     [Header("Prefabs")]
     [SerializeField] private GameObject CornerPrefab;
     [SerializeField] private GameObject CornerPreviewPrefab;
@@ -25,18 +22,18 @@ public class AlignmentController : MonoBehaviour
 
     private GameObject adjustmentPlane;
     private bool isAdjustmentPlaneCreated = false;
-    
 
-  
 
-  private void Start()
+
+
+    private void Start()
     {
-        CornerPreviewPrefab = Instantiate(CornerPreviewPrefab);
+        if (CornerPrefab != null) CornerPreviewPrefab = Instantiate(CornerPreviewPrefab);
+        else Debug.LogError("No Prefab in Inspector");
     }
 
     void Update()
     {
-#if UNITY_ANDROID
         //Move Preview with Controller && Lock Axis
         if (!isAdjustmentPlaneCreated)
         {
@@ -117,55 +114,13 @@ public class AlignmentController : MonoBehaviour
             //RepositionMockupPlayer();
         }
 
-#elif UNITY_STANDALONE
-        //if(Values Exist) Check if Values are existing so maby => on data Recived call the function? 0r Check if values are same as old values or sth 
-        //SetQuestValuesInCave(); //Set the recived Values as new Values
-
-        RepositionMockupPlayer(); //Move the player depending on it 
-#endif
     }
     private (Vector3, Vector3) SendAlignmentToserver()
     {
         //return Aligning Info
-        return (VectorToScreen, planeNormal);  
+        return (VectorToScreen, planeNormal);
     }
 
-    private void SetQuestValuesInCave(Vector3 vectorToScreen, Vector3 CaveScreenNormal)
-    {
-        VectorToScreen = vectorToScreen;
-        planeNormal = CaveScreenNormal;
-    }
-
-    private void CreateMockupPlayer()
-    {
-        //Creates a mockup player , at point calculated by taking the normal of the current plane, the vector to the camera and fitting it to a new normal of another gameobject
-        CaveCameraGameObject = Instantiate(CaveCameraGameObject, TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, FindNormalPointingToPlayer(CaveScreenCenterGameobject)), Quaternion.identity);
-    }
-
-    private void RepositionMockupPlayer()
-    {
-        if(CaveCameraGameObject != null)
-        {
-            CaveCameraGameObject.transform.position = TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, FindNormalPointingToPlayer(CaveScreenCenterGameobject));
-        }
-    }
-
-    private Vector3 TransformPositionAroundCoordinateSystem(Vector3 VectorToImmitate, Vector3 normal1, Vector3 normal2)
-    {
-        //Calculate angle between the two normals
-        float angle = Vector3.Angle(normal1, normal2);
-        
-        //Find Rot Axis
-        Vector3 rotationAxis = Vector3.Cross(normal1, normal2).normalized;
-
-        //Combine rotation with axis in a quaternion
-        Quaternion rotation = Quaternion.AngleAxis(angle, rotationAxis);
-
-        Vector3 RotatedVector = rotation * VectorToImmitate;
-
-        return (RotatedVector + CaveScreenCenterGameobject.transform.position);
-
-    }
     private void resetPlane()
     {
         // Destroy adjustmentPlane GameObject if it exists
@@ -255,26 +210,26 @@ public class AlignmentController : MonoBehaviour
 
     private Vector3 FindNormalPointingToPlayer(GameObject go)
     {
-            MeshFilter meshFilter = go.GetComponent<MeshFilter>();
-            if (meshFilter == null || meshFilter.sharedMesh == null)
-            {
-                Debug.LogWarning("Object does not have a mesh or MeshFilter component.");
-                return Vector3.zero;
-            }
+        MeshFilter meshFilter = go.GetComponent<MeshFilter>();
+        if (meshFilter == null || meshFilter.sharedMesh == null)
+        {
+            Debug.LogWarning("Object does not have a mesh or MeshFilter component.");
+            return Vector3.zero;
+        }
 
-            Mesh mesh = meshFilter.sharedMesh;
-            Vector3[] normals = mesh.normals;
+        Mesh mesh = meshFilter.sharedMesh;
+        Vector3[] normals = mesh.normals;
 
-            if (normals.Length > 0)
-            {
-                // Get the normal of the first vertex
-                return go.transform.TransformDirection(normals[0]);
-            }
-            else
-            {
-                Debug.LogWarning("Object mesh does not have normals.");
-                return Vector3.zero;
-            }
-        
+        if (normals.Length > 0)
+        {
+            // Get the normal of the first vertex
+            return go.transform.TransformDirection(normals[0]);
+        }
+        else
+        {
+            Debug.LogWarning("Object mesh does not have normals.");
+            return Vector3.zero;
+        }
+
     }
 }
