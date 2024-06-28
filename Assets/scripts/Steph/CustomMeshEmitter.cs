@@ -43,31 +43,6 @@ public class CustomMeshEmitter : MonoBehaviour
 
             }
         }
-        
-        /*particleGravityCenter1 = fireflyParticles1.GetComponentInChildren<ParticleGravityCenter>();
-        particleGravityCenter2 = fireflyParticles2.GetComponentInChildren<ParticleGravityCenter>();
-        particleGravityCenter3 = fireflyParticles3.GetComponentInChildren<ParticleGravityCenter>();
-        //particleGravityCenter4 = fireflyParticles4.GetComponentInChildren<ParticleGravityCenter>();
-
-        if (particleGravityCenter1 != null)
-            particleGravityCenter1.enabled = false;
-        else
-            Debug.LogError("ParticleGravityCenter component not found in fireflyParticles1 children!");
-
-        if (particleGravityCenter2 != null)
-            particleGravityCenter2.enabled = false;
-        else
-            Debug.LogError("ParticleGravityCenter component not found in fireflyParticles2 children!");
-
-        if (particleGravityCenter3 != null)
-            particleGravityCenter3.enabled = false;
-        else
-            Debug.LogError("ParticleGravityCenter component not found in fireflyParticles3 children!");
-
-        /*if (particleGravityCenter4 != null)
-            particleGravityCenter4.enabled = false;
-        else
-            Debug.LogError("ParticleGravityCenter component not found in fireflyParticles4 children!");*/
 
         StartParticleSystem(fireflyParticles1);
         StartParticleSystem(fireflyParticles2);
@@ -112,27 +87,6 @@ public class CustomMeshEmitter : MonoBehaviour
 
     void ScatterParticles()
     {
-        /*if (particleGravityCenter1 != null)
-            particleGravityCenter1.enabled = true;
-        else
-            Debug.LogError("ParticleGravityCenter component not found in fireflyParticles1 children!");
-
-        if (particleGravityCenter2 != null)
-            particleGravityCenter2.enabled = true;
-        else
-            Debug.LogError("ParticleGravityCenter component not found in fireflyParticles2 children!");
-
-        if (particleGravityCenter3 != null)
-            particleGravityCenter3.enabled = true;
-        else
-            Debug.LogError("ParticleGravityCenter component not found in fireflyParticles3 children!");
-
-        if (particleGravityCenter4 != null)
-            particleGravityCenter4.enabled = true;
-        else
-            Debug.LogError("ParticleGravityCenter component not found in fireflyParticles4 children!");*/
-
-
         // Modify properties for scattering particles
         SetPSMiddlePath(fireflyParticles1);
         SetPSMiddlePath(fireflyParticles2);
@@ -160,6 +114,17 @@ public class CustomMeshEmitter : MonoBehaviour
 
     void SetPSMiddlePath(ParticleSystem ps)
     {
+
+        ParticleGravityCenter[] gravityCenters = GetComponentsInChildren<ParticleGravityCenter>();
+        foreach (var gravityCenter in gravityCenters)
+        {
+            if (gravityCenter != null)
+            {
+                gravityCenter.enabled = true;
+
+            }
+        }
+
         var velocityModule = ps.velocityOverLifetime;
         velocityModule.enabled = true;
         velocityModule.x = new ParticleSystem.MinMaxCurve(0.0f, 1.0f);
@@ -182,12 +147,4 @@ public class CustomMeshEmitter : MonoBehaviour
         shapeModule.scale = new Vector3(0.1f, 0.1f, 0.1f);
         Debug.Log("Changed shape to BoxEdge with radius 0.05 and rotation 90 degrees");
     }
-
-    /*public void RevertToSphere(ParticleSystem ps)
-    {
-        var shapeModule = ps.shape;
-        shapeModule.shapeType = ParticleSystemShapeType.Sphere;
-        shapeModule.radius = 0.5f;
-        Debug.Log("Reverted shape to Sphere with radius 0.5");
-    }*/
 }
