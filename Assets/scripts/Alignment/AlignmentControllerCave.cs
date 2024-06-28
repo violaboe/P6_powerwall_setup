@@ -23,20 +23,20 @@ public class AlignmentControllerCave : MonoBehaviour
     //On Start get Normal of the plane representing the screen
     private void Start()
     {
-        CaveScreenNormal = CaveScreenCenterGameobject.transform.up;
+        CaveScreenNormal = -CaveScreenCenterGameobject.transform.forward; //- is there for alighnment reasons how it is now if Rotation is inverted it might be this 
     }
 
-    public void SetQuestValuesInCave(Vector3 vectorToScreen, Vector3 CaveScreenNormal)
-    {
-        VectorToScreen = vectorToScreen;
-        planeNormal = CaveScreenNormal;
-    }
+    //public void SetQuestValuesInCave(Vector3 vectorToScreen, Vector3 CaveScreenNormal)
+    //{
+    //    VectorToScreen = vectorToScreen;
+    //    planeNormal = CaveScreenNormal;
+    //}
 
-    public void RepositionCaveCamera()
+    public void RepositionCaveCamera(Vector3 vectorToScreen, Vector3 QuestScreenNormal)
     {
         if (CaveCameraGameObject != null)
         {
-            CaveCameraGameObject.transform.position = TransformPositionAroundCoordinateSystem(VectorToScreen, planeNormal, CaveScreenNormal);
+            CaveCameraGameObject.transform.position = TransformPositionAroundCoordinateSystem(vectorToScreen, QuestScreenNormal, CaveScreenNormal);
         }
     }
 

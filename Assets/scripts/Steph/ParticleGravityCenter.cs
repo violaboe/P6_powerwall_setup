@@ -10,6 +10,7 @@ public class ParticleGravityCenter : MonoBehaviour
     public float gravityRadius = 5.0f;
     public float pushBackStrength = 20.0f;
     public float pushBackRadius = 1.0f;
+    public float targetVelocity = 0.1f;
 
     private ParticleSystem.Particle[] particles;
 
@@ -47,25 +48,52 @@ public class ParticleGravityCenter : MonoBehaviour
         fireflyParticles.SetParticles(particles, particleCount);
     }
 
-    public void ApplyPullingForce()
+    public void ApplyPullingForce(float duration = 10.0f)
     {
         if (fireflyParticles == null || gravityCenter == null)
             return;
 
-        int maxParticles = fireflyParticles.main.maxParticles;
-        if (particles == null || particles.Length < maxParticles)
-            particles = new ParticleSystem.Particle[maxParticles];
+        StartCoroutine(PullParticles(duration));
+    }
 
-        int particleCount = fireflyParticles.GetParticles(particles);
-        
-        Vector3 gravityCenterPosition = gravityCenter.position;
+    private IEnumerator PullParticles(float duration)
+    {
+        float elapsedTime = 0f;
+        Vector3 originalPosition = gravityCenter.position;
 
-        for (int i = 0; i < particleCount; i++)
+        while (elapsedTime < duration)
         {
-            particles[i].position = gravityCenterPosition;
-            particles[i].velocity = Vector3.zero;
+            for (int i = 0; i < particles.Length; i++)
+            {
+                particles[i].position = Vector3.Lerp(particles[i].position, originalPosition, elapsedTime / duration);
+                particles[i].velocity = Vector3.Lerp(particles[i].velocity, Vector3.one * targetVelocity, elapsedTime / duration);
+            }
+
+            fireflyParticles.SetParticles(particles, particles.Length);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
 
-        fireflyParticles.SetParticles(particles, particleCount);
+        // Ensure particles are exactly at the gravity center's position at the end of the pull
+        for (int i = 0; i < particles.Length; i++)
+        {
+            particles[i].position = originalPosition;
+            particles[i].velocity = Vector3.one * targetVelocity;
+        }
+
+        fireflyParticles.SetParticles(particles, particles.Length);
+    }
+
+    public void SetDampen(float dampenValue)
+    {
+        if (fireflyParticles == null)
+            return;
+
+        var mainModule = fireflyParticles.main;
+        var limitVelocityModule = fireflyParticles.limitVelocityOverLifetime;
+
+        // Set dampen value in Limit Velocity Over Lifetime module
+        limitVelocityModule.dampen = dampenValue;
     }
 }

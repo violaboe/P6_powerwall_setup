@@ -73,6 +73,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - DR_LIGHT_ATTENUATION
   - DR_RIM_ON
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _EMISSION
@@ -125,7 +126,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GradientRamp:
-        m_Texture: {fileID: -3593750176797291538}
+        m_Texture: {fileID: 8365579712144159074, guid: ed0490cd1a383e545900319850003e01, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -181,7 +182,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FlatRimEdgeSmoothness: 1
-    - _FlatRimLightAlign: 0.099
+    - _FlatRimLightAlign: 0.204
     - _FlatRimSize: 0.797
     - _FlatSpecularEdgeSmoothness: 0
     - _FlatSpecularSize: 0.1
@@ -201,9 +202,9 @@ Material:
     - _OutlineDepthOffset: 0
     - _OutlineEnabled: 0
     - _OutlineScale: 1
-    - _OutlineWidth: 1
+    - _OutlineWidth: 0.3
     - _OverrideBakedGi: 0
-    - _OverrideLightAttenuation: 0
+    - _OverrideLightAttenuation: 1
     - _OverrideLightmapDir: 0
     - _Parallax: 0.005
     - _QueueOffset: 0

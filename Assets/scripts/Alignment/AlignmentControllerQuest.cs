@@ -5,10 +5,17 @@ using UnityEngine;
 public class AlignmentControllerQuest : MonoBehaviour
 {
 
+    [Header("RootOffsetAlign")]
+    [SerializeField] private GameObject questSceneParent;
+    private Vector3 AlignmentPlaneCenter;
+
     [Header("PlaneOrientation Vectors")]
     public Vector3 VectorToScreen;
     public Vector3 planeNormal;
     public bool isSceneAligned = false;
+
+    [Header("Controller Pointer Offset")]
+    [SerializeField] private float CornerControllerOffset = 0.10f;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject CornerPrefab;
@@ -37,24 +44,26 @@ public class AlignmentControllerQuest : MonoBehaviour
         //Move Preview with Controller && Lock Axis
         if (!isAdjustmentPlaneCreated)
         {
+
+            Vector3 previewPos = ControllerRight.transform.position + CornerControllerOffset * ControllerRight.transform.forward;
             // Let it be where the controller is
             if (screenCorners.Count == 0)
             {
-                CornerPreviewPrefab.transform.position = ControllerRight.transform.position;
+                CornerPreviewPrefab.transform.position = previewPos;
                 CornerPreviewPrefab.transform.rotation = ControllerRight.transform.rotation;
             }
             // Lock the height to the first point
             else if (screenCorners.Count == 1)
             {
                 // Lock height to the y-coordinate of the first corner point
-                CornerPreviewPrefab.transform.position = new Vector3(ControllerRight.transform.position.x, screenCorners[0].y, ControllerRight.transform.position.z);
+                CornerPreviewPrefab.transform.position = new Vector3(previewPos.x, screenCorners[0].y, previewPos.z);
                 CornerPreviewPrefab.transform.rotation = ControllerRight.transform.rotation;
             }
             // Lock the height to the second point
             else if (screenCorners.Count == 2)
             {
                 // Lock height to the y-coordinate of the second corner point
-                CornerPreviewPrefab.transform.position = new Vector3(screenCorners[1].x, ControllerRight.transform.position.y, screenCorners[1].z);
+                CornerPreviewPrefab.transform.position = new Vector3(screenCorners[1].x, previewPos.y, screenCorners[1].z);
                 CornerPreviewPrefab.transform.rotation = ControllerRight.transform.rotation;
             }
         }
@@ -77,12 +86,16 @@ public class AlignmentControllerQuest : MonoBehaviour
             // Create the plane using the 3 points and the calculated fourth point
             adjustmentPlane = CreatePlane(screenCorners[0], screenCorners[1], screenCorners[2], point4);
 
-            CalculatePlaneCenter(screenCorners[0], screenCorners[1], screenCorners[2], point4);
+            AlignmentPlaneCenter = CalculatePlaneCenter(screenCorners[0], screenCorners[1], screenCorners[2], point4);
 
-            planeNormal = FindNormalPointingToPlayer(adjustmentPlane);
+            //used to be planeNormal = FindNormalPointingToPlayer(adjustmentPlane);
+            planeNormal = FindNormalPointingToPlayer(screenCorners[0], screenCorners[1], screenCorners[2]);
 
             // Set plane to created
             isAdjustmentPlaneCreated = true;
+
+            //I titeld the function its descctiption
+            AlignQuestWorldOnReferencePlaneCreation();
         }
 
         //reset Btn
@@ -108,18 +121,22 @@ public class AlignmentControllerQuest : MonoBehaviour
             //CreateMockupPlayer();
             isSceneAligned = true;
         }
-        if (isSceneAligned)
-        {
-            SendAlignmentToserver();
-            //RepositionMockupPlayer();
-        }
+        //if (isSceneAligned)
+        //{
+        //    SendAlignmentToserver();
+        //    //RepositionMockupPlayer();
+        //}
 
     }
-    private (Vector3, Vector3) SendAlignmentToserver()
+
+    private void AlignQuestWorldOnReferencePlaneCreation()
     {
-        //return Aligning Info
-        return (VectorToScreen, planeNormal);
+        //Move Scene to new centerpos
+        questSceneParent.transform.position = AlignmentPlaneCenter;
+        //Rotate scene mathcing to rotation of plane 
+        questSceneParent.transform.rotation = Quaternion.LookRotation(planeNormal);
     }
+
 
     private void resetPlane()
     {
@@ -208,28 +225,60 @@ public class AlignmentControllerQuest : MonoBehaviour
         return planeCenter;
     }
 
-    private Vector3 FindNormalPointingToPlayer(GameObject go)
+    private Vector3 FindNormalPointingToPlayer(Vector3 pointA, Vector3 pointB, Vector3 pointC)
     {
-        MeshFilter meshFilter = go.GetComponent<MeshFilter>();
-        if (meshFilter == null || meshFilter.sharedMesh == null)
+        Vector3 AB = pointB - pointA;
+        Vector3 AC = pointC - pointA;
+
+        // Calculate the normal using the cross product
+        Vector3 normal = Vector3.Cross(AC, AB); // Reverse the order 
+
+        // Normalize the resulting vector
+        normal.Normalize();
+
+        //check which normal direction is pointing at player
+        if (Vector3.Dot(normal, AlignmentPlaneCenter - HeadSet.transform.position) < Vector3.Dot(-normal, AlignmentPlaneCenter - HeadSet.transform.position))
         {
-            Debug.LogWarning("Object does not have a mesh or MeshFilter component.");
-            return Vector3.zero;
+            normal = -normal;
         }
 
-        Mesh mesh = meshFilter.sharedMesh;
-        Vector3[] normals = mesh.normals;
-
-        if (normals.Length > 0)
-        {
-            // Get the normal of the first vertex
-            return go.transform.TransformDirection(normals[0]);
-        }
-        else
-        {
-            Debug.LogWarning("Object mesh does not have normals.");
-            return Vector3.zero;
-        }
-
+        return normal;
     }
+
+
+    //This functon SendAlignmentToserver not needed exept we decide to make variables (VectorToScreen, planeNormal) private 
+    //private (Vector3, Vector3) SendAlignmentToserver()
+    //{
+    //    //return Aligning Info
+    //    return (VectorToScreen, planeNormal);
+    //}
+
+
+    //Was replaced by newer version of the function not using a mesh but the corner points 
+    //private Vector3 FindNormalPointingToPlayer(GameObject go)
+    //{
+    //    MeshFilter meshFilter = go.GetComponent<MeshFilter>();
+    //    if (meshFilter == null || meshFilter.sharedMesh == null)
+    //    {
+    //        Debug.LogWarning("Object does not have a mesh or MeshFilter component.");
+    //        return Vector3.zero;
+    //    }
+
+    //    Mesh mesh = meshFilter.sharedMesh;
+    //    Vector3[] normals = mesh.normals;
+
+    //    if (normals.Length > 0)
+    //    {
+    //        // Get the normal of the first vertex
+    //        return go.transform.TransformDirection(normals[0]);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogWarning("Object mesh does not have normals.");
+    //        return Vector3.zero;
+    //    }
+
+    //}
+
+    //This function doesnt need to acces any mesh, more cost efficient, might also be more accureate
 }

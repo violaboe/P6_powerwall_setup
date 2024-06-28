@@ -6,11 +6,15 @@ using PathCreation.Examples;
 
 public class PathChangerManager : MonoBehaviour
 {
+    public CustomMeshEmitter customMeshEmitter;
     public ParticleTriggerHandler particleTriggerHandlerL; //ParticleTriggerHandler on OculusHands
     public ParticleTriggerHandler particleTriggerHandlerR;
+
     public GameObject startingPath;
     public GameObject path1;
     public GameObject path2;
+    public GameObject path3;
+    //public GameObject path4;
     public GameObject endPath;
 
     private List<PathFollower> startingPathFollowers = new List<PathFollower>(); 
@@ -48,8 +52,12 @@ public class PathChangerManager : MonoBehaviour
         {
             if ((follower.gameObject.name == "Fireflies_1" && particleSystem == particleTriggerHandlerL.fireflyParticles1) ||
                 (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerL.fireflyParticles2) ||
+                (follower.gameObject.name == "Fireflies_3" && particleSystem == particleTriggerHandlerL.fireflyParticles3) ||
+                //(follower.gameObject.name == "Fireflies_4" && particleSystem == particleTriggerHandlerL.fireflyParticles4) ||
                 (follower.gameObject.name == "Fireflies_1" && particleSystem == particleTriggerHandlerR.fireflyParticles1) ||
-                (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerR.fireflyParticles2))
+                (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerR.fireflyParticles2) ||
+                (follower.gameObject.name == "Fireflies_3" && particleSystem == particleTriggerHandlerR.fireflyParticles3))
+                //(follower.gameObject.name == "Fireflies_4" && particleSystem == particleTriggerHandlerR.fireflyParticles4))
             {
                 pushedFollowers.Add(follower);
                 Debug.Log($"Particle system pushed for {follower.gameObject.name}");
@@ -65,7 +73,7 @@ public class PathChangerManager : MonoBehaviour
             foreach (PathFollower follower in startingPathFollowers)
             {
                 // If the follower has been pushed and is on path1 or path2, switch to the end path
-                if (pushedFollowers.Contains(follower) && IsOnPath(follower, path1, path2))
+                if (pushedFollowers.Contains(follower) && IsOnPath(follower, path1, path2, path3))
                 {
                     if (!switchedToEndPathFollowers.Contains(follower))
                     {
@@ -78,7 +86,7 @@ public class PathChangerManager : MonoBehaviour
                 {
                     if (!reachedEndPathFollowers.Contains(follower))
                     {
-                        HandleReachedEndPath(follower);
+                        //HandleReachedEndPath(follower);
                         reachedEndPathFollowers.Add(follower);
                         Debug.Log($"Reached end of end path for {follower.gameObject.name}");
                     }
@@ -129,6 +137,16 @@ public class PathChangerManager : MonoBehaviour
             follower.pathCreator = path2.GetComponent<PathCreator>();
             Debug.Log("Assigned Path2 to follower");
         }
+        else if (follower.gameObject.name == "Fireflies_3" && path3 != null)
+        {
+            follower.pathCreator = path3.GetComponent<PathCreator>();
+            Debug.Log("Assigned Path3 to follower");
+        }
+        /*else if (follower.gameObject.name == "Fireflies_4" && path4 != null)
+        {
+            follower.pathCreator = path4.GetComponent<PathCreator>();
+            Debug.Log("Assigned Path4 to follower");
+        }*/
         else
         {
             Debug.LogWarning("Path not assigned, invalid GameObject name or path is null");
@@ -161,28 +179,82 @@ public class PathChangerManager : MonoBehaviour
         follower.endOfPathInstruction = EndOfPathInstruction.Stop;
         Debug.Log("Changed EndOfPathInstruction to Stop");
 
-        follower.speed = 10f;
-        Debug.Log("Changed follower speed to 10");
+        follower.speed = 5f;
+        Debug.Log("Changed follower speed to 5");
 
         // Reset distance and re-enable the follower
         follower.distanceTravelled = 0f;
         follower.enabled = true;
 
-    }
-
-    void HandleReachedEndPath (PathFollower follower)
-    {
-        // Find the ParticleGravityCenter component in the follower's children and set pushBack properties to 0
-        ParticleGravityCenter gravityCenter = follower.GetComponentInChildren<ParticleGravityCenter>();
-        if (gravityCenter != null)
+        // Access the particle systems associated with the follower
+        ParticleSystem[] particleSystems = follower.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in particleSystems)
         {
-            gravityCenter.ApplyPullingForce();
+            if (ps != null)
+            {
+                var velocityModule = ps.velocityOverLifetime;
+                velocityModule.radial = new ParticleSystem.MinMaxCurve(0.0f);
+                Debug.Log("Set radial value to 0 in velocity over lifetime module");
+
+                customMeshEmitter.endPathMesh(ps);
+            }
+        }
+
+        // Access the Particle Gravity Center scripts with the follower
+        ParticleGravityCenter[] gravityCenters = follower.GetComponentsInChildren<ParticleGravityCenter>();
+        foreach (var gravityCenter in gravityCenters)
+        {
+            if (gravityCenter != null)
+            {
+                gravityCenter.pushBackStrength = 0;
+                gravityCenter.pushBackRadius = 0;
+
+                gravityCenter.SetDampen(0.2f);
+
+            }
+        }
+
+        if (follower.distanceTravelled >= 10f)
+        {
+            Debug.Log("Follower has travelled 10 distance");
+            foreach (var gravityCenter in gravityCenters)
+            {
+                if (gravityCenter != null)
+                {
+                    gravityCenter.SetDampen(0.5f);
+                    Debug.Log("Set dampen value to 0.5");
+
+                    gravityCenter.ApplyPullingForce();
+                }
+            }
         }
     }
 
-    //Bool to check if the Particles are on Path1 or Path2
-    bool IsOnPath(PathFollower follower, GameObject path1, GameObject path2)
+    /*void HandleReachedEndPath(PathFollower follower)
     {
-        return follower.pathCreator.gameObject == path1 || follower.pathCreator.gameObject == path2;
+
+        // Find all ParticleGravityCenter components in the follower's children and set pushBack properties to 0
+        ParticleGravityCenter[] gravityCenters = follower.GetComponentsInChildren<ParticleGravityCenter>();
+        foreach (var gravityCenter in gravityCenters)
+        {
+            if (gravityCenter != null)
+            {
+                gravityCenter.pushBackStrength = 0;
+                gravityCenter.pushBackRadius = 0;
+                Debug.Log("Gravity Pushback Strength and Radius has been set to 0 for all gravity centers");
+
+                // Set the dampen value
+                gravityCenter.SetDampen(0.5f);
+                Debug.Log("Set dampen value to 1");
+
+                gravityCenter.ApplyPullingForce();
+            }
+        }
+    }*/
+
+    //Bool to check if the Particles are on Path1 or Path2
+    bool IsOnPath(PathFollower follower, GameObject path1, GameObject path2, GameObject path3)
+    {
+        return follower.pathCreator.gameObject == path1 || follower.pathCreator.gameObject == path2 || follower.pathCreator.gameObject == path3;
     }
 }

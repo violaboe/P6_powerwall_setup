@@ -8,11 +8,15 @@ public class ParticleTriggerHandler : MonoBehaviour
     public Transform jarLocation;
     public ParticleSystem fireflyParticles1;
     public ParticleSystem fireflyParticles2;
+    public ParticleSystem fireflyParticles3;
+    //public ParticleSystem fireflyParticles4;
     public float pushBackStrength = 20.0f;
-    public float pushBackRadius = 1.0f;
+    public float pushBackRadius = 0.5f;
 
     private ParticleSystem.Particle[] particles1;
     private ParticleSystem.Particle[] particles2;
+    private ParticleSystem.Particle[] particles3;
+    //private ParticleSystem.Particle[] particles4;
     private SphereCollider pushCollider;
 
     public event System.Action<ParticleSystem> OnParticlesPushed;
@@ -27,11 +31,13 @@ public class ParticleTriggerHandler : MonoBehaviour
 
     void LateUpdate()
     {
-        if (fireflyParticles1 == null && fireflyParticles2 == null)
+        if (fireflyParticles1 == null && fireflyParticles2 == null && fireflyParticles3 == null)
             return;
 
         int maxParticles1 = fireflyParticles1.main.maxParticles;
         int maxParticles2 = fireflyParticles2.main.maxParticles;
+        int maxParticles3 = fireflyParticles3.main.maxParticles;
+        //int maxParticles4 = fireflyParticles4.main.maxParticles;
 
         if (particles1 == null || particles1.Length < maxParticles1)
             particles1 = new ParticleSystem.Particle[maxParticles1];
@@ -39,8 +45,17 @@ public class ParticleTriggerHandler : MonoBehaviour
         if (particles2 == null || particles2.Length < maxParticles2)
             particles2 = new ParticleSystem.Particle[maxParticles2];
 
+        if (particles3 == null || particles3.Length < maxParticles3)
+        particles3 = new ParticleSystem.Particle[maxParticles3];
+
+        /*if (particles4 == null || particles4.Length < maxParticles4)
+        particles4 = new ParticleSystem.Particle[maxParticles4];*/
+
+
         int particleCount1 = fireflyParticles1.GetParticles(particles1);
         int particleCount2 = fireflyParticles2.GetParticles(particles2);
+        int particleCount3 = fireflyParticles3.GetParticles(particles3);
+        //int particleCount4 = fireflyParticles4.GetParticles(particles4);
 
         Vector3 handPosition = transform.position;
 
@@ -73,5 +88,35 @@ public class ParticleTriggerHandler : MonoBehaviour
         }
 
         fireflyParticles2.SetParticles(particles2, particleCount2);
+
+        for (int i = 0; i < particleCount3; i++)
+        {
+            Vector3 directionFromHand = particles3[i].position - handPosition;
+            float distanceFromHand = directionFromHand.magnitude;
+
+            // Apply push-back force if particles are within the push radius of the hand
+            if (distanceFromHand < pushBackRadius)
+            {
+                particles3[i].velocity += directionFromHand.normalized * pushBackStrength * Time.deltaTime;
+                OnParticlesPushed?.Invoke(fireflyParticles3);
+            }
+        }
+
+        fireflyParticles3.SetParticles(particles3, particleCount3);
+
+        /*for (int i = 0; i < particleCount4; i++)
+        {
+            Vector3 directionFromHand = particles4[i].position - handPosition;
+            float distanceFromHand = directionFromHand.magnitude;
+
+            // Apply push-back force if particles are within the push radius of the hand
+            if (distanceFromHand < pushBackRadius)
+            {
+                particles4[i].velocity += directionFromHand.normalized * pushBackStrength * Time.deltaTime;
+                OnParticlesPushed?.Invoke(fireflyParticles4);
+            }
+        }
+
+        fireflyParticles4.SetParticles(particles4, particleCount4);*/
     }
 }
