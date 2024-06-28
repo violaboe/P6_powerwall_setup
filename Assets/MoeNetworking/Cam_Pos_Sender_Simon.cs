@@ -23,6 +23,9 @@ public class Cam_Pos_Sender_Simon : NetworkBehaviour
     public AlignmentDebug aligmentDebug_S;
     public TimeLineStarter timeLineStarter_S;
 
+    [SerializeField]
+    private GameObject stephParticles;
+
 
 
 
@@ -42,6 +45,12 @@ public class Cam_Pos_Sender_Simon : NetworkBehaviour
         if (oculus_camera_rig_S != null && oculus_head_pos_obj_S != null && oculus_camera_rig_S.activeInHierarchy)
         {
             send_head_pos_to_server_S(oculus_head_pos_obj_S.transform.position);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            stephParticles.SetActive(true);
         }
     }
 
@@ -150,10 +159,18 @@ public class Cam_Pos_Sender_Simon : NetworkBehaviour
 
 
 
+    public void PlayButton()
+    {
+        StartTimeLineServer_S();
+        StartCoroutine(StartParticlesStephS());
+    }
+
+
     [ServerRpc(RequireOwnership = false)]
     public void StartTimeLineServer_S()
     {
         StartTimeLineObserver_S();
+        
     }
 
     [ObserversRpc]
@@ -161,10 +178,15 @@ public class Cam_Pos_Sender_Simon : NetworkBehaviour
     {
         timeLineStarter_S.StartTimeline();
 
+        
     }
 
 
-
+    IEnumerator StartParticlesStephS()
+    {
+        yield return new WaitForSeconds(51.63f);
+        stephParticles.SetActive(true);
+    }
 }
 
 

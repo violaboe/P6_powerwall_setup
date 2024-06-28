@@ -29,6 +29,9 @@ public class camera_position_sending : NetworkBehaviour
     public AlignmentControllerQuest alignmentControllerQuest;
     public AlignmentControllerCave alignmentControllerCave;
 
+    [SerializeField]
+    private GameObject stephParticles;
+
 
 
 
@@ -175,8 +178,16 @@ public class camera_position_sending : NetworkBehaviour
     private void StartTimeLineObserver()
     {
         timeLineStarter.StartTimeline();
+        StartCoroutine(StartParticlesSteph());
     }
 
+
+
+    IEnumerator StartParticlesSteph()
+    {
+        yield return new WaitForSeconds(51.63f);
+        stephParticles.SetActive(true);
+    }
 
    
 }

@@ -64,8 +64,8 @@ public class AlignmentDebug : MonoBehaviour
             if (blockOut != null) blockOut.SetActive(true);
 
 
-            //TurnOff Passthrough
-            passthroughWall.SetActive(true);
+            //TurnOn Passthrough
+            //passthroughWall.SetActive(true);
 
             //TurnOn Debug Enviromet
             debugEnv.SetActive(false);
