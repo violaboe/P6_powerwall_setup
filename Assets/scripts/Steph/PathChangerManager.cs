@@ -39,28 +39,37 @@ public class PathChangerManager : MonoBehaviour
             }
         }
 
+        // Disable Hand interactions on start
+        particleTriggerHandlerL.enabled = false;
+        particleTriggerHandlerR.enabled = false;
+
         particleTriggerHandlerL.OnParticlesPushed += OnParticlesPushed;
         particleTriggerHandlerR.OnParticlesPushed += OnParticlesPushed;
 
         StartCoroutine(CheckPathCompletion());
     }
 
+
+
     //This is to check which particles have been pushed by which hand specifically
     private void OnParticlesPushed(ParticleSystem particleSystem)
     {
-        foreach (var follower in startingPathFollowers)
+        if (particleTriggerHandlerR.enabled && particleTriggerHandlerL.enabled)
         {
-            if ((follower.gameObject.name == "Fireflies_1" && particleSystem == particleTriggerHandlerL.fireflyParticles1) ||
-                (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerL.fireflyParticles2) ||
-                (follower.gameObject.name == "Fireflies_3" && particleSystem == particleTriggerHandlerL.fireflyParticles3) ||
-                //(follower.gameObject.name == "Fireflies_4" && particleSystem == particleTriggerHandlerL.fireflyParticles4) ||
-                (follower.gameObject.name == "Fireflies_1" && particleSystem == particleTriggerHandlerR.fireflyParticles1) ||
-                (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerR.fireflyParticles2) ||
-                (follower.gameObject.name == "Fireflies_3" && particleSystem == particleTriggerHandlerR.fireflyParticles3))
-                //(follower.gameObject.name == "Fireflies_4" && particleSystem == particleTriggerHandlerR.fireflyParticles4))
+            foreach (var follower in startingPathFollowers)
             {
+                if ((follower.gameObject.name == "Fireflies_1" && particleSystem == particleTriggerHandlerL.fireflyParticles1) ||
+                    (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerL.fireflyParticles2) ||
+                    (follower.gameObject.name == "Fireflies_3" && particleSystem == particleTriggerHandlerL.fireflyParticles3) ||
+                    //(follower.gameObject.name == "Fireflies_4" && particleSystem == particleTriggerHandlerL.fireflyParticles4) ||
+                    (follower.gameObject.name == "Fireflies_1" && particleSystem == particleTriggerHandlerR.fireflyParticles1) ||
+                    (follower.gameObject.name == "Fireflies_2" && particleSystem == particleTriggerHandlerR.fireflyParticles2) ||
+                    (follower.gameObject.name == "Fireflies_3" && particleSystem == particleTriggerHandlerR.fireflyParticles3))
+                    //(follower.gameObject.name == "Fireflies_4" && particleSystem == particleTriggerHandlerR.fireflyParticles4))
+                {
                 pushedFollowers.Add(follower);
                 Debug.Log($"Particle system pushed for {follower.gameObject.name}");
+                }
             }
         }
     }
@@ -119,9 +128,18 @@ public class PathChangerManager : MonoBehaviour
         return follower.endOfPathInstruction == EndOfPathInstruction.Stop && follower.distanceTravelled >= pathLength;
     }
 
+    IEnumerator TriggerHandlerActivationDelay(PathFollower follower)
+    {
+        yield return new WaitForSeconds(3f);  // Wait for x seconds before switching to Middle Path
+        // Activate user hand interactions
+        particleTriggerHandlerL.enabled = true;
+        particleTriggerHandlerR.enabled = true;
+    }
+
     //Function to call for switching particle paths (Start-either Path1/Path2)
     void SwitchPath(PathFollower follower)
     {
+        
         // Disable the follower to change its path
         follower.enabled = false;
         Debug.Log($"Switching path for {follower.gameObject.name}");
@@ -151,6 +169,8 @@ public class PathChangerManager : MonoBehaviour
         {
             Debug.LogWarning("Path not assigned, invalid GameObject name or path is null");
         }
+
+        StartCoroutine(TriggerHandlerActivationDelay(follower));
 
         // Change EndOfPathInstruction to Loop
         follower.endOfPathInstruction = EndOfPathInstruction.Loop;

@@ -12,21 +12,17 @@ public class CustomMeshEmitter : MonoBehaviour
     private ParticleSystem.Particle[] singularParticle;
     public Mesh customMesh;
     public float meshEmissionDuration = 0.8f;
-
-    private ParticleGravityCenter particleGravityCenter1;
-    private ParticleGravityCenter particleGravityCenter2;
-    private ParticleGravityCenter particleGravityCenter3;
-    //private ParticleGravityCenter particleGravityCenter4;
     private float elapsedTime = 0f;
     private bool isScattering = false;
 
     void Start()
     {
-        if (fireflyParticles1 == null || fireflyParticles2 == null || fireflyParticles3 == null)
+        ParticleSystem[] fireflyParticles = GetComponentsInChildren<ParticleSystem>();
+        /*if (fireflyParticles1 == null || fireflyParticles2 == null || fireflyParticles3 == null)
         {
             Debug.LogError("Particle system not assigned!");
             return;
-        }
+        }*/
 
         if (customMesh == null)
         {
@@ -44,15 +40,15 @@ public class CustomMeshEmitter : MonoBehaviour
             }
         }
 
-        StartParticleSystem(fireflyParticles1);
-        StartParticleSystem(fireflyParticles2);
-        StartParticleSystem(fireflyParticles3);
-        //StartParticleSystem(fireflyParticles4);
+            StartParticleSystem(fireflyParticles1);
+            StartParticleSystem(fireflyParticles2);
+            StartParticleSystem(fireflyParticles3);
+            //StartParticleSystem(fireflyParticles4);
 
-        fireflyParticles1.Play();
-        fireflyParticles2.Play();
-        fireflyParticles3.Play();
-        //fireflyParticles4.Play();
+            fireflyParticles1.Play();
+            fireflyParticles2.Play();
+            fireflyParticles3.Play();
+            //fireflyParticles4.Play();
     }
 
     void StartParticleSystem(ParticleSystem ps)
@@ -63,12 +59,15 @@ public class CustomMeshEmitter : MonoBehaviour
 
         var velocityModule = ps.velocityOverLifetime;
         velocityModule.enabled = true;
+        velocityModule.x = new ParticleSystem.MinMaxCurve(-1.0f, 2.0f);
+        velocityModule.y = new ParticleSystem.MinMaxCurve(1.0f, 3.0f);
+        velocityModule.z = new ParticleSystem.MinMaxCurve(-1.0f, 1.0f);
 
         var forceModule = ps.forceOverLifetime;
         forceModule.enabled = true;
-        forceModule.x = new ParticleSystem.MinMaxCurve(2.0f, -1.0f);
-        forceModule.y = new ParticleSystem.MinMaxCurve(2.0f, -1.0f);
-        forceModule.z = new ParticleSystem.MinMaxCurve(1.0f, -1.0f);
+        forceModule.x = new ParticleSystem.MinMaxCurve(-1.0f, 1.0f);
+        forceModule.y = new ParticleSystem.MinMaxCurve(-1.0f, 1.0f);
+        forceModule.z = new ParticleSystem.MinMaxCurve(-1.0f, 1.0f);
 
         var mainModule = ps.main;
         mainModule.gravityModifier = new ParticleSystem.MinMaxCurve(0.0f, 0.0f);
@@ -83,34 +82,59 @@ public class CustomMeshEmitter : MonoBehaviour
             ScatterParticles();
             isScattering = true;
         }
+        
     }
 
     void ScatterParticles()
     {
         // Modify properties for scattering particles
-        SetPSMiddlePath(fireflyParticles1);
-        SetPSMiddlePath(fireflyParticles2);
-        SetPSMiddlePath(fireflyParticles3);
-        //SetPSMiddlePath(fireflyParticles4);
+        InBetweenScatter(fireflyParticles1);
+        InBetweenScatter(fireflyParticles2);
+        InBetweenScatter(fireflyParticles3);
+        //InBetweenScatter(fireflyParticles4);
     }
 
+    // The scatter that happens in between Starting Path & Paths around the user
     void InBetweenScatter(ParticleSystem ps)
     {
 
         var forceModule = ps.forceOverLifetime;
         forceModule.enabled = true;
-        forceModule.x = new ParticleSystem.MinMaxCurve(2.0f, -1.0f);
-        forceModule.y = new ParticleSystem.MinMaxCurve(2.0f, -1.0f);
-        forceModule.z = new ParticleSystem.MinMaxCurve(1.0f, -1.0f);
+        forceModule.x = new ParticleSystem.MinMaxCurve(1.0f, 2.0f);
+        forceModule.y = new ParticleSystem.MinMaxCurve(1.0f, 2.0f);
+        forceModule.z = new ParticleSystem.MinMaxCurve(1.0f, 2.0f);
 
         var velocityModule = ps.velocityOverLifetime;
         velocityModule.enabled = true;
-        velocityModule.x = new ParticleSystem.MinMaxCurve(-1.0f, 3.0f);
-        velocityModule.y = new ParticleSystem.MinMaxCurve(-1.0f, 3.0f);
-        velocityModule.z = new ParticleSystem.MinMaxCurve(-1.0f, 5.0f);
+        velocityModule.x = new ParticleSystem.MinMaxCurve(1.0f, 7.0f);
+        velocityModule.y = new ParticleSystem.MinMaxCurve(1.0f, 3.0f);
+        velocityModule.z = new ParticleSystem.MinMaxCurve(1.0f, 7.0f);
 
+        /*ParticleGravityCenter[] gravityCenters = GetComponentsInChildren<ParticleGravityCenter>();
+        foreach (var gravityCenter in gravityCenters)
+        {
+            if (gravityCenter != null)
+            {
+                gravityCenter.SetDampen(0f);
+                Debug.Log("Set dampen value to 0");
+            }
+        }*/
 
+        /*StartCoroutine(SetPSMiddlePathWithDelay(fireflyParticles1));
+        StartCoroutine(SetPSMiddlePathWithDelay(fireflyParticles2));
+        StartCoroutine(SetPSMiddlePathWithDelay(fireflyParticles3));*/
+
+        SetPSMiddlePath(fireflyParticles1);
+        SetPSMiddlePath(fireflyParticles2);
+        SetPSMiddlePath(fireflyParticles3);
+        
     }
+
+    /*IEnumerator SetPSMiddlePathWithDelay(ParticleSystem ps)
+    {
+        yield return new WaitForSeconds(0.5f);  // Wait for x seconds before switching to Middle Path
+        SetPSMiddlePath(ps);
+    }*/
 
     void SetPSMiddlePath(ParticleSystem ps)
     {
@@ -127,9 +151,9 @@ public class CustomMeshEmitter : MonoBehaviour
 
         var velocityModule = ps.velocityOverLifetime;
         velocityModule.enabled = true;
-        velocityModule.x = new ParticleSystem.MinMaxCurve(0.0f, 1.0f);
+        velocityModule.x = new ParticleSystem.MinMaxCurve(0.0f, 3.0f);
         velocityModule.y = new ParticleSystem.MinMaxCurve(0.0f, 3.0f);
-        velocityModule.z = new ParticleSystem.MinMaxCurve(0.0f, 1.0f);
+        velocityModule.z = new ParticleSystem.MinMaxCurve(0.0f, 3.0f);
 
         var emission = ps.emission;
         emission.rateOverTime = 0;
