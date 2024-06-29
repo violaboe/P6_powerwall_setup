@@ -1091,7 +1091,7 @@ MonoBehaviour:
   CornerPreviewPrefab: {fileID: 5199332799389569975, guid: eddbbb9b4540e18419da7472ad396ca3, type: 3}
   ControllerRight: {fileID: 2109235387}
   HeadSet: {fileID: 411602501}
-  planeMaterial: {fileID: 2100000, guid: 60139d2ca489ca64781533d5c5ca41ae, type: 2}
+  planeMaterial: {fileID: 2100000, guid: 5e8f634942a968b42b3ea3bf2bb3efc2, type: 2}
 --- !u!4 &728554626
 Transform:
   m_ObjectHideFlags: 0
@@ -1101,7 +1101,7 @@ Transform:
   m_GameObject: {fileID: 728554624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.7519922, y: 3.0995417, z: -1.2656642}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

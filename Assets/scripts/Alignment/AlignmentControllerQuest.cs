@@ -41,11 +41,12 @@ public class AlignmentControllerQuest : MonoBehaviour
 
     void Update()
     {
-        //Move Preview with Controller && Lock Axis
+        // Move Preview with Controller && Lock Axis
         if (!isAdjustmentPlaneCreated)
         {
 
             Vector3 previewPos = ControllerRight.transform.position + CornerControllerOffset * ControllerRight.transform.forward;
+
             // Let it be where the controller is
             if (screenCorners.Count == 0)
             {
@@ -68,7 +69,7 @@ public class AlignmentControllerQuest : MonoBehaviour
             }
         }
 
-        //Corner Creation
+        // Corner Creation
         if (OVRInput.GetUp(OVRInput.RawButton.RHandTrigger) && screenCorners.Count < 3 && !isAdjustmentPlaneCreated)
         {
             // Instantiate the CornerPrefab at the controller's position and rotation
@@ -88,17 +89,17 @@ public class AlignmentControllerQuest : MonoBehaviour
 
             AlignmentPlaneCenter = CalculatePlaneCenter(screenCorners[0], screenCorners[1], screenCorners[2], point4);
 
-            //used to be planeNormal = FindNormalPointingToPlayer(adjustmentPlane);
+            // Use the points directly to find the normal pointing to the player
             planeNormal = FindNormalPointingToPlayer(screenCorners[0], screenCorners[1], screenCorners[2]);
 
             // Set plane to created
             isAdjustmentPlaneCreated = true;
 
-            //I titeld the function its descctiption
+            // Align the quest world on the reference plane creation
             AlignQuestWorldOnReferencePlaneCreation();
         }
 
-        //reset Btn
+        // Reset button
         if (OVRInput.GetUp(OVRInput.RawButton.A))
         {
             resetPlane();
@@ -114,19 +115,18 @@ public class AlignmentControllerQuest : MonoBehaviour
             }
         }
 
-        //Create a playervisualization in relation to a Mockup plane 
+        // Create a player visualization in relation to a Mockup plane 
         if (OVRInput.GetUp(OVRInput.RawButton.B))
         {
-            //SendAlignmentToserver();
-            //CreateMockupPlayer();
+            // SendAlignmentToserver();
+            // CreateMockupPlayer();
             isSceneAligned = true;
         }
-        //if (isSceneAligned)
-        //{
-        //    SendAlignmentToserver();
-        //    //RepositionMockupPlayer();
-        //}
-
+        // if (isSceneAligned)
+        // {
+        //     SendAlignmentToserver();
+        //     // RepositionMockupPlayer();
+        // }
     }
 
     private void AlignQuestWorldOnReferencePlaneCreation()
@@ -181,14 +181,14 @@ public class AlignmentControllerQuest : MonoBehaviour
         vertices[2] = point3;
         vertices[3] = point4;
 
-        // Define the triangles
+        // Define the triangles to invert normals
         int[] triangles = new int[6];
         triangles[0] = 0;
-        triangles[1] = 1;
-        triangles[2] = 2;
+        triangles[1] = 2;
+        triangles[2] = 1;
         triangles[3] = 0;
-        triangles[4] = 2;
-        triangles[5] = 3;
+        triangles[4] = 3;
+        triangles[5] = 2;
 
         // Define the UVs
         Vector2[] uvs = new Vector2[4];
@@ -236,14 +236,15 @@ public class AlignmentControllerQuest : MonoBehaviour
         // Normalize the resulting vector
         normal.Normalize();
 
-        //check which normal direction is pointing at player
-        if (Vector3.Dot(normal, AlignmentPlaneCenter - HeadSet.transform.position) < Vector3.Dot(-normal, AlignmentPlaneCenter - HeadSet.transform.position))
+        // Check which normal direction is pointing at the player
+        if (Vector3.Dot(normal, AlignmentPlaneCenter - HeadSet.transform.position) < 0)
         {
             normal = -normal;
         }
 
         return normal;
     }
+
 
 
     //This functon SendAlignmentToserver not needed exept we decide to make variables (VectorToScreen, planeNormal) private 
