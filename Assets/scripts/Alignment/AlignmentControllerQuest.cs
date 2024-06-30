@@ -140,7 +140,7 @@ public class AlignmentControllerQuest : MonoBehaviour
 
     private void AlignQuestWorldOnReferencePlaneCreation()
     {
-        Vector3 cavePodestHeight = new Vector3(0f, 23f, 0f);
+        Vector3 cavePodestHeight = new Vector3(0f, 0.23f, 0f);
         //Move Scene to new centerpos
         questSceneParent.transform.position = AlignmentPlaneCenter + cavePodestHeight; //if this ever gives errror delete the offset 
         //Rotate scene mathcing to rotation of plane 

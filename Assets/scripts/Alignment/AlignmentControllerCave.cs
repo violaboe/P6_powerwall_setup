@@ -1,3 +1,4 @@
+using Apt.Unity.Projection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class AlignmentControllerCave : MonoBehaviour
     [SerializeField] private GameObject CaveScreenCenterGameobject;
     [SerializeField] private GameObject CaveCameraGameObject;
 
+    [Header("CaveScreen")]
+    ProjectionPlaneS caveScreen;
     //What should be done on server 
 
     // -> Call SetValues Function
@@ -58,9 +61,21 @@ public class AlignmentControllerCave : MonoBehaviour
 
     }
 
-    private void ResizeCaveScreen(float width, float height)
+    private void ResizeCaveScreen(Vector2 scale)
     {
-        //Try get the Child with the projection plane
-        //give that Child the two values 
+        //Test if Gameobject is assigned
+        if (caveScreen)
+        {
+
+            float threshold = 0.2f;
+
+            //add threshold, so if the screen is the cave it takes the exact cave mesurements of the cave which are already in the project Vector2(5.74300003,2.15362501)
+            if (Vector2.Distance(scale, caveScreen.Size) > threshold)
+            {
+                caveScreen.Size = scale;
+            }
+
+        }
+        else Debug.LogError("Cave Screen Empty, Assign Cave Sceen in inspector");
     }
 }    
