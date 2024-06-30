@@ -57,4 +57,10 @@ public class AlignmentControllerCave : MonoBehaviour
         return (RotatedVector + CaveScreenCenterGameobject.transform.position);
 
     }
+
+    private void ResizeCaveScreen(float width, float height)
+    {
+        //Try get the Child with the projection plane
+        //give that Child the two values 
+    }
 }    

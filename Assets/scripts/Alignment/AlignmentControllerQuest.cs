@@ -14,6 +14,9 @@ public class AlignmentControllerQuest : MonoBehaviour
     public Vector3 planeNormal;
     public bool isSceneAligned = false;
 
+    [Header("ScreenDimension")]
+    public Vector2 screenDimensions;
+
     [Header("Controller Pointer Offset")]
     [SerializeField] private float CornerControllerOffset = 0.10f;
 
@@ -81,6 +84,9 @@ public class AlignmentControllerQuest : MonoBehaviour
         }
         else if (screenCorners.Count >= 3 && !isAdjustmentPlaneCreated)
         {
+            //Save the Dimensions of the Screen for later use in the Cave/Screen Scene to make it adaptable
+            GetScreenDimensions(screenCorners[0], screenCorners[2]);
+
             // Calculate the fourth point
             Vector3 point4 = screenCorners[0] + (screenCorners[2] - screenCorners[1]);
 
@@ -97,13 +103,16 @@ public class AlignmentControllerQuest : MonoBehaviour
 
             // Align the quest world on the reference plane creation
             AlignQuestWorldOnReferencePlaneCreation();
+
+            //bool server is checking to know if scene is aligned 
+            isSceneAligned = true;
         }
 
         // Reset button
-        //if (OVRInput.GetUp(OVRInput.RawButton.A))
-        //{
-        //    resetPlane();
-        //}
+        if (OVRInput.GetUp(OVRInput.RawButton.B))
+        {
+            resetPlane();
+        }
 
         // Draw line from the last corner to VectorToScreen
         if (isAdjustmentPlaneCreated)
@@ -115,13 +124,13 @@ public class AlignmentControllerQuest : MonoBehaviour
             }
         }
 
-        // Create a player visualization in relation to a Mockup plane 
-        if (OVRInput.GetUp(OVRInput.RawButton.B))
-        {
-            // SendAlignmentToserver();
-            // CreateMockupPlayer();
-            isSceneAligned = true;
-        }
+        //// Create a player visualization in relation to a Mockup plane 
+        //if (OVRInput.GetUp(OVRInput.RawButton.B))
+        //{
+        //    // SendAlignmentToserver();
+        //    // CreateMockupPlayer();
+        //    isSceneAligned = true;
+        //}
         // if (isSceneAligned)
         // {
         //     SendAlignmentToserver();
@@ -131,13 +140,20 @@ public class AlignmentControllerQuest : MonoBehaviour
 
     private void AlignQuestWorldOnReferencePlaneCreation()
     {
+        Vector3 cavePodestHeight = new Vector3(0f, 23f, 0f);
         //Move Scene to new centerpos
-        questSceneParent.transform.position = AlignmentPlaneCenter;
+        questSceneParent.transform.position = AlignmentPlaneCenter + cavePodestHeight; //if this ever gives errror delete the offset 
         //Rotate scene mathcing to rotation of plane 
         questSceneParent.transform.rotation = Quaternion.LookRotation(planeNormal);
     }
 
+    private void GetScreenDimensions(Vector3 point1, Vector3 point3)
+    {
+        float screenHeight = Mathf.Abs(point1.y - point3.y);
+        float screenWidth = Mathf.Abs(Vector3.Distance(point3, point1));
 
+        screenDimensions = new Vector2(screenWidth, screenHeight);
+    }
     private void resetPlane()
     {
         // Destroy adjustmentPlane GameObject if it exists
