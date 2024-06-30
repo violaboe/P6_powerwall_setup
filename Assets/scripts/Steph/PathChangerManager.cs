@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 using PathCreation.Examples;
+using Unity.Mathematics;
 
 public class PathChangerManager : MonoBehaviour
 {
     public CustomMeshEmitter customMeshEmitter;
+    public FireflyFlickering fireflyFlickering;
     public ParticleTriggerHandler particleTriggerHandlerL; //ParticleTriggerHandler on OculusHands
     public ParticleTriggerHandler particleTriggerHandlerR;
 
@@ -16,6 +18,8 @@ public class PathChangerManager : MonoBehaviour
     public GameObject path3;
     //public GameObject path4;
     public GameObject endPath;
+
+    public Material yellowMaterial;
 
     private List<PathFollower> startingPathFollowers = new List<PathFollower>(); 
     private HashSet<PathFollower> pushedFollowers = new HashSet<PathFollower>(); //HashSet for pushedParticles
@@ -69,6 +73,7 @@ public class PathChangerManager : MonoBehaviour
                 {
                 pushedFollowers.Add(follower);
                 Debug.Log($"Particle system pushed for {follower.gameObject.name}");
+                
                 }
             }
         }
@@ -182,7 +187,18 @@ public class PathChangerManager : MonoBehaviour
         // Reset distance and re-enable the follower
         follower.distanceTravelled = 0f;
         follower.enabled = true;
+
+        /*ParticleSystem[] particleSystems = follower.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in particleSystems)
+        {
+            if (ps != null)
+            {
+                var noiseModule = ps.noise;
+                noiseModule.enabled = true;
+            }
+        }*/
     }
+
 
         //Function to call for switching particle paths (Path1/Path2-End)
     void SwitchToEndPath(PathFollower follower)
@@ -206,6 +222,18 @@ public class PathChangerManager : MonoBehaviour
         follower.distanceTravelled = 0f;
         follower.enabled = true;
 
+        // Find the pushed particle systems associated with this follower
+        List<ParticleSystem> pushedParticleSystems = new List<ParticleSystem>();
+        ParticleSystem[] allParticleSystems = follower.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in allParticleSystems)
+        {
+            if (pushedFollowers.Contains(follower))
+            {
+                pushedParticleSystems.Add(ps);
+            }
+        }
+
+        StartCoroutine(fireflyFlickering.FlickerAndChangeMaterial(pushedParticleSystems));
         // Access the particle systems associated with the follower
         ParticleSystem[] particleSystems = follower.GetComponentsInChildren<ParticleSystem>();
         foreach (var ps in particleSystems)
@@ -216,10 +244,12 @@ public class PathChangerManager : MonoBehaviour
                 velocityModule.radial = new ParticleSystem.MinMaxCurve(0.0f);
                 Debug.Log("Set radial value to 0 in velocity over lifetime module");
 
+                var noiseModule = ps.noise;
+                noiseModule.enabled = false;
+
                 customMeshEmitter.endPathMesh(ps);
             }
         }
-
         // Access the Particle Gravity Center scripts with the follower
         ParticleGravityCenter[] gravityCenters = follower.GetComponentsInChildren<ParticleGravityCenter>();
         foreach (var gravityCenter in gravityCenters)
@@ -230,13 +260,12 @@ public class PathChangerManager : MonoBehaviour
                 gravityCenter.pushBackRadius = 0;
 
                 gravityCenter.SetDampen(0.2f);
-
             }
         }
-
-        if (follower.distanceTravelled >= 10f)
+        Debug.Log("$Distance: {follower.distanceTravelled}");
+        if (follower.distanceTravelled >= 10.0f)
         {
-            Debug.Log("Follower has travelled 10 distance");
+            Debug.Log("Follower has travelled 20 distance");
             foreach (var gravityCenter in gravityCenters)
             {
                 if (gravityCenter != null)
@@ -244,33 +273,15 @@ public class PathChangerManager : MonoBehaviour
                     gravityCenter.SetDampen(0.5f);
                     Debug.Log("Set dampen value to 0.5");
 
-                    gravityCenter.ApplyPullingForce();
+                    particleTriggerHandlerL.enabled = false;
+                    particleTriggerHandlerR.enabled = false;
+                    Debug.Log("Hands have been disabled");
+                    //gravityCenter.ApplyPullingForce();
+                    follower.speed = 20;
                 }
             }
         }
     }
-
-    /*void HandleReachedEndPath(PathFollower follower)
-    {
-
-        // Find all ParticleGravityCenter components in the follower's children and set pushBack properties to 0
-        ParticleGravityCenter[] gravityCenters = follower.GetComponentsInChildren<ParticleGravityCenter>();
-        foreach (var gravityCenter in gravityCenters)
-        {
-            if (gravityCenter != null)
-            {
-                gravityCenter.pushBackStrength = 0;
-                gravityCenter.pushBackRadius = 0;
-                Debug.Log("Gravity Pushback Strength and Radius has been set to 0 for all gravity centers");
-
-                // Set the dampen value
-                gravityCenter.SetDampen(0.5f);
-                Debug.Log("Set dampen value to 1");
-
-                gravityCenter.ApplyPullingForce();
-            }
-        }
-    }*/
 
     //Bool to check if the Particles are on Path1 or Path2
     bool IsOnPath(PathFollower follower, GameObject path1, GameObject path2, GameObject path3)

@@ -83,6 +83,7 @@ public class ParticleGravityCenter : MonoBehaviour
         }
 
         fireflyParticles.SetParticles(particles, particles.Length);
+        Debug.Log("FIREFLIES PULLED");
     }
 
     public void SetDampen(float dampenValue)
