@@ -85,10 +85,10 @@ Material:
     m_Colors:
     - Color_8625870c808d4f1b93a120fb2366b73e: {r: 0, g: 0, b: 0, a: 0}
     - Color_fa7bfd953c0f468faf964c3a5545c86d: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorBottom: {r: 0.13641126, g: 0.16981131, b: 0.16018504, a: 1}
-    - _ColorTop: {r: 0.23523559, g: 0.28088278, b: 0.25706685, a: 1}
+    - _ColorBottom: {r: 0.17710382, g: 0.24670696, b: 0.22930618, a: 1}
+    - _ColorTop: {r: 0.27212322, g: 0.3577786, b: 0.3149509, a: 1}
     - _GustColor: {r: 0.29405642, g: 0.3406906, b: 0.31614628, a: 1}
-    - _PatchesColor: {r: 0.21813092, g: 0.25525087, b: 0.22873662, a: 1}
+    - _PatchesColor: {r: 0.303341, g: 0.41758627, b: 0.32872882, a: 1}
     - _PatchesOffset: {r: -9, g: 9.4, b: 0, a: 0}
     - _SecondaryColor: {r: 0.937255, g: 0.7568628, b: 0.24705875, a: 1}
   m_BuildTextureStacks: []
