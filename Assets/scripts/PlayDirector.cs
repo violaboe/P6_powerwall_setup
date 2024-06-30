@@ -50,7 +50,7 @@ public class PlayDirector : MonoBehaviour
 
         if (rightHandDevice.isValid)
         {
-            rightHandDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bButtonPressed);
+            rightHandDevice.TryGetFeatureValue(CommonUsages.triggerButton, out bButtonPressed);
         }
 
         return bButtonPressed;
