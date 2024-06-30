@@ -22,6 +22,7 @@ public class camera_position_sending : NetworkBehaviour
     public AlignmentDebug aligmentDebug;
 
     public TimeLineStarter timeLineStarter;
+    public PlayDirector VPlayer;
 
     public Vector3 vectorToScreenMultiplayer;
     public Vector3 planNormalMultiplayer;
@@ -42,6 +43,8 @@ public class camera_position_sending : NetworkBehaviour
         aligmentDebug = GameObject.FindAnyObjectByType<AlignmentDebug>();
 
         timeLineStarter = GameObject.FindAnyObjectByType<TimeLineStarter>();
+
+        VPlayer = GameObject.FindAnyObjectByType<PlayDirector>();
 
         alignmentControllerQuest = GameObject.FindAnyObjectByType<AlignmentControllerQuest>();
         alignmentControllerCave = GameObject.FindAnyObjectByType<AlignmentControllerCave>();
@@ -185,15 +188,17 @@ public class camera_position_sending : NetworkBehaviour
     [ObserversRpc]
     private void StartTimeLineObserver()
     {
-        timeLineStarter.StartTimeline();
-        StartCoroutine(StartParticlesSteph());
+        VPlayer.director.Play();
+        //timeLineStarter.StartTimeline();
+        StartCoroutine(StartTobiScene());
+       // StartCoroutine(StartParticlesSteph());
     }
 
 
 
     IEnumerator StartParticlesSteph()
     {
-        yield return new WaitForSeconds(51.63f);
+        yield return new WaitForSeconds(81.63f);
         stephParticles.SetActive(true);
     }
 
@@ -207,6 +212,20 @@ public class camera_position_sending : NetworkBehaviour
     public void MoveRedSphereBackward()
     {
         this.Animate(redSphere.transform, Easing.AnimationType.LocalPosition, Easing.Ease.EaseInQuad, redSphere.transform.localPosition, redSphere.transform.localPosition + new Vector3(0, 0, 10), 3f, MoveRedSphereForward);
+    }
+
+    IEnumerator StartTobiScene()
+    {
+        yield return new WaitForSeconds(30.3f);
+        timeLineStarter.StartTimeline();
+
+    }
+
+
+    public void StartEverything()
+    {
+        StartTimeLineServer();
+        StartCoroutine(StartParticlesSteph());
     }
 }
 

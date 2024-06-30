@@ -6,7 +6,7 @@ using UnityEngine.XR;
 
 public class PlayDirector : MonoBehaviour
 {
-    private PlayableDirector director;
+    public PlayableDirector director;
     public GameObject controlPanel;
     public GameObject plants;
 

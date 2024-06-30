@@ -14590,11 +14590,12 @@ MonoBehaviour:
   screen_anim: {fileID: 1647677964}
   aligmentDebug: {fileID: 0}
   timeLineStarter: {fileID: 0}
+  VPlayer: {fileID: 0}
   vectorToScreenMultiplayer: {x: 0, y: 0, z: 0}
   planNormalMultiplayer: {x: 0, y: 0, z: 0}
   alignmentControllerQuest: {fileID: 0}
   alignmentControllerCave: {fileID: 0}
-  stephParticles: {fileID: 0}
+  stephParticles: {fileID: 489326143}
   redSphere: {fileID: 1946142873}
 --- !u!4 &1537302207
 Transform:
