@@ -100,10 +100,10 @@ public class AlignmentControllerQuest : MonoBehaviour
         }
 
         // Reset button
-        if (OVRInput.GetUp(OVRInput.RawButton.A))
-        {
-            resetPlane();
-        }
+        //if (OVRInput.GetUp(OVRInput.RawButton.A))
+        //{
+        //    resetPlane();
+        //}
 
         // Draw line from the last corner to VectorToScreen
         if (isAdjustmentPlaneCreated)
