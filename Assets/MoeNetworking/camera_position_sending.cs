@@ -198,7 +198,7 @@ public class camera_position_sending : NetworkBehaviour
 
     IEnumerator StartParticlesSteph()
     {
-        yield return new WaitForSeconds(81.63f);
+        yield return new WaitForSeconds(72.63f);
         stephParticles.SetActive(true);
     }
 
@@ -216,7 +216,7 @@ public class camera_position_sending : NetworkBehaviour
 
     IEnumerator StartTobiScene()
     {
-        yield return new WaitForSeconds(30.3f);
+        yield return new WaitForSeconds(21.3f);
         timeLineStarter.StartTimelineTobi();
 
     }
@@ -225,6 +225,7 @@ public class camera_position_sending : NetworkBehaviour
     public void StartEverything()
     {
         StartTimeLineServer();
+        VPlayer.director.Play();
         StartCoroutine(StartParticlesSteph());
     }
 }
