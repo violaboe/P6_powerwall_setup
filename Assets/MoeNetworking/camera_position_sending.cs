@@ -32,6 +32,8 @@ public class camera_position_sending : NetworkBehaviour
     [SerializeField]
     private GameObject stephParticles;
 
+    public GameObject redSphere;
+
 
 
 
@@ -59,6 +61,11 @@ public class camera_position_sending : NetworkBehaviour
         if (oculus_camera_rig != null && oculus_head_pos_obj != null && oculus_camera_rig.activeInHierarchy && alignmentControllerQuest.isSceneAligned)
         {
             send_head_pos_to_server(vectorToScreenMultiplayer, planNormalMultiplayer);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            MoveRedSphereForward();
         }
     }
 
@@ -114,7 +121,8 @@ public class camera_position_sending : NetworkBehaviour
     [ObserversRpc]
     private void start_screen_anim_observer()
     {
-        screen_anim.SetTrigger("screen_trigger");
+        //screen_anim.SetTrigger("screen_trigger");
+        MoveRedSphereForward();
     }
 
     public void print_rig_status()
@@ -190,5 +198,15 @@ public class camera_position_sending : NetworkBehaviour
     }
 
    
+
+    public void MoveRedSphereForward()
+    {
+        this.Animate(redSphere.transform, Easing.AnimationType.LocalPosition, Easing.Ease.EaseInQuad, redSphere.transform.localPosition, redSphere.transform.localPosition + new Vector3(0, 0, -10), 3f, MoveRedSphereBackward);
+    }
+
+    public void MoveRedSphereBackward()
+    {
+        this.Animate(redSphere.transform, Easing.AnimationType.LocalPosition, Easing.Ease.EaseInQuad, redSphere.transform.localPosition, redSphere.transform.localPosition + new Vector3(0, 0, 10), 3f, MoveRedSphereForward);
+    }
 }
 
