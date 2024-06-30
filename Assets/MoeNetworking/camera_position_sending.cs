@@ -21,7 +21,7 @@ public class camera_position_sending : NetworkBehaviour
 
     public AlignmentDebug aligmentDebug;
 
-    public TimeLineStarter timeLineStarter;
+    public PlayDirectorTobi timeLineStarter;
     public PlayDirector VPlayer;
 
     public Vector3 vectorToScreenMultiplayer;
@@ -42,7 +42,7 @@ public class camera_position_sending : NetworkBehaviour
     {
         aligmentDebug = GameObject.FindAnyObjectByType<AlignmentDebug>();
 
-        timeLineStarter = GameObject.FindAnyObjectByType<TimeLineStarter>();
+        timeLineStarter = GameObject.FindAnyObjectByType<PlayDirectorTobi>();
 
         VPlayer = GameObject.FindAnyObjectByType<PlayDirector>();
 
@@ -217,7 +217,7 @@ public class camera_position_sending : NetworkBehaviour
     IEnumerator StartTobiScene()
     {
         yield return new WaitForSeconds(30.3f);
-        timeLineStarter.StartTimeline();
+        timeLineStarter.StartTimelineTobi();
 
     }
 
