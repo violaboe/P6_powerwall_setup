@@ -7,12 +7,14 @@ using UnityEngine.XR;
 public class PlayDirector : MonoBehaviour
 {
     public PlayableDirector director;
+    public AudioSource typhoonSongM;
     public GameObject controlPanel;
     public GameObject plants;
 
     private void Awake()
     {
         director = GetComponent<PlayableDirector>();
+        typhoonSongM = GetComponentInParent<AudioSource>();
         director.played += Director_Played;
         director.stopped += Director_Stopped;
     }
@@ -39,6 +41,7 @@ public class PlayDirector : MonoBehaviour
 
     public void StartTimeline()
     {
+        typhoonSongM.Play();
         director.Play();
     }
 

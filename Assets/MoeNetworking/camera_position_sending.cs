@@ -185,7 +185,7 @@ public class camera_position_sending : NetworkBehaviour
         StartTimeLineObserver();
     }
 
-    [ObserversRpc]
+    [ObserversRpc(ExcludeOwner = true)]
     private void StartTimeLineObserver()
     {
         VPlayer.director.Play();
@@ -216,7 +216,7 @@ public class camera_position_sending : NetworkBehaviour
 
     IEnumerator StartTobiScene()
     {
-        yield return new WaitForSeconds(21.3f);
+        yield return new WaitForSeconds(21.21667f);
         timeLineStarter.StartTimelineTobi();
 
     }
