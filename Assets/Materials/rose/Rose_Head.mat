@@ -25,7 +25,6 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - DR_SPECULAR_ON
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _TEXTUREBLENDINGMODE_MULTIPLY
   m_InvalidKeywords: []
@@ -159,16 +158,16 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 0
-    - _SelfShadingSize: 0
+    - _SelfShadingSize: 0.059
     - _Smoothness: 0.5173553
     - _SmoothnessTextureChannel: 0
-    - _SpecularEnabled: 1
+    - _SpecularEnabled: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _TextureBlendingMode: 0
-    - _TextureImpact: 1
+    - _TextureImpact: 0.983
     - _UVSec: 0
     - _UnityShadowOcclusion: 0
     - _VertexColorsEnabled: 0
@@ -194,7 +193,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: z__GradientRampTex{"mode":1,"colorKeys":[{"color":{"r":0.25525087118148806,"g":0.25525087118148806,"b":0.25525087118148806,"a":1.0},"time":0.2685588002204895},{"color":{"r":0.4175862669944763,"g":0.4175862669944763,"b":0.4175862669944763,"a":1.0},"time":0.6622720956802368},{"color":{"r":0.682449221611023,"g":0.682449221611023,"b":0.682449221611023,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
+  m_Name: z__GradientRampTex{"mode":1,"colorKeys":[{"color":{"r":0.25525087118148806,"g":0.25525087118148806,"b":0.25525087118148806,"a":1.0},"time":0.2685588002204895},{"color":{"r":0.4175862669944763,"g":0.4175862669944763,"b":0.4175862669944763,"a":1.0},"time":0.6622720956802368},{"color":{"r":0.5911948680877686,"g":0.5911948680877686,"b":0.5911948680877686,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -230,7 +229,7 @@ Texture2D:
   m_ColorSpace: 1
   m_PlatformBlob: 
   image data: 1024
-  _typelessdata: ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6affaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeaeffaeaeae
+  _typelessdata: ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff414141ff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff6a6a6aff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797ff979797
   m_StreamData:
     serializedVersion: 2
     offset: 0
