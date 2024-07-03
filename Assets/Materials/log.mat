@@ -6,7 +6,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: z__GradientRampTex{"mode":1,"colorKeys":[{"color":{"r":0.45176219940185549,"g":0.45176219940185549,"b":0.45176219940185549,"a":1.0},"time":0.15152208507061006},{"color":{"r":0.7849768400192261,"g":0.7849768400192261,"b":0.7849768400192261,"a":1.0},"time":0.5931029319763184},{"color":{"r":1.0,"g":1.0,"b":1.0,"a":1.0},"time":0.8910505771636963}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
+  m_Name: z__GradientRampTex{"mode":1,"colorKeys":[{"color":{"r":0.34671181440353396,"g":0.3909846842288971,"b":0.5201139450073242,"a":1.0},"time":0.3191119134426117},{"color":{"r":0.577551007270813,"g":0.6238048076629639,"b":0.7593449950218201,"a":1.0},"time":0.6569466590881348},{"color":{"r":0.842351496219635,"g":0.8669685125350952,"b":0.938768208026886,"a":1.0},"time":0.8910505771636963}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}]}
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
@@ -42,7 +42,7 @@ Texture2D:
   m_ColorSpace: 1
   m_PlatformBlob: 
   image data: 1024
-  _typelessdata: ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ff737373ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffc8c8c8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  _typelessdata: ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff586485ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ff939fc2ffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddefffd7ddef
   m_StreamData:
     serializedVersion: 2
     offset: 0
@@ -60,13 +60,13 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _DETAILMAPBLENDINGMODE_MULTIPLY
+  - _DETAILMAPBLENDINGMODE_ADD
   - _TEXTUREBLENDINGMODE_MULTIPLY
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses:
@@ -157,7 +157,7 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
-    - _DetailMapBlendingMode: 0
+    - _DetailMapBlendingMode: 1
     - _DetailMapImpact: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -193,7 +193,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 0
-    - _SelfShadingSize: 0.22
+    - _SelfShadingSize: 0.31
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0

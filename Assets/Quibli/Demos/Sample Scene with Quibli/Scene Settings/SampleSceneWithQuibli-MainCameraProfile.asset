@@ -17,10 +17,10 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 2
   gaussianStart:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: 22.19
   gaussianEnd:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 30
   gaussianMaxRadius:
     m_OverrideState: 0
@@ -30,22 +30,22 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 1.33
+    m_Value: 13.66
   aperture:
     m_OverrideState: 1
-    m_Value: 7.5
+    m_Value: 21
   focalLength:
     m_OverrideState: 1
-    m_Value: 40
+    m_Value: 300
   bladeCount:
-    m_OverrideState: 0
-    m_Value: 5
+    m_OverrideState: 1
+    m_Value: 9
   bladeCurvature:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   bladeRotation:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 180
 --- !u!114 &-7339064221953844569
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -61,25 +61,25 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.973
+    m_Value: 0.12
   blueShadows:
     m_OverrideState: 1
-    m_Value: 0.268
+    m_Value: 0.28
   greenShadows:
     m_OverrideState: 1
-    m_Value: 0.453
+    m_Value: 0.54
   redHighlights:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: 0.225
+    m_Value: 0.48
   vibrance:
     m_OverrideState: 1
-    m_Value: 0.376
+    m_Value: 0.33
   saturation:
     m_OverrideState: 1
-    m_Value: 0.099
+    m_Value: 0.49
 --- !u!114 &-7119471998601135810
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -98,10 +98,10 @@ MonoBehaviour:
     m_Value: 2
   intensity:
     m_OverrideState: 1
-    m_Value: 0.513
+    m_Value: 0.59
   response:
     m_OverrideState: 1
-    m_Value: 0.239
+    m_Value: 0.08
   texture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -120,13 +120,13 @@ MonoBehaviour:
   active: 1
   redOutRedIn:
     m_OverrideState: 1
-    m_Value: 75
+    m_Value: 70
   redOutGreenIn:
     m_OverrideState: 1
-    m_Value: -13
+    m_Value: -8
   redOutBlueIn:
     m_OverrideState: 1
-    m_Value: 33
+    m_Value: 32
   greenOutRedIn:
     m_OverrideState: 0
     m_Value: 0
@@ -179,10 +179,10 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.52
+    m_Value: 0.79
   blur:
     m_OverrideState: 1
-    m_Value: 0.453
+    m_Value: 0.92
   edgePreserve:
     m_OverrideState: 1
     m_Value: 0.117
@@ -210,10 +210,10 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.97
+    m_Value: 0.18
   intensity:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 2.21
   scatter:
     m_OverrideState: 0
     m_Value: 0.7
