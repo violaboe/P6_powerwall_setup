@@ -5494,6 +5494,7 @@ GameObject:
   - component: {fileID: 3719121807975628642}
   - component: {fileID: 5273114545518893131}
   - component: {fileID: 7322087415522313419}
+  - component: {fileID: 2805874941357006600}
   m_Layer: 0
   m_Name: Fireflies Particles
   m_TagString: Untagged
@@ -5553,6 +5554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customMeshEmitter: {fileID: 5273114545518893131}
+  fireflyFlickering: {fileID: 2805874941357006600}
   particleTriggerHandlerL: {fileID: 0}
   particleTriggerHandlerR: {fileID: 0}
   startingPath: {fileID: 4273233000215294952}
@@ -5560,6 +5562,23 @@ MonoBehaviour:
   path2: {fileID: 8609095649588484587}
   path3: {fileID: 3642253196875371474}
   endPath: {fileID: 2968543679108921029}
+  yellowMaterial: {fileID: 2100000, guid: a96d94780cedb414faf2767d894c5be5, type: 2}
+--- !u!114 &2805874941357006600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938043292653475859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f3a70f1adf0b14fa0e3dafab485f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireflyMaterial: {fileID: 2100000, guid: 60139d2ca489ca64781533d5c5ca41ae, type: 2}
+  yellowMaterial: {fileID: 2100000, guid: a96d94780cedb414faf2767d894c5be5, type: 2}
+  flickerSpeed: 0.2
+  flickerDuration: 1.5
 --- !u!1 &950292740390031113
 GameObject:
   m_ObjectHideFlags: 0
@@ -11281,7 +11300,7 @@ ParticleSystem:
     radiusThickness: 0.1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 180, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -13393,7 +13412,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.67
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -13550,12 +13569,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.1
+    frequency: 0.39
     damping: 1
     octaves: 4
     octaveMultiplier: 0.5
     octaveScale: 2
-    quality: 1
+    quality: 2
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
@@ -16558,7 +16577,7 @@ GameObject:
   - component: {fileID: 5328633431596909369}
   - component: {fileID: 3386731457418237533}
   - component: {fileID: 5544735711980898924}
-  - component: {fileID: 1807755868604150243}
+  - component: {fileID: 4381749545297320672}
   m_Layer: 0
   m_Name: Jar
   m_TagString: Untagged
@@ -16574,13 +16593,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2437654258560434501}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.66, y: 0.4000001, z: 1.9896207}
-  m_LocalScale: {x: 0.11782399, y: 0.11782399, z: 0.11782399}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1.66, y: 0.953, z: 1.604}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3132422167971023923}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &3386731457418237533
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16588,7 +16607,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2437654258560434501}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -7856923838247316492, guid: 8dd538cdf94fff04a893e99720b29dfd, type: 3}
 --- !u!23 &5544735711980898924
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16609,7 +16628,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8538fa75853c4c4458cb296cb0ff79b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16631,8 +16650,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1807755868604150243
-CapsuleCollider:
+--- !u!64 &4381749545297320672
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -16648,12 +16667,11 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7856923838247316492, guid: 8dd538cdf94fff04a893e99720b29dfd, type: 3}
 --- !u!1 &2452130894230727328
 GameObject:
   m_ObjectHideFlags: 0
@@ -17512,7 +17530,7 @@ ParticleSystem:
     radiusThickness: 0.1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 180, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -19624,7 +19642,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.67
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -19781,12 +19799,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.1
+    frequency: 0.39
     damping: 1
     octaves: 4
     octaveMultiplier: 0.5
     octaveScale: 2
-    quality: 1
+    quality: 2
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
@@ -28546,7 +28564,7 @@ ParticleSystem:
     radiusThickness: 0.1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 0, y: 180, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -30658,7 +30676,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.67
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -30815,12 +30833,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     separateAxes: 0
-    frequency: 0.1
+    frequency: 0.39
     damping: 1
     octaves: 4
     octaveMultiplier: 0.5
     octaveScale: 2
-    quality: 1
+    quality: 2
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
@@ -33880,7 +33898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2842062851168686227
 Transform:
   m_ObjectHideFlags: 0
@@ -40481,11 +40499,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4050403524429934, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.3800006
+      value: 10.67
       objectReference: {fileID: 0}
     - target: {fileID: 4050403524429934, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.6100004
+      value: -1.2462068
       objectReference: {fileID: 0}
     - target: {fileID: 4050403524429934, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -40521,7 +40539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData.tabIndex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData.showNormals
@@ -40585,51 +40603,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[0].x
-      value: -62.917854
+      value: -62.917862
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[0].y
-      value: -13.8490305
+      value: -13.84904
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[0].z
-      value: -25.366829
+      value: -61.900074
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].x
-      value: -61.917946
+      value: -61.917934
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].y
-      value: -13.349095
+      value: -13.349124
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[1].z
-      value: -25.387714
+      value: -61.925537
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].x
-      value: -63.824875
+      value: -63.824883
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].y
-      value: -13.79216
+      value: -13.792165
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[2].z
-      value: 18.683432
+      value: 18.683422
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[3].x
-      value: -62.82468
+      value: -62.824688
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[3].y
-      value: -13.792064
+      value: -13.7920685
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[3].z
-      value: 18.68238
+      value: 18.682371
       objectReference: {fileID: 0}
     - target: {fileID: 114462757500385858, guid: 2791553a612d84e7c9f3c0a95308376f, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[4].x

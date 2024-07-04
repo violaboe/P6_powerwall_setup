@@ -68,7 +68,7 @@ public class camera_position_sending : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            MoveRedSphereForward();
+            StartEverything();
         }
     }
 
@@ -225,7 +225,7 @@ public class camera_position_sending : NetworkBehaviour
     public void StartEverything()
     {
         StartTimeLineServer();
-        VPlayer.director.Play();
+        VPlayer.StartTimeline();
         StartCoroutine(StartParticlesSteph());
     }
 }

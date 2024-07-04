@@ -12,6 +12,12 @@ public class particlecontroller : MonoBehaviour
     private float[] spectrumData = new float[64]; // Array to hold spectrum data
     private bool isActive = false; // Boolean to track the active state
 
+
+    private void Start()
+    {
+        audioSource = GameObject.Find("Viola").GetComponentInChildren<AudioSource>();
+    }
+
     void Update()
     {
         // Get spectrum data from the audio source
