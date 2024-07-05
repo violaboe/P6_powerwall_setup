@@ -196,11 +196,11 @@ public class camera_position_sending : NetworkBehaviour
 
 
 
-    IEnumerator StartParticlesSteph()
-    {
-        yield return new WaitForSeconds(72.63f);
-        stephParticles.SetActive(true);
-    }
+    //IEnumerator StartParticlesSteph()
+    //{
+    //    yield return new WaitForSeconds(72.63f);
+    //    stephParticles.SetActive(true);
+    //}
 
    
 
@@ -226,7 +226,7 @@ public class camera_position_sending : NetworkBehaviour
     {
         StartTimeLineServer();
         VPlayer.StartTimeline();
-        StartCoroutine(StartParticlesSteph());
+        //StartCoroutine(StartParticlesSteph());
     }
 }
 

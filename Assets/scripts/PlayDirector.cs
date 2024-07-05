@@ -118,22 +118,26 @@ public class PlayDirector : MonoBehaviour
     {
         typhoonSongM.Play();
         director.Play();
-        StartCoroutine(StephParticleCourotine());
+
         StartCoroutine(FireWorksCourtine());
+
+        StartCoroutine(StephParticleCourotine());
+        
         
         //PlaySongWithLidia();
     }
 
     IEnumerator FireWorksCourtine()
     {
-        yield return new WaitForSeconds(4f);
-        stephTestMoe.SetActive(true);
+        yield return new WaitForSeconds(33.5f);
+        
+        fireWorks.SetActive(true);
     }
 
     IEnumerator StephParticleCourotine()
     {
         yield return new WaitForSeconds(81.20f);
-        fireWorks.SetActive(true);
+        stephTestMoe.SetActive(true);
     }
 
 
