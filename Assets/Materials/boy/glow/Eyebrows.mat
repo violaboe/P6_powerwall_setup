@@ -112,14 +112,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EdgeWidth: 0.28
+    - _EdgeWidth: 0.2
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.2833333
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseScale: 50
+    - _NoiseScale: 7
     - _NoiseStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
