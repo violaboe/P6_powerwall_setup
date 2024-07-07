@@ -5,6 +5,7 @@ using UnityEngine;
 public class GodrayGrower : MonoBehaviour
 {
     public float targetYSize = 2.0f;
+    public float targetXSize = 2.0f;
     public float growthSpeed = 0.1f;
 
     private ParticleSystem particleSystem;
@@ -36,6 +37,18 @@ public class GodrayGrower : MonoBehaviour
             }
 
             mainModule.startSizeY = new ParticleSystem.MinMaxCurve(newYSize);
+        }
+
+        if (mainModule.startSizeX.constant < targetXSize)
+        {
+            float newXSize = mainModule.startSizeX.constant + growthSpeed * Time.deltaTime;
+
+            if (newXSize > targetXSize)
+            {
+                newXSize = targetXSize;
+            }
+
+            mainModule.startSizeX = new ParticleSystem.MinMaxCurve(newXSize);
         }
     }
 }
