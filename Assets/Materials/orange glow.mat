@@ -126,7 +126,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GradientRamp:
-        m_Texture: {fileID: 8365579712144159074, guid: ed0490cd1a383e545900319850003e01, type: 2}
+        m_Texture: {fileID: -3593750176797291538}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
