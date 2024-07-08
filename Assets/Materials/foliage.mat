@@ -172,7 +172,7 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 0
-    - _Cutoff: 0.843
+    - _Cutoff: 0.167
     - _DetailAlbedoMapScale: 1
     - _DetailMapBlendingMode: 0
     - _DetailMapImpact: 0
@@ -193,7 +193,7 @@ Material:
     - _GradientCenterY: 0
     - _GradientEnabled: 0
     - _GradientSize: 10
-    - _LightContribution: 0.69
+    - _LightContribution: 0
     - _LightmapDirectionPitch: 0
     - _LightmapDirectionYaw: 0
     - _METALNESS: 0
