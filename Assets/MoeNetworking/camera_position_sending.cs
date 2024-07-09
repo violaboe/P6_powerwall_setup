@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Connection;
+using UnityEngine.Playables;
 
 public class camera_position_sending : NetworkBehaviour
 {
@@ -23,6 +24,7 @@ public class camera_position_sending : NetworkBehaviour
 
     public PlayDirectorTobi timeLineStarter;
     public PlayDirector VPlayer;
+    public PlayableDirector VPlayer2;
 
     public Vector3 vectorToScreenMultiplayer;
     public Vector3 planNormalMultiplayer;
@@ -34,6 +36,10 @@ public class camera_position_sending : NetworkBehaviour
     private GameObject stephParticles;
 
     public GameObject redSphere;
+
+
+    [SerializeField]
+    private GameObject tutorialStartObject;
 
 
 
@@ -48,6 +54,7 @@ public class camera_position_sending : NetworkBehaviour
 
         alignmentControllerQuest = GameObject.FindAnyObjectByType<AlignmentControllerQuest>();
         alignmentControllerCave = GameObject.FindAnyObjectByType<AlignmentControllerCave>();
+        VPlayer2 = GameObject.Find("Director").GetComponent<PlayableDirector>();
     }
 
     // Update is called once per frame
@@ -69,6 +76,12 @@ public class camera_position_sending : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartEverything();
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            TutorialStartServer();
         }
     }
 
@@ -188,9 +201,10 @@ public class camera_position_sending : NetworkBehaviour
     [ObserversRpc(ExcludeOwner = true)]
     private void StartTimeLineObserver()
     {
-        VPlayer.director.Play();
+        //VPlayer.director.Play();
+        VPlayer.StartTimeline();
         //timeLineStarter.StartTimeline();
-        StartCoroutine(StartTobiScene());
+        StartCoroutine(StartSecondScene());
        // StartCoroutine(StartParticlesSteph());
     }
 
@@ -214,10 +228,14 @@ public class camera_position_sending : NetworkBehaviour
         this.Animate(redSphere.transform, Easing.AnimationType.LocalPosition, Easing.Ease.EaseInQuad, redSphere.transform.localPosition, redSphere.transform.localPosition + new Vector3(0, 0, 10), 3f, MoveRedSphereForward);
     }
 
-    IEnumerator StartTobiScene()
+    IEnumerator StartSecondScene()
     {
         yield return new WaitForSeconds(21.21667f);
-        timeLineStarter.StartTimelineTobi();
+        //timeLineStarter.StartTimelineTobi();
+        if (VPlayer2 != null)
+        {
+            VPlayer2.Play();
+        }
 
     }
 
@@ -225,8 +243,32 @@ public class camera_position_sending : NetworkBehaviour
     public void StartEverything()
     {
         StartTimeLineServer();
-        VPlayer.StartTimeline();
+        //VPlayer.StartTimeline();
         //StartCoroutine(StartParticlesSteph());
+    }
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void TutorialStartServer()
+    {
+        TutorialStartObserver();
+    }
+
+    [ObserversRpc]
+    private void TutorialStartObserver()
+    {
+
+        if (tutorialStartObject != null)
+        {
+            StartCoroutine(TutorialStartCoroutine());
+        }
+    }
+
+    IEnumerator TutorialStartCoroutine()
+    {
+        tutorialStartObject.SetActive(true);
+        yield return new WaitForSeconds(10f);
+        tutorialStartObject.SetActive(false);
     }
 }
 
