@@ -116,7 +116,9 @@ public class PlayDirector : MonoBehaviour
 
     public void StartTimeline()
     {
+        
         typhoonSongM.Play();
+        PlaySongWithLidia();
         director.Play();
 
         StartCoroutine(FireWorksCourtine());
@@ -124,7 +126,7 @@ public class PlayDirector : MonoBehaviour
         StartCoroutine(StephParticleCourotine());
         
         
-        //PlaySongWithLidia();
+        
     }
 
     IEnumerator FireWorksCourtine()
@@ -136,7 +138,7 @@ public class PlayDirector : MonoBehaviour
 
     IEnumerator StephParticleCourotine()
     {
-        yield return new WaitForSeconds(81.20f);
+        yield return new WaitForSeconds(81.60f);
         stephTestMoe.SetActive(true);
     }
 
@@ -161,98 +163,101 @@ public class PlayDirector : MonoBehaviour
         typhoonSongM.Play();
         StartCoroutine(BurstParticles1());
         StartCoroutine(BurstParticles2());
-        //StartCoroutine(BurstParticles3());
-        //StartCoroutine(BurstParticles4());
-        StartCoroutine(BurstParticles5());
-        //StartCoroutine(BurstParticles6());
-        //StartCoroutine(BurstParticles7());
+        StartCoroutine(BurstParticles3());
+        StartCoroutine(BurstParticles4());
+        StartCoroutine(BurstParticles5Small());
+        StartCoroutine(BurstParticles6());
+        StartCoroutine(BurstParticles7Small());
         StartCoroutine(BurstParticles8());
-        //StartCoroutine(BurstParticles9());
-        //StartCoroutine(BurstParticles10());
+        StartCoroutine(BurstParticles9());
+        StartCoroutine(BurstParticles10());
         StartCoroutine(BurstParticles11());
-        //StartCoroutine(BurstParticles12());
-        StartCoroutine(BurstParticles13());
+        StartCoroutine(BurstParticles12());
+        //StartCoroutine(BurstParticles13());
         //StartCoroutine(BurstParticles14());
-        StartCoroutine(BurstParticles15());
-        StartCoroutine(BurstParticles16());
-        StartCoroutine(BurstParticles17());
-        StartCoroutine(BurstParticles18());
-        StartCoroutine(BurstParticles19());
-        StartCoroutine(BurstParticles20());
+       // StartCoroutine(BurstParticles15());
+        //StartCoroutine(BurstParticles16());
+        //StartCoroutine(BurstParticles17());
+        //StartCoroutine(BurstParticles18());
+        //StartCoroutine(BurstParticles19());
+        //StartCoroutine(BurstParticles20());
 
     }
 
 
+
+
+
     IEnumerator BurstParticles1()
     {
-        yield return new WaitForSeconds(61.40f);
+        yield return new WaitForSeconds(61.54f);
         burstParticles.gameObject.SetActive(true);
         
     }
 
     IEnumerator BurstParticles2()
     {
-        yield return new WaitForSeconds(63.32f);
+        yield return new WaitForSeconds(64.06f);
         burstParticles2.gameObject.SetActive(true);
     }
 
     IEnumerator BurstParticles3()
     {
-        yield return new WaitForSeconds(63.41f);
+        yield return new WaitForSeconds(65.10f);
         burstParticles3.gameObject.SetActive(true);
     }
 
     IEnumerator BurstParticles4()
     {
-        yield return new WaitForSeconds(64.29f);
+        yield return new WaitForSeconds(66.16f);
         burstParticles4.gameObject.SetActive(true);
     }
 
-    IEnumerator BurstParticles5()
+    IEnumerator BurstParticles5Small()
     {
-        yield return new WaitForSeconds(65.34f);
+        yield return new WaitForSeconds(68.19f);
         burstParticles5.gameObject.SetActive(true);
     }
 
     IEnumerator BurstParticles6()
     {
-        yield return new WaitForSeconds(66.40f);
+        yield return new WaitForSeconds(69.23f);
         burstParticles6.gameObject.SetActive(true);
     }
 
-    IEnumerator BurstParticles7()
+    IEnumerator BurstParticles7Small()
     {
-        yield return new WaitForSeconds(68.42f);
+        yield return new WaitForSeconds(70.20f);
         burstParticles7.gameObject.SetActive(true);
     }
 
     IEnumerator BurstParticles8()
     {
-        yield return new WaitForSeconds(69.25f);
+        yield return new WaitForSeconds(71.13f);
         burstParticles8.gameObject.SetActive(true);
     }
 
     IEnumerator BurstParticles9()
     {
-        yield return new WaitForSeconds(70.31f);
+        yield return new WaitForSeconds(73.20f);
         burstParticles9.gameObject.SetActive(true);
     }
 
     IEnumerator BurstParticles10()
     {
-        yield return new WaitForSeconds(71.40f);
+        yield return new WaitForSeconds(75.07f);
         burstParticles10.gameObject.SetActive(true);
     }
 
     IEnumerator BurstParticles11()
     {
-        yield return new WaitForSeconds(72.80f);
+        yield return new WaitForSeconds(76.12f);
         burstParticles11.gameObject.SetActive(true);
     }
 
     IEnumerator BurstParticles12()
     {
-        yield return new WaitForSeconds(74.26f);
+        yield return new WaitForSeconds(79.01f);
         burstParticles12.gameObject.SetActive(true);
     }
 
@@ -297,6 +302,7 @@ public class PlayDirector : MonoBehaviour
     {
         yield return new WaitForSeconds(81.20f);
         burstParticles19.gameObject.SetActive(true);
+        
     }
 
     IEnumerator BurstParticles20()
