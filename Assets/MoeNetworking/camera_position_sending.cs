@@ -40,12 +40,37 @@ public class camera_position_sending : NetworkBehaviour
 
     [SerializeField]
     private GameObject tutorialStartObject;
+    
+    [SerializeField]
+    private GameObject siblingJar;
+
+    public float threshold = 6f; // Height at which the event is triggered
+
+    [SerializeField]
+    private bool hasTriggered = false; // To ensure the event is triggered only once
+
+
+
+    [SerializeField]
+    private Texture2D _2dColorLUT;
+
+    
+    private OVRPassthroughColorLut lutTexturePulse;
+
+    [SerializeField]
+    private OVRPassthroughLayer ovrPassPulse;
+
+    private float blendSpeed;
 
 
 
 
     private void Start()
     {
+
+        //lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, false);
+
+        hasTriggered = false;
         aligmentDebug = GameObject.FindAnyObjectByType<AlignmentDebug>();
 
         timeLineStarter = GameObject.FindAnyObjectByType<PlayDirectorTobi>();
@@ -55,11 +80,16 @@ public class camera_position_sending : NetworkBehaviour
         alignmentControllerQuest = GameObject.FindAnyObjectByType<AlignmentControllerQuest>();
         alignmentControllerCave = GameObject.FindAnyObjectByType<AlignmentControllerCave>();
         VPlayer2 = GameObject.Find("Director").GetComponent<PlayableDirector>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+       //ovrPassPulse.SetColorLut(lutTexturePulse, Mathf.PingPong(Time.time * blendSpeed, 1.0f));
+
+        Debug.Log(siblingJar.transform.position.y);
 
         if (alignmentControllerQuest.isSceneAligned)
         {
@@ -83,6 +113,9 @@ public class camera_position_sending : NetworkBehaviour
         {
             TutorialStartServer();
         }
+
+
+        JarPlayButtonFunction();
     }
 
 
@@ -270,5 +303,20 @@ public class camera_position_sending : NetworkBehaviour
         yield return new WaitForSeconds(10f);
         tutorialStartObject.SetActive(false);
     }
+
+
+
+    private void JarPlayButtonFunction()
+    {
+        if (siblingJar.transform.position.y >= threshold && !hasTriggered)
+        {
+            // Trigger the event
+            StartEverything();
+
+            // Mark the event as triggered
+            hasTriggered = true;
+        }
+    }
+
 }
 

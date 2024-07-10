@@ -77,12 +77,27 @@ public class PlayDirector : MonoBehaviour
     public GameObject fireWorks;
 
 
+
+
+    [SerializeField]
+    private Texture2D _2dColorLUT;
+
+
+    private OVRPassthroughColorLut lutTexturePulse;
+
+    [SerializeField]
+    private OVRPassthroughLayer ovrPassPulse;
+
+    private float blendSpeed;
+
     private void Awake()
     {
         director = GetComponent<PlayableDirector>();
         typhoonSongM = GetComponentInParent<AudioSource>();
         //director.played += Director_Played;
         //director.stopped += Director_Stopped;
+
+        
     }
 
     private void Update()
@@ -116,7 +131,9 @@ public class PlayDirector : MonoBehaviour
 
     public void StartTimeline()
     {
-        
+        PassthroughWarmLighting();
+
+
         typhoonSongM.Play();
         PlaySongWithLidia();
         director.Play();
@@ -124,6 +141,7 @@ public class PlayDirector : MonoBehaviour
         StartCoroutine(FireWorksCourtine());
 
         StartCoroutine(StephParticleCourotine());
+
         
         
         
@@ -311,8 +329,13 @@ public class PlayDirector : MonoBehaviour
         burstParticles20.gameObject.SetActive(true);
     }
 
+    public void PassthroughWarmLighting()
+    {
+        lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, true);
+        ovrPassPulse.SetColorLut(lutTexturePulse, 1);
 
-   
+    }
+
 
 
 }
