@@ -172,7 +172,7 @@ Material:
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 0
-    - _Cutoff: 0.167
+    - _Cutoff: 0.981
     - _DetailAlbedoMapScale: 1
     - _DetailMapBlendingMode: 0
     - _DetailMapImpact: 0
@@ -215,7 +215,7 @@ Material:
     - _RimEnabled: 0
     - _SPECULAR_IOR: 1.5
     - _SPECULAR_ROUGHNESS: 5
-    - _SelfShadingSize: 0.2
+    - _SelfShadingSize: 0.276
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
