@@ -15,7 +15,7 @@ public class particlecontroller : MonoBehaviour
 
     private void Start()
     {
-        audioSource = GameObject.Find("Viola").GetComponentInChildren<AudioSource>();
+        audioSource = GameObject.Find("Viola").GetComponent<AudioSource>();
     }
 
     void Update()

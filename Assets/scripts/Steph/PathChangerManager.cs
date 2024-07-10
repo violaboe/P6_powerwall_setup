@@ -27,6 +27,25 @@ public class PathChangerManager : MonoBehaviour
     private HashSet<PathFollower> reachedEndPathFollowers = new HashSet<PathFollower>(); //HashSet for particles that reached end of endPath
 
 
+    [SerializeField]
+    private Texture2D _2dColorLUT;
+
+
+    private OVRPassthroughColorLut lutTexturePulse;
+
+    [SerializeField]
+    private OVRPassthroughLayer ovrPassPulse;
+
+    [SerializeField]
+    private GameObject SiblingsInJar;
+
+    [SerializeField]
+    private GameObject EndTutorial;
+
+    [SerializeField]
+    private AudioSource playDirectV;
+
+
     void Start()
     {
         // Get all PathFollower components in the children
@@ -51,6 +70,8 @@ public class PathChangerManager : MonoBehaviour
         particleTriggerHandlerR.OnParticlesPushed += OnParticlesPushed;
 
         StartCoroutine(CheckPathCompletion());
+
+        playDirectV = FindAnyObjectByType<PlayDirector>().GetComponentInParent<AudioSource>();
     }
 
 
@@ -94,6 +115,7 @@ public class PathChangerManager : MonoBehaviour
                         SwitchToEndPath(follower);
                         switchedToEndPathFollowers.Add(follower);
                         Debug.Log($"Switching to end path for {follower.gameObject.name}");
+                        
                     }
                 }
                 else if (switchedToEndPathFollowers.Contains(follower) && HasReachedEnd(follower))
@@ -287,5 +309,37 @@ public class PathChangerManager : MonoBehaviour
     bool IsOnPath(PathFollower follower, GameObject path1, GameObject path2, GameObject path3)
     {
         return follower.pathCreator.gameObject == path1 || follower.pathCreator.gameObject == path2 || follower.pathCreator.gameObject == path3;
+    }
+
+
+    private void Update()
+    {
+
+        Debug.Log(switchedToEndPathFollowers.Count);
+        if(switchedToEndPathFollowers.Count >= 3)
+        {
+            
+            
+                lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, true);
+                ovrPassPulse.SetColorLut(lutTexturePulse, 1);
+            StartCoroutine(StartTheEnd());
+
+            
+
+        }
+    }
+
+
+    IEnumerator StartTheEnd()
+    {
+        yield return new WaitForSeconds(10f);
+        SiblingsInJar.SetActive(true);
+
+        yield return new WaitForSeconds(10f);
+        EndTutorial.SetActive(true);
+        playDirectV.Stop();
+        
+        
+
     }
 }

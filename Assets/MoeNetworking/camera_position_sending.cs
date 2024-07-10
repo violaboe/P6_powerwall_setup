@@ -62,6 +62,12 @@ public class camera_position_sending : NetworkBehaviour
 
     private float blendSpeed;
 
+    [SerializeField]
+    private GameObject violaJar;
+
+    [SerializeField]
+    private GameObject stephJar;
+
 
 
 
@@ -276,6 +282,7 @@ public class camera_position_sending : NetworkBehaviour
     public void StartEverything()
     {
         StartTimeLineServer();
+        StartCoroutine(ChangeJars());
         //VPlayer.StartTimeline();
         //StartCoroutine(StartParticlesSteph());
     }
@@ -316,6 +323,15 @@ public class camera_position_sending : NetworkBehaviour
             // Mark the event as triggered
             hasTriggered = true;
         }
+    }
+
+
+    IEnumerator ChangeJars()
+    {
+        yield return new WaitForSeconds(10f);
+        violaJar.SetActive(false);
+        stephJar.SetActive(true);
+
     }
 
 }

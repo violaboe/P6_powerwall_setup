@@ -131,7 +131,7 @@ public class PlayDirector : MonoBehaviour
 
     public void StartTimeline()
     {
-        PassthroughWarmLighting();
+       // PassthroughWarmLighting();
 
 
         typhoonSongM.Play();
