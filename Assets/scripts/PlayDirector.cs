@@ -119,6 +119,8 @@ public class PlayDirector : MonoBehaviour
             // PlaySongWithLidia();
             StartTimeline();
         }
+
+        lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, true);
     }
 
     //private void Director_Stopped(PlayableDirector obj)
@@ -146,9 +148,10 @@ public class PlayDirector : MonoBehaviour
 
         StartCoroutine(StartFollowPathParticlesCourotine());
 
-        
-        
-        
+
+        StartCoroutine(LerpLutWeightValue(3f));
+
+
     }
 
     IEnumerator FireWorksCourtine()
@@ -346,6 +349,23 @@ public class PlayDirector : MonoBehaviour
         yield return new WaitForSeconds(38f);
         followPathParticlesL.SetActive(true);
     }
+
+    private IEnumerator LerpLutWeightValue(float duration)
+    {
+
+        yield return new WaitForSeconds(11.2f);
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float value = Mathf.Lerp(0f, 1f, elapsedTime / duration);
+            ovrPassPulse.SetColorLut(lutTexturePulse, value);
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+    }
+
 
 
 }

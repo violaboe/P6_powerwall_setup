@@ -320,9 +320,9 @@ public class PathChangerManager : MonoBehaviour
         {
             
             
-                lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, true);
-                ovrPassPulse.SetColorLut(lutTexturePulse, 1);
-            StartCoroutine(StartTheEnd());
+                //lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, true);
+                //ovrPassPulse.SetColorLut(lutTexturePulse, 1);
+                StartCoroutine(StartTheEnd());
 
             
 

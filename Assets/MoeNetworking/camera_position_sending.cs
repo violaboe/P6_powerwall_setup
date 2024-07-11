@@ -68,13 +68,16 @@ public class camera_position_sending : NetworkBehaviour
     [SerializeField]
     private GameObject stephJar;
 
+    [SerializeField]
+    private GameObject debugCanvas;
+
 
 
 
     private void Start()
     {
 
-        //lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, false);
+        lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, false);
 
         hasTriggered = false;
         aligmentDebug = GameObject.FindAnyObjectByType<AlignmentDebug>();
@@ -283,6 +286,7 @@ public class camera_position_sending : NetworkBehaviour
     {
         StartTimeLineServer();
         StartCoroutine(ChangeJars());
+        StartCoroutine(LerpLutWeightValue(3f));
         //VPlayer.StartTimeline();
         //StartCoroutine(StartParticlesSteph());
     }
@@ -307,6 +311,7 @@ public class camera_position_sending : NetworkBehaviour
     IEnumerator TutorialStartCoroutine()
     {
         tutorialStartObject.SetActive(true);
+        debugCanvas.SetActive(false);
         yield return new WaitForSeconds(10f);
         tutorialStartObject.SetActive(false);
     }
@@ -332,6 +337,22 @@ public class camera_position_sending : NetworkBehaviour
         violaJar.SetActive(false);
         stephJar.SetActive(true);
 
+    }
+
+    private IEnumerator LerpLutWeightValue(float duration)
+    {
+
+        yield return new WaitForSeconds(11.2f);
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            float value = Mathf.Lerp(0f, 1f, elapsedTime / duration);
+            ovrPassPulse.SetColorLut(lutTexturePulse, value);
+
+            elapsedTime += Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
     }
 
 }
