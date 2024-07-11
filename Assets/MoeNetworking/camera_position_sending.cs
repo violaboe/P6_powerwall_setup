@@ -77,7 +77,7 @@ public class camera_position_sending : NetworkBehaviour
     private void Start()
     {
 
-        lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, false);
+        lutTexturePulse = new OVRPassthroughColorLut(_2dColorLUT, true);
 
         hasTriggered = false;
         aligmentDebug = GameObject.FindAnyObjectByType<AlignmentDebug>();
@@ -284,7 +284,9 @@ public class camera_position_sending : NetworkBehaviour
 
     public void StartEverything()
     {
+
         StartTimeLineServer();
+        VPlayer.StartTimeline();
         StartCoroutine(ChangeJars());
         StartCoroutine(LerpLutWeightValue(3f));
         //VPlayer.StartTimeline();
@@ -312,7 +314,7 @@ public class camera_position_sending : NetworkBehaviour
     {
         tutorialStartObject.SetActive(true);
         debugCanvas.SetActive(false);
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(6f);
         tutorialStartObject.SetActive(false);
     }
 
