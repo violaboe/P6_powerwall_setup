@@ -76,6 +76,8 @@ public class PlayDirector : MonoBehaviour
 
     public GameObject fireWorks;
 
+    public GameObject followPathParticlesL;
+
 
 
 
@@ -141,6 +143,8 @@ public class PlayDirector : MonoBehaviour
         StartCoroutine(FireWorksCourtine());
 
         StartCoroutine(StephParticleCourotine());
+
+        StartCoroutine(StartFollowPathParticlesCourotine());
 
         
         
@@ -336,6 +340,12 @@ public class PlayDirector : MonoBehaviour
 
     }
 
+
+    IEnumerator StartFollowPathParticlesCourotine()
+    {
+        yield return new WaitForSeconds(38f);
+        followPathParticlesL.SetActive(true);
+    }
 
 
 }
