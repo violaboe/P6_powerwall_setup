@@ -17795,9 +17795,9 @@ MonoBehaviour:
   redSphere: {fileID: 1946142873}
   tutorialStartObject: {fileID: 809949364}
   siblingJar: {fileID: 1651875480}
-  threshold: 1.2
+  threshold: 1
   hasTriggered: 0
-  _2dColorLUT: {fileID: 2800000, guid: 6877c87812ef28246bc3c9babd1a1cbe, type: 3}
+  _2dColorLUT: {fileID: 2800000, guid: da3d53e10cfdab740b292e43d6b6bea6, type: 3}
   ovrPassPulse: {fileID: 866727090}
   violaJar: {fileID: 1651875480}
   stephJar: {fileID: 1376142566}
@@ -17901,9 +17901,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 511579974560111396, guid: 7895867370fe59b45a9869935dd8f41d, type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1089677614029728221, guid: 7895867370fe59b45a9869935dd8f41d, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195527101555062365, guid: 7895867370fe59b45a9869935dd8f41d, type: 3}
+      propertyPath: _rigidbody
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2190692932263977159, guid: 7895867370fe59b45a9869935dd8f41d, type: 3}
       propertyPath: _rigidbody
@@ -26946,7 +26954,7 @@ MonoBehaviour:
   _ipv6BindAddress: 
   _port: 7770
   _maximumClients: 4095
-  _clientAddress: 172.16.18.216
+  _clientAddress: 172.16.15.2
 --- !u!114 &7443408886434495820
 MonoBehaviour:
   m_ObjectHideFlags: 0
