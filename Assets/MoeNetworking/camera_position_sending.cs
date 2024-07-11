@@ -237,7 +237,7 @@ public class camera_position_sending : NetworkBehaviour
         StartTimeLineObserver();
     }
 
-    [ObserversRpc(ExcludeOwner = true)]
+    [ObserversRpc]
     private void StartTimeLineObserver()
     {
         //VPlayer.director.Play();
