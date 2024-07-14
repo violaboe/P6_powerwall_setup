@@ -316,6 +316,7 @@ public class camera_position_sending : NetworkBehaviour
         debugCanvas.SetActive(false);
         yield return new WaitForSeconds(6f);
         tutorialStartObject.SetActive(false);
+        violaJar.SetActive(true);
     }
 
 
