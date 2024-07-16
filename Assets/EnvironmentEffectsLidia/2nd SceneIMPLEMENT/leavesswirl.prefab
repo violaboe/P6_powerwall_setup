@@ -9894,7 +9894,7 @@ GameObject:
   - component: {fileID: 4912947348503801341}
   - component: {fileID: 4042188794263783987}
   m_Layer: 0
-  m_Name: Splash Leaves Wind
+  m_Name: leavesswirl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
