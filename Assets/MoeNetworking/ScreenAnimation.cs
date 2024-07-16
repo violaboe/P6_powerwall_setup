@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScreenAnimation : MonoBehaviour
 {
+
+    AudioSource myaudio;
     // Start is called before the first frame update
     void Start()
     {
