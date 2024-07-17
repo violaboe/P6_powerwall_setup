@@ -26,10 +26,10 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -112,14 +112,14 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EdgeWidth: 0.1
+    - _EdgeWidth: 0.5
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseScale: 19.1
-    - _NoiseStrength: 1
+    - _NoiseScale: 42.1
+    - _NoiseStrength: 3.83
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -133,16 +133,16 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _alpha: 0
-    - _alpha_clip: 1.27
+    - _alpha: 10.7
+    - _alpha_clip: -0.53
     - _rotation: 1.55
     - _smoothness: 0
     m_Colors:
-    - _Albedo: {r: 1, g: 1, b: 1, a: 1}
+    - _Albedo: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 0.9221513, g: 0.6769839, b: 0.34683272, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _dissolve_direction: {r: 0, g: 1, b: 0, a: 0}
+    - _dissolve_direction: {r: 0, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

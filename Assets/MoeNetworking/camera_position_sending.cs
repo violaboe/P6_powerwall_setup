@@ -63,7 +63,10 @@ public class camera_position_sending : NetworkBehaviour
     private float blendSpeed;
 
     [SerializeField]
-    private GameObject violaJar;
+    private GameObject violaJar;    
+    
+    [SerializeField]
+    private GameObject revealJar;
 
     [SerializeField]
     private GameObject stephJar;
@@ -315,8 +318,12 @@ public class camera_position_sending : NetworkBehaviour
         tutorialStartObject.SetActive(true);
         debugCanvas.SetActive(false);
         yield return new WaitForSeconds(6f);
-        tutorialStartObject.SetActive(false);
+        tutorialStartObject.GetComponent<Animator>().Play("UIdissolve");
+        //tutorialStartObject.SetActive(false);
         violaJar.SetActive(true);
+        revealJar.GetComponent<Animator>().Play("jarDissolve");
+        yield return new WaitForSeconds(5f);
+        revealJar.SetActive(false) ;
     }
 
 

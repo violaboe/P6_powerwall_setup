@@ -184,7 +184,7 @@ Material:
     - _LightmapDirectionYaw: 0
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseScale: 4
+    - _NoiseScale: 3
     - _NoiseStrength: 1
     - _OcclusionStrength: 1
     - _OutlineDepthOffset: 0
@@ -214,7 +214,9 @@ Material:
     - _VertexColorsEnabled: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _rotation: -1.4
+    - _alpha: 0
+    - _alpha_clip: 0.42
+    - _rotation: 3.11
     - _smoothness: 0
     m_Colors:
     - _Albedo: {r: 0.49956936, g: 0.59852517, b: 0.6568173, a: 1}
@@ -231,7 +233,7 @@ Material:
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _dissolve_direction: {r: 1, g: 0, b: 1, a: 0}
+    - _dissolve_direction: {r: 0, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &619080732676356137
 MonoBehaviour:

@@ -214,6 +214,8 @@ Material:
     - _VertexColorsEnabled: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _alpha: 0
+    - _alpha_clip: 0.1
     - _rotation: 0
     - _smoothness: 0
     m_Colors:

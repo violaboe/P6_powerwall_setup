@@ -135,6 +135,8 @@ Material:
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _alpha: 0
+    - _alpha_clip: 0.34
     - _rotation: 20.13
     - _smoothness: 0
     m_Colors:
