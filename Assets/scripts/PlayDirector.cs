@@ -92,6 +92,12 @@ public class PlayDirector : MonoBehaviour
 
     private float blendSpeed;
 
+    [SerializeField]
+    private AudioSource fireFlyeSpatialAudioBeginning;
+
+    [SerializeField]
+    private AudioSource fireFlyeSpatialAudio;
+
     private void Awake()
     {
         director = GetComponent<PlayableDirector>();
@@ -150,6 +156,9 @@ public class PlayDirector : MonoBehaviour
 
 
         StartCoroutine(LerpLutWeightValue(3f));
+
+        fireFlyeSpatialAudioBeginning.Stop();
+        fireFlyeSpatialAudio.Play();
 
 
     }

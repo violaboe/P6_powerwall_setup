@@ -318,8 +318,8 @@ public class camera_position_sending : NetworkBehaviour
         tutorialStartObject.SetActive(true);
         debugCanvas.SetActive(false);
         yield return new WaitForSeconds(6f);
-        tutorialStartObject.GetComponent<Animator>().Play("UIdissolve");
-        //tutorialStartObject.SetActive(false);
+        //tutorialStartObject.GetComponent<Animator>().Play("UIdissolve");
+        tutorialStartObject.SetActive(false);
         violaJar.SetActive(true);
         revealJar.GetComponent<Animator>().Play("jarDissolve");
         yield return new WaitForSeconds(5f);
@@ -357,7 +357,7 @@ public class camera_position_sending : NetworkBehaviour
 
         while (elapsedTime < duration)
         {
-            float value = Mathf.Lerp(0f, 1f, elapsedTime / duration);
+            float value = Mathf.Lerp(0f, 0.1f, elapsedTime / duration);
             ovrPassPulse.SetColorLut(lutTexturePulse, value);
 
             elapsedTime += Time.deltaTime;

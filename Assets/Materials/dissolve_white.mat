@@ -78,6 +78,8 @@ Material:
     - _NormalStrenght: 10
     - _QueueControl: 0
     - _QueueOffset: 13
+    - _alpha: 0
+    - _alpha_clip: 0.1
     - _rotation: -1.56
     - _smoothness: 0
     m_Colors:
