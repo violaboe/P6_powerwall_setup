@@ -336,11 +336,11 @@ public class PathChangerManager : MonoBehaviour
         SiblingsInJar.SetActive(true);
 
         yield return new WaitForSeconds(10f);
-        //EndTutorial.SetActive(true);
+        EndTutorial.SetActive(true);
         playDirectV.Stop();
 
         yield return new WaitForSeconds(10f);
-        //EndTutorial.SetActive(false);
+        Destroy(EndTutorial);
 
 
 

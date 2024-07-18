@@ -74,6 +74,9 @@ public class camera_position_sending : NetworkBehaviour
     [SerializeField]
     private GameObject debugCanvas;
 
+    [SerializeField]
+    private GameObject networkingCanvas;
+
 
 
 
@@ -317,6 +320,7 @@ public class camera_position_sending : NetworkBehaviour
     {
         tutorialStartObject.SetActive(true);
         debugCanvas.SetActive(false);
+        networkingCanvas.SetActive(false);
         yield return new WaitForSeconds(6f);
         //tutorialStartObject.GetComponent<Animator>().Play("UIdissolve");
         tutorialStartObject.SetActive(false);

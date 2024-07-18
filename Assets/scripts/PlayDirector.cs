@@ -165,14 +165,14 @@ public class PlayDirector : MonoBehaviour
 
     IEnumerator FireWorksCourtine()
     {
-        yield return new WaitForSeconds(33.5f);
+        yield return new WaitForSeconds(33.8f);
         
         fireWorks.SetActive(true);
     }
 
     IEnumerator StephParticleCourotine()
     {
-        yield return new WaitForSeconds(81.60f);
+        yield return new WaitForSeconds(81.99f);
         stephTestMoe.SetActive(true);
     }
 
@@ -195,18 +195,18 @@ public class PlayDirector : MonoBehaviour
     public void PlaySongWithLidia()
     {
         typhoonSongM.Play();
-        StartCoroutine(BurstParticles1());
-        StartCoroutine(BurstParticles2());
-        StartCoroutine(BurstParticles3());
-        StartCoroutine(BurstParticles4());
-        StartCoroutine(BurstParticles5Small());
-        StartCoroutine(BurstParticles6());
-        StartCoroutine(BurstParticles7Small());
-        StartCoroutine(BurstParticles8());
-        StartCoroutine(BurstParticles9());
-        StartCoroutine(BurstParticles10());
-        StartCoroutine(BurstParticles11());
-        StartCoroutine(BurstParticles12());
+        //StartCoroutine(BurstParticles1());
+        //StartCoroutine(BurstParticles2());
+        //StartCoroutine(BurstParticles3());
+        //StartCoroutine(BurstParticles4());
+        //StartCoroutine(BurstParticles5Small());
+        //StartCoroutine(BurstParticles6());
+        //StartCoroutine(BurstParticles7Small());
+        //StartCoroutine(BurstParticles8());
+        //StartCoroutine(BurstParticles9());
+        //StartCoroutine(BurstParticles10());
+        //StartCoroutine(BurstParticles11());
+        //StartCoroutine(BurstParticles12());
         //StartCoroutine(BurstParticles13());
         //StartCoroutine(BurstParticles14());
        // StartCoroutine(BurstParticles15());
