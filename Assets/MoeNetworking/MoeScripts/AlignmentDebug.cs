@@ -14,7 +14,7 @@ public class AlignmentDebug : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blockOut = GameObject.Find("Blockout");
+        //blockOut = GameObject.Find("Blockout");
         debugOn = false;
     }
 

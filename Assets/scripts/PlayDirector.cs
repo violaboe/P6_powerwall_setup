@@ -158,7 +158,7 @@ public class PlayDirector : MonoBehaviour
         StartCoroutine(LerpLutWeightValue(3f));
 
         fireFlyeSpatialAudioBeginning.Stop();
-        fireFlyeSpatialAudio.Play();
+        //fireFlyeSpatialAudio.Play();
 
 
     }
