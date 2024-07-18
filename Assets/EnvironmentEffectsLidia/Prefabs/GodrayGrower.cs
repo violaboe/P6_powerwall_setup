@@ -29,11 +29,11 @@ public class GodrayGrower : MonoBehaviour
     {
         if (mainModule.startSizeY.constant < targetYSize)
         {
-            float newYSize = mainModule.startSizeY.constant + growthSpeed * Time.deltaTime;
+            float newYSize = mainModule.startSizeY.constant + growthSpeed * Time.deltaTime;  //growth speed
 
-            if (newYSize > targetYSize)
+            if (newYSize > targetYSize)     
             {
-                newYSize = targetYSize;
+                newYSize = targetYSize;              //targetsize Y
             }
 
             mainModule.startSizeY = new ParticleSystem.MinMaxCurve(newYSize);
@@ -45,7 +45,7 @@ public class GodrayGrower : MonoBehaviour
 
             if (newXSize > targetXSize)
             {
-                newXSize = targetXSize;
+                newXSize = targetXSize;             //targetsize X
             }
 
             mainModule.startSizeX = new ParticleSystem.MinMaxCurve(newXSize);
