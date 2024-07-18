@@ -98,6 +98,9 @@ public class PlayDirector : MonoBehaviour
     [SerializeField]
     private AudioSource fireFlyeSpatialAudio;
 
+    [SerializeField]
+    PlayableDirector TobisAudio;
+
     private void Awake()
     {
         director = GetComponent<PlayableDirector>();
@@ -147,6 +150,7 @@ public class PlayDirector : MonoBehaviour
         typhoonSongM.Play();
         PlaySongWithLidia();
         director.Play();
+        TobisAudio.Play();
 
         StartCoroutine(FireWorksCourtine());
 

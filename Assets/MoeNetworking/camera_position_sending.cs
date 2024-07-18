@@ -278,7 +278,7 @@ public class camera_position_sending : NetworkBehaviour
 
     IEnumerator StartSecondScene()
     {
-        yield return new WaitForSeconds(21.21667f);
+        yield return new WaitForSeconds(20.9f);
         //timeLineStarter.StartTimelineTobi();
         if (VPlayer2 != null)
         {
