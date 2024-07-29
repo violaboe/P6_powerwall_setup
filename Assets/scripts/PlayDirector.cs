@@ -116,8 +116,8 @@ public class PlayDirector : MonoBehaviour
         // Check for the B button press on the Quest 3 controller
         if (IsBButtonPressed())
         {
-            StartTimeline();
-            plants.SetActive(true);
+           // StartTimeline();
+           // plants.SetActive(true);
             
         }
 
@@ -156,7 +156,7 @@ public class PlayDirector : MonoBehaviour
 
         StartCoroutine(StephParticleCourotine());
 
-        StartCoroutine(StartFollowPathParticlesCourotine());
+        //StartCoroutine(StartFollowPathParticlesCourotine());
 
 
         StartCoroutine(LerpLutWeightValue(3f));
@@ -169,14 +169,14 @@ public class PlayDirector : MonoBehaviour
 
     IEnumerator FireWorksCourtine()
     {
-        yield return new WaitForSeconds(33.8f);
+        yield return new WaitForSeconds(33.7f);
         
         fireWorks.SetActive(true);
     }
 
     IEnumerator StephParticleCourotine()
     {
-        yield return new WaitForSeconds(81.99f);
+        yield return new WaitForSeconds(81.9f);
         stephTestMoe.SetActive(true);
     }
 
